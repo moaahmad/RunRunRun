@@ -16,17 +16,17 @@ class CurrentRunViewController: LocationViewController {
     
     @IBOutlet weak var durationLabel: UILabel! {
         didSet {
-            durationLabel.text = ""
+            durationLabel.text = "00:00"
         }
     }
     @IBOutlet weak var averagePaceLabel: UILabel! {
         didSet {
-            averagePaceLabel.text = ""
+            averagePaceLabel.text = "0'00\""
         }
     }
     @IBOutlet weak var distanceLabel: UILabel! {
         didSet {
-            distanceLabel.text = ""
+            distanceLabel.text = "00 m"
         }
     }
     @IBOutlet weak var pauseButton: UIButton! {
@@ -39,7 +39,8 @@ class CurrentRunViewController: LocationViewController {
             stopButton.makeCircular()
         }
     }
-    
+    var startLocation: CLLocation!
+    var lastLocation: CLLocation!
     var runDistance = 0.0
     var pace = 0
     var runSession: RunSession!
@@ -56,6 +57,7 @@ class CurrentRunViewController: LocationViewController {
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
+        pauseTimer()
         dismiss(animated: true, completion: nil)
     }
     
@@ -64,7 +66,9 @@ class CurrentRunViewController: LocationViewController {
     }
     
     @IBAction func didTapStopButton(_ sender: Any) {
-        //        runSession.pause()
+        // Stop Timer
+        // Save Run
+        // Dismiss View
     }
     
     private func startTimer() {
@@ -75,19 +79,43 @@ class CurrentRunViewController: LocationViewController {
     private func pauseTimer() {
         runSession.pause()
     }
+    
+    private func calculateAveragePace(time seconds: Int, miles: Double) -> String {
+        pace = Int(Double(seconds) / miles)
+        return String(pace.formatDuration())
+    }
 }
 
+// MARK: - Update Duration Delegate
 extension CurrentRunViewController: UpdateDurationDelegate {
     func updateDurationLabel(with counter: Int) {
-        durationLabel.text = "\(counter)"
+        durationLabel.text = counter.formatDuration()
     }
 }
 
 // MARK: - Core Location Manager Delegate
 extension CurrentRunViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             checkLocationAuthStatus()
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]) {
+        guard startLocation == nil else {
+            if let location = locations.last {
+                runDistance += lastLocation.distance(from: location)
+                distanceLabel.text = "\(runDistance.metersRounded(to: 2))"
+//                if runSession.counter > 0 && runDistance > 0 {
+//                    averagePaceLabel.text = calculateAveragePace(time: runSession.counter,
+//                                                          miles: runDistance.metersToMiles(places: 2))
+//                }
+            }
+            return
+        }
+        startLocation = locations.first
+        lastLocation = locations.last
     }
 }

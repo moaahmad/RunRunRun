@@ -10,7 +10,7 @@ import Foundation
 final class RunSession {
     
     private var timer: Timer
-    private var counter = 0
+    var counter = 0
     weak var delegate: UpdateDurationDelegate?
     
     init(timer: Timer, delegate: UpdateDurationDelegate?) {
