@@ -19,6 +19,7 @@
 		F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */; };
 		F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674E524A7F4870083FD5F /* StartRun.storyboard */; };
 		F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */; };
+		F0D2BA2B24A82C2100BE815F /* CurrentRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		F0A674E524A7F4870083FD5F /* StartRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartRun.storyboard; sourceTree = "<group>"; };
 		F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrentRun.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				F0A674BA24A7CCB50083FD5F /* LaunchScreen.storyboard */,
 				F0A674DC24A7DF380083FD5F /* Main.storyboard */,
 				F0A674E524A7F4870083FD5F /* StartRun.storyboard */,
+				F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				F0A674BC24A7CCB50083FD5F /* LaunchScreen.storyboard in Resources */,
 				F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */,
 				F0A674B924A7CCB40083FD5F /* Assets.xcassets in Resources */,
+				F0D2BA2B24A82C2100BE815F /* CurrentRun.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,25 @@ import UIKit
 import MapKit
 
 final class StartRunViewController: LocationViewController {
-
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var previousRunView: UIView!
+    @IBOutlet weak var averagePaceLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var closePreviousRunButton: UIButton!
     @IBOutlet weak var locateUserButton: UIButton! {
         didSet {
             locateUserButton.makeCircular()
+        }
+    }
+    @IBOutlet weak var startButton: UIButton! {
+        didSet {
+            startButton.makeCircular()
+        }
+    }
+    @IBOutlet var summaryBackgroundViews: [UIView]! {
+        didSet {
+            let _ = summaryBackgroundViews.forEach { $0.makeCircular() }
         }
     }
     
@@ -28,14 +42,28 @@ final class StartRunViewController: LocationViewController {
         manager?.startUpdatingLocation()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        centerMapOnUserLocation()
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         manager?.stopUpdatingLocation()
     }
+    
     @IBAction func didTapLocateUserButton(_ sender: Any) {
-        print("Locate user now")
+        centerMapOnUserLocation()
+    }
+    
+    @IBAction func didTapClosePreviousRun(_ sender: Any) {
+        self.previousRunView.isHidden = true
+    }
+    
+    private func centerMapOnUserLocation() {
+        mapView.userTrackingMode = .follow
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
+                                                  latitudinalMeters: 1000,
+                                                  longitudinalMeters: 1000)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 }
 
