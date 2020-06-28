@@ -58,6 +58,10 @@ final class StartRunViewController: LocationViewController {
         self.previousRunView.isHidden = true
     }
     
+    @IBAction func didTapStartRunButton(_ sender: Any) {
+        print("Run Started")
+    }
+    
     private func centerMapOnUserLocation() {
         mapView.userTrackingMode = .follow
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
@@ -67,6 +71,7 @@ final class StartRunViewController: LocationViewController {
     }
 }
 
+// MARK: - Location Manager Delegate
 extension StartRunViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {

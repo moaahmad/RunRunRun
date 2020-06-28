@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F04A6EDA24A8EC7E004D705F /* RunSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RunSession.swift */; };
 		F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */; };
 		F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AE24A7CCAF0083FD5F /* SceneDelegate.swift */; };
 		F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0A674B524A7CCAF0083FD5F /* RunRunRun.xcdatamodeld */; };
@@ -20,6 +21,8 @@
 		F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674E524A7F4870083FD5F /* StartRun.storyboard */; };
 		F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */; };
 		F0D2BA2B24A82C2100BE815F /* CurrentRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */; };
+		F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */; };
+		F0D2BA2F24A8DA2800BE815F /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2E24A8DA2800BE815F /* CircularButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F04A6ED924A8EC7E004D705F /* RunSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSession.swift; sourceTree = "<group>"; };
 		F0A674A924A7CCAF0083FD5F /* RunRunRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunRunRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A674AE24A7CCAF0083FD5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		F0A674E524A7F4870083FD5F /* StartRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartRun.storyboard; sourceTree = "<group>"; };
 		F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrentRun.storyboard; sourceTree = "<group>"; };
+		F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRunViewController.swift; sourceTree = "<group>"; };
+		F0D2BA2E24A8DA2800BE815F /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +154,9 @@
 		F0A674DE24A7F0650083FD5F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F0D2BA3024A8DA2C00BE815F /* UI Components */,
 				F0A674DF24A7F07B0083FD5F /* Extensions */,
+				F04A6ED924A8EC7E004D705F /* RunSession.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 			children = (
 				F0A674D824A7D3A70083FD5F /* LocationViewController.swift */,
 				F0A674DA24A7DF100083FD5F /* StartRunViewController.swift */,
+				F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */,
 			);
 			path = "Track Run";
 			sourceTree = "<group>";
@@ -179,6 +188,14 @@
 				F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F0D2BA3024A8DA2C00BE815F /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				F0D2BA2E24A8DA2800BE815F /* CircularButton.swift */,
+			);
+			path = "UI Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,13 +301,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */,
 				F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */,
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
+				F04A6EDA24A8EC7E004D705F /* RunSession.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */,
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
 				F0A674DB24A7DF100083FD5F /* StartRunViewController.swift in Sources */,
+				F0D2BA2F24A8DA2800BE815F /* CircularButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
