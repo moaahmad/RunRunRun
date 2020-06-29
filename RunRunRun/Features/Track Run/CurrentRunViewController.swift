@@ -69,8 +69,11 @@ class CurrentRunViewController: LocationViewController {
     
     @IBAction func didTapStopButton(_ sender: Any) {
         // Stop Timer
+        pauseTimer()
         // Save Run
+        
         // Dismiss View
+        dismiss(animated: true, completion: nil)
     }
     
     private func startTimer() {
@@ -87,7 +90,7 @@ class CurrentRunViewController: LocationViewController {
         guard kilometers > 0 else { return "Calculating..." }
         pace = (Double(seconds) / kilometers)
         let pacePerKm = pace.formatToTimeString()
-        return "\(pacePerKm) /km"
+        return pacePerKm + " km"
     }
 }
 
