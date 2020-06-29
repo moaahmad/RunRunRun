@@ -21,12 +21,12 @@ class CurrentRunViewController: LocationViewController {
     }
     @IBOutlet weak var averagePaceLabel: UILabel! {
         didSet {
-            averagePaceLabel.text = "0'00\""
+            averagePaceLabel.text = "Calculating..."
         }
     }
     @IBOutlet weak var distanceLabel: UILabel! {
         didSet {
-            distanceLabel.text = "00 m"
+            distanceLabel.text = "0.00 km"
         }
     }
     @IBOutlet weak var pauseButton: UIButton! {
@@ -42,7 +42,7 @@ class CurrentRunViewController: LocationViewController {
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
     var runDistance = 0.0
-    var pace = 0
+    var pace = 0.0
     var runSession: RunSession!
     
     override func viewDidLoad() {
@@ -58,11 +58,13 @@ class CurrentRunViewController: LocationViewController {
     
     @IBAction func didTapCancelButton(_ sender: Any) {
         pauseTimer()
+        manager?.stopUpdatingLocation()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapPauseButton(_ sender: Any) {
-        runSession.pause()
+        pauseTimer()
+        manager?.stopUpdatingLocation()
     }
     
     @IBAction func didTapStopButton(_ sender: Any) {
@@ -80,16 +82,19 @@ class CurrentRunViewController: LocationViewController {
         runSession.pause()
     }
     
-    private func calculateAveragePace(time seconds: Int, miles: Double) -> String {
-        pace = Int(Double(seconds) / miles)
-        return String(pace.formatDuration())
+    private func calculateAveragePace(time seconds: Int, meters: Double) -> String {
+        let kilometers = meters / 1000
+        guard kilometers > 0 else { return "Calculating..." }
+        pace = (Double(seconds) / kilometers)
+        let pacePerKm = pace.formatToTimeString()
+        return "\(pacePerKm) /km"
     }
 }
 
 // MARK: - Update Duration Delegate
 extension CurrentRunViewController: UpdateDurationDelegate {
     func updateDurationLabel(with counter: Int) {
-        durationLabel.text = counter.formatDuration()
+        durationLabel.text = counter.formatToTimeString()
     }
 }
 
@@ -107,11 +112,11 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
         guard startLocation == nil else {
             if let location = locations.last {
                 runDistance += lastLocation.distance(from: location)
-                distanceLabel.text = "\(runDistance.metersRounded(to: 2))"
-//                if runSession.counter > 0 && runDistance > 0 {
-//                    averagePaceLabel.text = calculateAveragePace(time: runSession.counter,
-//                                                          miles: runDistance.metersToMiles(places: 2))
-//                }
+                distanceLabel.text = "\(runDistance.convertMetersIntoKilometers(to: 2)) km"
+                if runSession.counter > 0 && runDistance > 0 {
+                    averagePaceLabel.text = calculateAveragePace(time: runSession.counter,
+                                                                 meters: runDistance)
+                }
             }
             return
         }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension Int {
-    func formatDuration() -> String {
+    func formatToTimeString() -> String {
         let durationHours = self / 3600
         let durationMinutes = (self % 3600) / 60
         let durationSeconds = (self % 3600) % 60
@@ -27,9 +27,5 @@ extension Int {
                               durationSeconds)
             }
         }
-    }
-    
-    func formatPace() -> String {
-        return ""
     }
 }
