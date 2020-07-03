@@ -62,6 +62,25 @@ final class StartRunViewController: LocationViewController {
         print("Run Started")
     }
     
+    func addLastRunToMap() {
+        guard let lastRun = PersistenceManager.store.readAll()?.first else {
+            return
+        }
+        averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(lastRun.duration),
+                                                                      meters: lastRun.distance)
+        distanceLabel.text = String(lastRun.distance)
+        durationLabel.text = String(lastRun.duration)
+        
+        var coordinate = [CLLocationCoordinate2D]()
+        guard let locations = lastRun.locations else { return }
+//        for location in locations {
+//            coordinate.append(CLLocationCoordinate2D(latitude: location.latitude,
+//                                                     longitude: location.longitude))
+//        }
+    }
+    
+    
+    
     private func centerMapOnUserLocation() {
         mapView.userTrackingMode = .follow
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,

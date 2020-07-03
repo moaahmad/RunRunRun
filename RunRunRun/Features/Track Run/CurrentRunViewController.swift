@@ -7,12 +7,13 @@
 //
 import UIKit
 import MapKit
+import CoreData
 
 protocol UpdateDurationDelegate: class {
     func updateDurationLabel(with counter: Int)
 }
 
-class CurrentRunViewController: LocationViewController {
+final class CurrentRunViewController: LocationViewController {
     
     @IBOutlet weak var durationLabel: UILabel! {
         didSet {
@@ -39,11 +40,17 @@ class CurrentRunViewController: LocationViewController {
             stopButton.makeCircular()
         }
     }
-    var startLocation: CLLocation!
-    var lastLocation: CLLocation!
-    var runDistance = 0.0
-    var pace = 0.0
-    var runSession: RunSession!
+    
+    private var startDateTime: Date!
+    private var startLocation: CLLocation!
+    private var lastLocation: CLLocation!
+    private var runDistance = 0.0
+    private var pace = 0.0
+    private var runSession: RunSession!
+    
+    var getAveragePace: String {
+        SessionUtilities.calculateAveragePace(time: runSession.counter, meters: runDistance)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +61,7 @@ class CurrentRunViewController: LocationViewController {
         manager?.delegate = self
         manager?.distanceFilter = 10
         startTimer()
+        startDateTime = Date()
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
@@ -68,11 +76,11 @@ class CurrentRunViewController: LocationViewController {
     }
     
     @IBAction func didTapStopButton(_ sender: Any) {
-        // Stop Timer
         pauseTimer()
-        // Save Run
-        
-        // Dismiss View
+        PersistenceManager.store.save(duration: runSession.counter,
+                                      distance: runDistance,
+                                      pace: pace,
+                                      startDateTime: startDateTime)
         dismiss(animated: true, completion: nil)
     }
     
@@ -82,15 +90,11 @@ class CurrentRunViewController: LocationViewController {
     }
     
     private func pauseTimer() {
-        runSession.pause()
-    }
-    
-    private func calculateAveragePace(time seconds: Int, meters: Double) -> String {
-        let kilometers = meters / 1000
-        guard kilometers > 0 else { return "Calculating..." }
-        pace = (Double(seconds) / kilometers)
-        let pacePerKm = pace.formatToTimeString()
-        return pacePerKm + " km"
+        if runSession.timer.isValid {
+            runSession.pause()
+        } else {
+            runSession.start()
+        }
     }
 }
 
@@ -117,8 +121,7 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
                 runDistance += lastLocation.distance(from: location)
                 distanceLabel.text = "\(runDistance.convertMetersIntoKilometers(to: 2)) km"
                 if runSession.counter > 0 && runDistance > 0 {
-                    averagePaceLabel.text = calculateAveragePace(time: runSession.counter,
-                                                                 meters: runDistance)
+                    averagePaceLabel.text = getAveragePace
                 }
             }
             return

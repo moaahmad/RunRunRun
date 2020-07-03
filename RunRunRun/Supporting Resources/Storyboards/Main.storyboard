@@ -16,18 +16,30 @@
             </objects>
             <point key="canvasLocation" x="2870" y="-1061"/>
         </scene>
+        <!--SessionLog-->
+        <scene sceneID="MHd-W4-gBY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SessionLog" id="tzF-bP-Qzb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qlc-Cs-fbg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JIQ-N7-jue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2870" y="-322"/>
+        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="p0i-0r-WyD">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="PNW-J7-s9U" customClass="MainTabBarController" customModule="RunRunRun" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wcD-GK-NwY">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="mh8-eY-GHZ" kind="relationship" relationship="viewControllers" id="pbq-59-pK9"/>
+                        <segue destination="fl2-SD-gVC" kind="relationship" relationship="viewControllers" id="Jew-Gb-aAr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MF9-PQ-pGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -37,11 +49,11 @@
         <!--Start Run-->
         <scene sceneID="sxh-hu-cMM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="imz-tK-AQM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mh8-eY-GHZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mh8-eY-GHZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Start Run" image="flame.fill" catalog="system" id="k9Y-Hw-M7N"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M2T-dt-yr1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="M2T-dt-yr1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -49,11 +61,32 @@
                         <segue destination="hgo-H6-PdU" kind="relationship" relationship="rootViewController" id="2mX-vb-eQb"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="imz-tK-AQM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2204" y="-1061"/>
+        </scene>
+        <!--Workouts-->
+        <scene sceneID="2gA-yp-mYi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fl2-SD-gVC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Workouts" image="folder.fill" catalog="system" id="HPO-09-lX5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="52g-bR-Xpq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tzF-bP-Qzb" kind="relationship" relationship="rootViewController" id="wXK-OJ-UHa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zV8-zQ-3EP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2203" y="-322"/>
         </scene>
     </scenes>
     <resources>
         <image name="flame.fill" catalog="system" width="109" height="128"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
     </resources>
 </document>

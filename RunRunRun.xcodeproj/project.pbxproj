@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
+		F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */; };
+		F0284ADB24AE4DEA007283F4 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */; };
+		F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */; };
+		F0284AE024AE7054007283F4 /* SessionDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */; };
+		F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */; };
 		F04A6EDA24A8EC7E004D705F /* RunSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RunSession.swift */; };
 		F04A6EDC24A91C25004D705F /* Int + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDB24A91C25004D705F /* Int + Extensions.swift */; };
 		F04A6EDE24A927F4004D705F /* Double + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDD24A927F4004D705F /* Double + Extensions.swift */; };
@@ -22,9 +28,15 @@
 		F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */; };
 		F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674E524A7F4870083FD5F /* StartRun.storyboard */; };
 		F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */; };
+		F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */; };
+		F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */; };
 		F0D2BA2B24A82C2100BE815F /* CurrentRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */; };
 		F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */; };
 		F0D2BA2F24A8DA2800BE815F /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2E24A8DA2800BE815F /* CircularButton.swift */; };
+		F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */; };
+		F0D366FA24ABFBC8000FBFE5 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */; };
+		F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */; };
+		F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
+		F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionTableViewCell.xib; sourceTree = "<group>"; };
+		F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogViewController.swift; sourceTree = "<group>"; };
+		F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionDetail.storyboard; sourceTree = "<group>"; };
+		F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunDetailTableViewCell.xib; sourceTree = "<group>"; };
 		F04A6ED924A8EC7E004D705F /* RunSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSession.swift; sourceTree = "<group>"; };
 		F04A6EDB24A91C25004D705F /* Int + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extensions.swift"; sourceTree = "<group>"; };
 		F04A6EDD24A927F4004D705F /* Double + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extensions.swift"; sourceTree = "<group>"; };
@@ -57,9 +75,15 @@
 		F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		F0A674E524A7F4870083FD5F /* StartRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartRun.storyboard; sourceTree = "<group>"; };
 		F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailTableViewCell.swift; sourceTree = "<group>"; };
+		F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
 		F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrentRun.storyboard; sourceTree = "<group>"; };
 		F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRunViewController.swift; sourceTree = "<group>"; };
 		F0D2BA2E24A8DA2800BE815F /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
+		F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistance.swift; sourceTree = "<group>"; };
+		F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
+		F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +104,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0284AD724AE4D6F007283F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F0284AE224AE79B1007283F4 /* RunDetail */,
+				F0284AE124AE79A4007283F4 /* Session */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F0284ADC24AE50D4007283F4 /* Session Log */ = {
+			isa = PBXGroup;
+			children = (
+				F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */,
+				F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */,
+			);
+			path = "Session Log";
+			sourceTree = "<group>";
+		};
+		F0284AE124AE79A4007283F4 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */,
+				F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		F0284AE224AE79B1007283F4 /* RunDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */,
+				F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */,
+			);
+			path = RunDetail;
+			sourceTree = "<group>";
+		};
 		F0A674A024A7CCAF0083FD5F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +163,7 @@
 			children = (
 				F0A674D424A7CCF30083FD5F /* Application */,
 				F0A674D124A7CCC80083FD5F /* Model */,
+				F0D366F624ABF547000FBFE5 /* Services */,
 				F0A674D324A7CCE70083FD5F /* Features */,
 				F0A674DE24A7F0650083FD5F /* Utilities */,
 				F0A674D524A7CCFF0083FD5F /* Supporting Resources */,
@@ -122,7 +183,6 @@
 		F0A674D124A7CCC80083FD5F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F04A6ED924A8EC7E004D705F /* RunSession.swift */,
 				F0A674B524A7CCAF0083FD5F /* RunRunRun.xcdatamodeld */,
 			);
 			path = Model;
@@ -133,6 +193,7 @@
 			children = (
 				F0A674E724A7F6BB0083FD5F /* MainTabBarController.swift */,
 				F0A674E324A7F2000083FD5F /* Track Run */,
+				F0284ADC24AE50D4007283F4 /* Session Log */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -159,6 +220,8 @@
 		F0A674DE24A7F0650083FD5F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */,
+				F0284AD724AE4D6F007283F4 /* Views */,
 				F0D2BA3024A8DA2C00BE815F /* UI Components */,
 				F0A674DF24A7F07B0083FD5F /* Extensions */,
 			);
@@ -192,6 +255,8 @@
 				F0A674DC24A7DF380083FD5F /* Main.storyboard */,
 				F0A674E524A7F4870083FD5F /* StartRun.storyboard */,
 				F0D2BA2A24A82C2100BE815F /* CurrentRun.storyboard */,
+				F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */,
+				F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -202,6 +267,25 @@
 				F0D2BA2E24A8DA2800BE815F /* CircularButton.swift */,
 			);
 			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		F0D366F624ABF547000FBFE5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F04A6ED924A8EC7E004D705F /* RunSession.swift */,
+				F0D366FD24ABFBEA000FBFE5 /* Persistance */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F0D366FD24ABFBEA000FBFE5 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */,
+				F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */,
+				F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,10 +369,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */,
+				F0284ADB24AE4DEA007283F4 /* SessionTableViewCell.xib in Resources */,
 				F0A674DD24A7DF380083FD5F /* Main.storyboard in Resources */,
+				F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */,
 				F0A674BC24A7CCB50083FD5F /* LaunchScreen.storyboard in Resources */,
 				F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */,
 				F0A674B924A7CCB40083FD5F /* Assets.xcassets in Resources */,
+				F0284AE024AE7054007283F4 /* SessionDetail.storyboard in Resources */,
 				F0D2BA2B24A82C2100BE815F /* CurrentRun.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,15 +398,23 @@
 				F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */,
 				F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */,
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
+				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
+				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
 				F04A6EDA24A8EC7E004D705F /* RunSession.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F04A6EDC24A91C25004D705F /* Int + Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double + Extensions.swift in Sources */,
 				F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */,
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
+				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
+				F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */,
+				F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */,
 				F0A674DB24A7DF100083FD5F /* StartRunViewController.swift in Sources */,
 				F0D2BA2F24A8DA2800BE815F /* CircularButton.swift in Sources */,
+				F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */,
+				F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */,
+				F0D366FA24ABFBC8000FBFE5 /* PersistanceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
