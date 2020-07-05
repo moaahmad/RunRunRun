@@ -1,0 +1,66 @@
+//
+//  RepeatingTimer.swift
+//  RunRunRun
+//
+//  Created by Ahmad, Mohammed (UK - London) on 6/28/20.
+//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
+//
+import UIKit
+
+final class RepeatingTimer {
+    enum State {
+        case suspended
+        case resumed
+    }
+
+    let timeInterval: TimeInterval
+    var counter = 0
+    var state: State = .suspended
+    var eventHandler: (() -> Void)?
+    weak var delegate: UpdateDurationDelegate?
+
+    init(timeInterval: TimeInterval, delegate: UpdateDurationDelegate?) {
+        self.timeInterval = timeInterval
+        self.delegate = delegate
+    }
+    
+    private lazy var timer: DispatchSourceTimer = {
+        let t = DispatchSource.makeTimerSource()
+        t.schedule(deadline: .now() + self.timeInterval, repeating: self.timeInterval)
+        t.setEventHandler(handler: { [weak self] in
+            self?.eventHandler?()
+            self?.updateCounter()
+        })
+        return t
+    }()
+
+    deinit {
+        timer.setEventHandler {}
+        timer.cancel()
+        resume()
+        eventHandler = nil
+    }
+
+    func resume() {
+        if state == .resumed {
+            return
+        }
+        state = .resumed
+        timer.resume()
+    }
+
+    func suspend() {
+        if state == .suspended {
+            state = .resumed
+            timer.resume()
+        } else {
+            state = .suspended
+            timer.suspend()
+        }
+    }
+    
+    private func updateCounter() {
+        counter += 1
+        self.delegate?.updateDurationLabel(with: self.counter)
+    }
+}

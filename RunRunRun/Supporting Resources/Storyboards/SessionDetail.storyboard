@@ -10,7 +10,7 @@
         <!--Session Detail View Controller-->
         <scene sceneID="hJP-XW-chu">
             <objects>
-                <viewController id="bbL-DX-F0x" customClass="SessionDetailViewController" customModule="RunRunRun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SessionDetailViewController" id="bbL-DX-F0x" customClass="SessionDetailViewController" customModule="RunRunRun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CZB-rU-fnf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,13 +29,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GkR-Nb-IDr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IDg-a8-Ht2"/>
                     <connections>
                         <outlet property="tableView" destination="dsj-1G-a6a" id="DYG-Kb-rk2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ID-V8-Umz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-95.652173913043484" y="136.60714285714286"/>
+            <point key="canvasLocation" x="814.49275362318849" y="136.60714285714286"/>
         </scene>
     </scenes>
 </document>

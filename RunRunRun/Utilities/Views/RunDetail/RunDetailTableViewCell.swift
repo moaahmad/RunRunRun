@@ -23,10 +23,12 @@ final class RunDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var averagePaceLabel: UILabel!
     
-    func configureRunDetailCell(run: Run) {
-        self.runDateLabel.text = "\(String(describing: run.startDateTime)) - \(String(describing: run.finishDateTime))"
-        self.distanceLabel.text = String(run.distance)
-        self.durationLabel.text = String(run.duration)
+    func configureRunDetail(run: Run) {
+        let startTime = DateFormatter.shortStyleTimeFormatter.string(from: run.startDateTime ?? Date())
+        let endTime = DateFormatter.shortStyleTimeFormatter.string(from: run.finishDateTime ?? Date())
+        self.runDateLabel.text = "\(startTime) - \(endTime)"
+        self.distanceLabel.text = run.distance.convertMetersIntoKilometers()
+        self.durationLabel.text = run.duration.formatToTimeString()
         self.averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(run.duration), meters: run.distance)
     }
 }

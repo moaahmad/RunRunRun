@@ -13,9 +13,10 @@
 		F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */; };
 		F0284AE024AE7054007283F4 /* SessionDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */; };
 		F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */; };
-		F04A6EDA24A8EC7E004D705F /* RunSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RunSession.swift */; };
+		F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */; };
 		F04A6EDC24A91C25004D705F /* Int + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDB24A91C25004D705F /* Int + Extensions.swift */; };
 		F04A6EDE24A927F4004D705F /* Double + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDD24A927F4004D705F /* Double + Extensions.swift */; };
+		F05FFC3124B278EF0045D944 /* DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FFC3024B278EF0045D944 /* DateFormatter + Extensions.swift */; };
 		F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */; };
 		F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AE24A7CCAF0083FD5F /* SceneDelegate.swift */; };
 		F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0A674B524A7CCAF0083FD5F /* RunRunRun.xcdatamodeld */; };
@@ -56,9 +57,10 @@
 		F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogViewController.swift; sourceTree = "<group>"; };
 		F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionDetail.storyboard; sourceTree = "<group>"; };
 		F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunDetailTableViewCell.xib; sourceTree = "<group>"; };
-		F04A6ED924A8EC7E004D705F /* RunSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSession.swift; sourceTree = "<group>"; };
+		F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		F04A6EDB24A91C25004D705F /* Int + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extensions.swift"; sourceTree = "<group>"; };
 		F04A6EDD24A927F4004D705F /* Double + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extensions.swift"; sourceTree = "<group>"; };
+		F05FFC3024B278EF0045D944 /* DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
 		F0A674A924A7CCAF0083FD5F /* RunRunRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunRunRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A674AE24A7CCAF0083FD5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */,
+				F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */,
 				F0284AD724AE4D6F007283F4 /* Views */,
 				F0D2BA3024A8DA2C00BE815F /* UI Components */,
 				F0A674DF24A7F07B0083FD5F /* Extensions */,
@@ -234,6 +237,7 @@
 				F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */,
 				F04A6EDB24A91C25004D705F /* Int + Extensions.swift */,
 				F04A6EDD24A927F4004D705F /* Double + Extensions.swift */,
+				F05FFC3024B278EF0045D944 /* DateFormatter + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,7 +276,6 @@
 		F0D366F624ABF547000FBFE5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F04A6ED924A8EC7E004D705F /* RunSession.swift */,
 				F0D366FD24ABFBEA000FBFE5 /* Persistance */,
 			);
 			path = Services;
@@ -400,10 +403,11 @@
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
 				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
-				F04A6EDA24A8EC7E004D705F /* RunSession.swift in Sources */,
+				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F04A6EDC24A91C25004D705F /* Int + Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double + Extensions.swift in Sources */,
+				F05FFC3124B278EF0045D944 /* DateFormatter + Extensions.swift in Sources */,
 				F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */,
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,

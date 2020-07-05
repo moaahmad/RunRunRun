@@ -11,5 +11,5 @@ public protocol LocalPersistence {
     // CRUD database operations
     func save(duration: Int, distance: Double, pace: Double, startDateTime: Date)
     func readAll() -> [Run]?
-    func delete(_ runs: [Run], at index: Int)
+    func delete(_ runs: [Run], at indexPath: IndexPath)
 }

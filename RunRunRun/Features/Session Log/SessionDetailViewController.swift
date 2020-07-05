@@ -8,7 +8,6 @@
 import UIKit
 
 final class SessionDetailViewController: UIViewController {
-
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -16,6 +15,7 @@ final class SessionDetailViewController: UIViewController {
         }
     }
     
+    var run: Run?
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
 
@@ -30,12 +30,15 @@ final class SessionDetailViewController: UIViewController {
 // MARK: - UITableView Delegate Methods
 extension SessionDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: runDetailCellIdentifier, for: indexPath)
-            as? RunDetailTableViewCell else { return UITableViewCell() }
+            as? RunDetailTableViewCell,
+            let run = run else {
+                return UITableViewCell() }
+        cell.configureRunDetail(run: run)
         return cell
     }
 }

@@ -13,11 +13,10 @@ extension Double {
         return ((self / 1609.34) * divisor).rounded() / divisor
     }
     
-    func convertMetersIntoKilometers(to places: Int) -> Double {
+    func convertMetersIntoKilometers() -> String {
         let kilometers = self / 1000
-        let divisor = pow(10.0, Double(places))
-        let result = (Double(kilometers) * divisor).rounded() / divisor
-        return result
+        let result = String(format: "%.2f", kilometers)
+        return result + " km"
     }
     
     func formatToTimeString() -> String {

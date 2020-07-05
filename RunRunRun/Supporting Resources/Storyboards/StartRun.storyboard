@@ -165,7 +165,7 @@
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="xmark.circle.fill" catalog="system"/>
                                                 <connections>
-                                                    <action selector="didTapClosePreviousRun:" destination="z7O-Mp-cdG" eventType="touchUpInside" id="Mow-P7-s37"/>
+                                                    <action selector="didTapClosePreviousRun:" destination="z7O-Mp-cdG" eventType="touchUpInside" id="0Dj-gZ-6He"/>
                                                 </connections>
                                             </button>
                                         </subviews>

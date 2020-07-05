@@ -30,6 +30,11 @@ final class StartRunViewController: LocationViewController {
             let _ = summaryBackgroundViews.forEach { $0.makeCircular() }
         }
     }
+    var lastRun: Run? {
+        guard let runs = PersistenceManager.store.readAll(),
+        let lastRun = runs.last else { return nil }
+        return lastRun
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,7 @@ final class StartRunViewController: LocationViewController {
         manager?.delegate = self
         mapView.delegate = self
         manager?.startUpdatingLocation()
+        configurePreviousRun()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +56,48 @@ final class StartRunViewController: LocationViewController {
         manager?.stopUpdatingLocation()
     }
     
+    private func addLastRunToMap() {
+        guard let lastRun = PersistenceManager.store.readAll()?.first else {
+            return
+        }
+        averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(lastRun.duration),
+                                                                      meters: lastRun.distance)
+        distanceLabel.text = String(lastRun.distance)
+        durationLabel.text = String(lastRun.duration)
+        
+//        var coordinate = [CLLocationCoordinate2D]()
+//        guard let locations = lastRun.locations else { return }
+//        for location in locations {
+//            coordinate.append(CLLocationCoordinate2D(latitude: location.latitude,
+//                                                     longitude: location.longitude))
+//        }
+    }
+    
+    private func centerMapOnUserLocation() {
+        mapView.userTrackingMode = .follow
+        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
+                                                  latitudinalMeters: 1000,
+                                                  longitudinalMeters: 1000)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    private func configurePreviousRun() {
+        guard let lastRun = lastRun else {
+            return hidePreviousRunView()
+        }
+        durationLabel.text = lastRun.duration.formatToTimeString()
+        distanceLabel.text = lastRun.distance.convertMetersIntoKilometers()
+        averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(lastRun.duration),
+                                                                      meters: lastRun.distance)
+    }
+    
+    private func hidePreviousRunView() {
+        previousRunView.isHidden = true
+    }
+}
+
+// MARK: - IBActions
+extension StartRunViewController {
     @IBAction func didTapLocateUserButton(_ sender: Any) {
         centerMapOnUserLocation()
     }
@@ -60,33 +108,6 @@ final class StartRunViewController: LocationViewController {
     
     @IBAction func didTapStartRunButton(_ sender: Any) {
         print("Run Started")
-    }
-    
-    func addLastRunToMap() {
-        guard let lastRun = PersistenceManager.store.readAll()?.first else {
-            return
-        }
-        averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(lastRun.duration),
-                                                                      meters: lastRun.distance)
-        distanceLabel.text = String(lastRun.distance)
-        durationLabel.text = String(lastRun.duration)
-        
-        var coordinate = [CLLocationCoordinate2D]()
-        guard let locations = lastRun.locations else { return }
-//        for location in locations {
-//            coordinate.append(CLLocationCoordinate2D(latitude: location.latitude,
-//                                                     longitude: location.longitude))
-//        }
-    }
-    
-    
-    
-    private func centerMapOnUserLocation() {
-        mapView.userTrackingMode = .follow
-        let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
-                                                  latitudinalMeters: 1000,
-                                                  longitudinalMeters: 1000)
-        mapView.setRegion(coordinateRegion, animated: true)
     }
 }
 

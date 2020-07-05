@@ -19,10 +19,10 @@
         <!--SessionLog-->
         <scene sceneID="MHd-W4-gBY">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JIQ-N7-jue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="SessionLog" id="tzF-bP-Qzb" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="qlc-Cs-fbg"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JIQ-N7-jue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2870" y="-322"/>
         </scene>
@@ -49,11 +49,11 @@
         <!--Start Run-->
         <scene sceneID="sxh-hu-cMM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mh8-eY-GHZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mh8-eY-GHZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Start Run" image="flame.fill" catalog="system" id="k9Y-Hw-M7N"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="M2T-dt-yr1">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M2T-dt-yr1">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

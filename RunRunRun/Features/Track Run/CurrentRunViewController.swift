@@ -22,7 +22,7 @@ final class CurrentRunViewController: LocationViewController {
     }
     @IBOutlet weak var averagePaceLabel: UILabel! {
         didSet {
-            averagePaceLabel.text = "Calculating..."
+            averagePaceLabel.text = "--:-- /km"
         }
     }
     @IBOutlet weak var distanceLabel: UILabel! {
@@ -40,21 +40,23 @@ final class CurrentRunViewController: LocationViewController {
             stopButton.makeCircular()
         }
     }
-    
     private var startDateTime: Date!
     private var startLocation: CLLocation!
     private var lastLocation: CLLocation!
     private var runDistance = 0.0
     private var pace = 0.0
-    private var runSession: RunSession!
-    
-    var getAveragePace: String {
-        SessionUtilities.calculateAveragePace(time: runSession.counter, meters: runDistance)
+    private var runSession: RepeatingTimer!
+    private var getAveragePace: String {
+        SessionUtilities.calculateAveragePace(time: runSession.counter,
+                                              meters: runDistance)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        runSession = RunSession(timer: Timer(), delegate: self)
+        manager?.allowsBackgroundLocationUpdates = true
+        manager?.pausesLocationUpdatesAutomatically = false
+        runSession = RepeatingTimer(timeInterval: 1, delegate: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,22 +88,20 @@ final class CurrentRunViewController: LocationViewController {
     
     private func startTimer() {
         manager?.startUpdatingLocation()
-        runSession.start()
+        runSession.resume()
     }
     
     private func pauseTimer() {
-        if runSession.timer.isValid {
-            runSession.pause()
-        } else {
-            runSession.start()
-        }
+        runSession.suspend()
     }
 }
 
 // MARK: - Update Duration Delegate
 extension CurrentRunViewController: UpdateDurationDelegate {
     func updateDurationLabel(with counter: Int) {
-        durationLabel.text = counter.formatToTimeString()
+        DispatchQueue.main.async {
+            self.durationLabel.text = counter.formatToTimeString()
+        }
     }
 }
 
@@ -116,17 +116,23 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
-        guard startLocation == nil else {
-            if let location = locations.last {
-                runDistance += lastLocation.distance(from: location)
-                distanceLabel.text = "\(runDistance.convertMetersIntoKilometers(to: 2)) km"
-                if runSession.counter > 0 && runDistance > 0 {
-                    averagePaceLabel.text = getAveragePace
-                }
+        if startLocation == nil {
+            startLocation = locations.first
+        } else if let location = locations.last {
+            runDistance += lastLocation.distance(from: location)
+            distanceLabel.text = runDistance.convertMetersIntoKilometers()
+            if runSession.counter > 0 && runDistance > 0 {
+                averagePaceLabel.text = getAveragePace
             }
-            return
         }
-        startLocation = locations.first
         lastLocation = locations.last
+        
+        #if DEBUG
+        if UIApplication.shared.applicationState == .active {
+            print("App is foreground. New location is %@", lastLocation ?? "nil")
+        } else if UIApplication.shared.applicationState == .background  {
+            print("App is backgrounded. New location is %@", lastLocation ?? "nil")
+        }
+        #endif
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class LocationViewController: UIViewController, MKMapViewDelegate {
+class LocationViewController: UIViewController {
     var manager: CLLocationManager?
     
     override func viewDidLoad() {
@@ -23,3 +23,5 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         manager?.requestWhenInUseAuthorization()
     }
 }
+
+extension LocationViewController: MKMapViewDelegate { }

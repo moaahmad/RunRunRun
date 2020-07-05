@@ -10,7 +10,7 @@
         <!--Session Log View Controller-->
         <scene sceneID="f3d-va-meF">
             <objects>
-                <viewController id="R4w-8A-f6e" customClass="SessionLogViewController" customModule="RunRunRun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SessionLogViewController" id="R4w-8A-f6e" customClass="SessionLogViewController" customModule="RunRunRun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AbX-h6-IIt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

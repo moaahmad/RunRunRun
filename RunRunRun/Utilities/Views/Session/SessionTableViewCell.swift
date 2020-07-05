@@ -14,18 +14,16 @@ final class SessionTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var sessionType: UILabel!
+    @IBOutlet weak var sessionType: UILabel! {
+        didSet {
+            sessionType.text = "Run"
+        }
+    }
     @IBOutlet weak var dateLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configureSession(run: Run) {
+        guard let startDateTime = run.startDateTime else { return }
+        self.dateLabel.text = DateFormatter.shortStyleDateFormatter.string(from: startDateTime)
+        self.distanceLabel.text = run.distance.convertMetersIntoKilometers()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
