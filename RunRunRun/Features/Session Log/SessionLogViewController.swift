@@ -50,7 +50,8 @@ final class SessionLogViewController: UIViewController {
 //MARK: - UITableView Delegate & DataSource Methods
 extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return runs.sections?[section].numberOfObjects ?? 0
+        guard let sections = runs.sections else { return 0 }
+        return sections[section].numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +73,6 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
         switch editingStyle {
         case .delete:
             PersistenceManager.store.delete(at: indexPath)
-            tableView.reloadData()
         default: () // Unsupported
         }
     }
