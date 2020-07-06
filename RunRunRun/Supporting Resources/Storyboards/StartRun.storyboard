@@ -194,13 +194,13 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7a-WC-aaf">
-                                <rect key="frame" x="157" y="738" width="100" height="100"/>
+                                <rect key="frame" x="147" y="718" width="120" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="euN-Yf-Def"/>
-                                    <constraint firstAttribute="height" constant="100" id="zu8-bI-51n"/>
+                                    <constraint firstAttribute="width" constant="120" id="euN-Yf-Def"/>
+                                    <constraint firstAttribute="height" constant="120" id="zu8-bI-51n"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <state key="normal" title="START">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>

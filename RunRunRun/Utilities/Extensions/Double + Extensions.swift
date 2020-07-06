@@ -19,13 +19,13 @@ extension Double {
         return result + " km"
     }
     
-    func formatToTimeString() -> String {
+    func formatToAvgPaceString() -> String {
         let durationHours = self / 3600
         let durationMinutes = (Int(self) % 3600) / 60
         let durationSeconds = (Int(self) % 3600) % 60
         
         guard durationHours > 0 else { return "" }
-        return String(format: "%02d:%02d",
+        return String(format: "%02d'%02d\"",
                       durationMinutes,
                       durationSeconds)
     }

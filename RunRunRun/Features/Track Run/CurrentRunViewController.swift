@@ -22,7 +22,7 @@ final class CurrentRunViewController: LocationViewController {
     }
     @IBOutlet weak var averagePaceLabel: UILabel! {
         didSet {
-            averagePaceLabel.text = "--:-- /km"
+            averagePaceLabel.text = "--'--\""
         }
     }
     @IBOutlet weak var distanceLabel: UILabel! {

@@ -29,6 +29,7 @@ final class RunDetailTableViewCell: UITableViewCell {
         self.runDateLabel.text = "\(startTime) - \(endTime)"
         self.distanceLabel.text = run.distance.convertMetersIntoKilometers()
         self.durationLabel.text = run.duration.formatToTimeString()
-        self.averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(run.duration), meters: run.distance)
+        self.averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(run.duration),
+                                                                           meters: run.distance)
     }
 }

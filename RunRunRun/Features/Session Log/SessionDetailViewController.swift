@@ -21,8 +21,9 @@ final class SessionDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Detail Run"
-        tableView.register(UINib(nibName: runDetailNib, bundle: nil), forCellReuseIdentifier: runDetailCellIdentifier)
+        title = "Breakdown"
+        tableView.register(UINib(nibName: runDetailNib, bundle: nil),
+                           forCellReuseIdentifier: runDetailCellIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
     }
 }

@@ -14,7 +14,7 @@ public class SessionUtilities {
         let kilometers = meters / 1000
         guard kilometers > 0 else { return "Calculating..." }
         pace = (Double(seconds) / kilometers)
-        let pacePerKm = pace.formatToTimeString()
-        return pacePerKm + " /km"
+        let pacePerKm = pace.formatToAvgPaceString()
+        return pacePerKm
     }
 }
