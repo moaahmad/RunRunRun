@@ -31,10 +31,12 @@ final class SessionLogViewController: UIViewController {
         title = "Workouts"
         tableView.register(UINib(nibName: sessionNibName, bundle: nil),
                            forCellReuseIdentifier: sessionLogCellIdentifier)
+        runs = fetchRuns
     }
     
     override func viewWillAppear(_ animated: Bool) {
         runs = fetchRuns
+        tableView.reloadData()
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: false)
             tableView.reloadRows(at: [indexPath], with: .fade)

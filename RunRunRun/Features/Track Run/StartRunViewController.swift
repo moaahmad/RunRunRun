@@ -7,6 +7,7 @@
 //
 import UIKit
 import MapKit
+import CoreData
 
 final class StartRunViewController: LocationViewController {
     @IBOutlet weak var mapView: MKMapView!
@@ -30,22 +31,26 @@ final class StartRunViewController: LocationViewController {
 //            let _ = summaryBackgroundViews.forEach { $0.makeCircular() }
         }
     }
-    var lastRun: Run? {
-        guard let runs = PersistenceManager.store.readAll(),
-        let lastRun = runs.last else { return nil }
-        return lastRun
+    private var fetchRuns: NSFetchedResultsController<Run> {
+        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
+        setupFetch.delegate = self
+        return setupFetch
     }
+    private var runs: NSFetchedResultsController<Run>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationAuthStatus()
+        runs = fetchRuns
     }
     
     override func viewWillAppear(_ animated: Bool) {
         manager?.delegate = self
         mapView.delegate = self
         manager?.startUpdatingLocation()
+        runs = fetchRuns
         configurePreviousRun()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,7 +87,7 @@ final class StartRunViewController: LocationViewController {
     }
     
     private func configurePreviousRun() {
-        guard let lastRun = lastRun else {
+        guard let lastRun = runs.fetchedObjects?.last else {
             return hidePreviousRunView()
         }
         durationLabel.text = lastRun.duration.formatToTimeString()
@@ -119,4 +124,51 @@ extension StartRunViewController: CLLocationManagerDelegate {
         checkLocationAuthStatus()
         mapView.showsUserLocation = true
     }
+}
+
+//MARK: - NSFetchedResultsControllerDelegate Methods
+extension StartRunViewController: NSFetchedResultsControllerDelegate {
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+//                    didChange anObject: Any,
+//                    at indexPath: IndexPath?,
+//                    for type: NSFetchedResultsChangeType,
+//                    newIndexPath: IndexPath?) {
+//        switch type {
+//        case .insert:
+//            tableView.insertRows(at: [newIndexPath!], with: .fade)
+//            break
+//        case .delete:
+//            tableView.deleteRows(at: [indexPath!], with: .fade)
+//            break
+//        case .update:
+//            tableView.reloadRows(at: [indexPath!], with: .fade)
+//        case .move:
+//            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+//        @unknown default:
+//            fatalError()
+//        }
+//    }
+    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+//                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+//                    atSectionIndex sectionIndex: Int,
+//                    for type: NSFetchedResultsChangeType) {
+//        let indexSet = IndexSet(integer: sectionIndex)
+//        switch type {
+//        case .insert: tableView.insertSections(indexSet, with: .fade)
+//        case .delete: tableView.deleteSections(indexSet, with: .fade)
+//        case .update, .move:
+//            fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
+//        @unknown default:
+//            fatalError()
+//        }
+//    }
+    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.beginUpdates()
+//    }
+    
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.endUpdates()
+//    }
 }
