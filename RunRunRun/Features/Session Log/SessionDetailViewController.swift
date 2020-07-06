@@ -15,7 +15,7 @@ final class SessionDetailViewController: UIViewController {
         }
     }
     
-    var run: Run?
+    var run: Run!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
 
@@ -35,9 +35,7 @@ extension SessionDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: runDetailCellIdentifier, for: indexPath)
-            as? RunDetailTableViewCell,
-            let run = run else {
-                return UITableViewCell() }
+            as? RunDetailTableViewCell else { return UITableViewCell() }
         cell.configureRunDetail(run: run)
         return cell
     }

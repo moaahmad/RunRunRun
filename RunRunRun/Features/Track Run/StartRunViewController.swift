@@ -27,7 +27,7 @@ final class StartRunViewController: LocationViewController {
     }
     @IBOutlet var summaryBackgroundViews: [UIView]! {
         didSet {
-            let _ = summaryBackgroundViews.forEach { $0.makeCircular() }
+//            let _ = summaryBackgroundViews.forEach { $0.makeCircular() }
         }
     }
     var lastRun: Run? {
