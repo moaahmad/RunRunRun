@@ -19,10 +19,10 @@
         <!--SessionLog-->
         <scene sceneID="MHd-W4-gBY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JIQ-N7-jue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="SessionLog" id="tzF-bP-Qzb" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="qlc-Cs-fbg"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JIQ-N7-jue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2870" y="-322"/>
         </scene>
@@ -74,6 +74,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="52g-bR-Xpq">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

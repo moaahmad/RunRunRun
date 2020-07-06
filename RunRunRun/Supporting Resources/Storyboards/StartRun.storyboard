@@ -37,8 +37,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4w-GO-Joe">
                                         <rect key="frame" x="0.0" y="80" width="414" height="150"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Gfi-iD-wgc">
-                                                <rect key="frame" x="20" y="28.5" width="374" height="93.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Gfi-iD-wgc">
+                                                <rect key="frame" x="20" y="24.5" width="374" height="101.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR PREVIOUS RUN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-Ag-Uc0">
                                                         <rect key="frame" x="8" y="0.0" width="358" height="21.5"/>
@@ -47,7 +47,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="FeB-xZ-bl1">
-                                                        <rect key="frame" x="1" y="33.5" width="372" height="60"/>
+                                                        <rect key="frame" x="1" y="41.5" width="372" height="60"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="k0M-w1-ZRH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="60"/>
@@ -163,8 +163,8 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8U-8C-w7a">
-                                                <rect key="frame" x="377" y="27" width="25" height="24"/>
-                                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="377" y="23" width="25" height="24"/>
+                                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="xmark.circle.fill" catalog="system"/>
                                                 <connections>
                                                     <action selector="didTapClosePreviousRun:" destination="z7O-Mp-cdG" eventType="touchUpInside" id="0Dj-gZ-6He"/>
