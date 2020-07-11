@@ -15,16 +15,45 @@ final class SessionDetailViewController: UIViewController {
         }
     }
     
+    var tableViewHeaderHeight: CGFloat = 350
+    var headerView: UIView!
     var run: Run!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        navigationController?.navigationBar.prefersLargeTitles = false
         title = "Breakdown"
         tableView.register(UINib(nibName: runDetailNib, bundle: nil),
                            forCellReuseIdentifier: runDetailCellIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
+        
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: tableViewHeaderHeight,
+                                              left: 0,
+                                              bottom: 0,
+                                              right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -tableViewHeaderHeight)
+        updateHeaderView()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
+    }
+    
+    func updateHeaderView() {
+        var headerRect = CGRect(x: 0,
+                                y: -tableViewHeaderHeight,
+                                width: tableView.bounds.width,
+                                height: tableViewHeaderHeight)
+        if tableView.contentOffset.y < -tableViewHeaderHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        headerView.frame = headerRect
     }
 }
 
@@ -39,5 +68,9 @@ extension SessionDetailViewController: UITableViewDelegate, UITableViewDataSourc
             as? RunDetailTableViewCell else { return UITableViewCell() }
         cell.configureRunDetail(run: run)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

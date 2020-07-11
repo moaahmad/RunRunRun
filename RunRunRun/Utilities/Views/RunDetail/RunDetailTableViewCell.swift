@@ -8,14 +8,9 @@
 import UIKit
 
 final class RunDetailTableViewCell: UITableViewCell {
-    @IBOutlet weak var runImageView: UIImageView! {
-        didSet {
-            runImageView.makeCircular()
-        }
-    }
     @IBOutlet weak var runTitleLabel: UILabel! {
         didSet {
-            runTitleLabel.text = "Run"
+            runTitleLabel.text = "RUN"
         }
     }
     @IBOutlet weak var runDateLabel: UILabel!

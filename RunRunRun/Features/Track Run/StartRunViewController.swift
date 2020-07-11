@@ -62,7 +62,7 @@ final class StartRunViewController: LocationViewController {
             }
             mapView.addOverlay(overlay)
             previousRunView.isHidden = false
-            manager?.stopUpdatingLocation()
+            mapView.showsUserLocation = false
         } else {
             previousRunView.isHidden = true
             manager?.startUpdatingLocation()
@@ -98,6 +98,7 @@ final class StartRunViewController: LocationViewController {
     }
     
     private func centerMapOnUserLocation() {
+        mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
                                                   latitudinalMeters: 1000,
@@ -126,7 +127,7 @@ final class StartRunViewController: LocationViewController {
     
     private func configurePreviousRun() {
         guard let lastRun = runs.runsOrderedByDate().first else {
-            return hidePreviousRunView()
+            return resetRunView()
         }
         durationLabel.text = lastRun.duration.formatToTimeString()
         distanceLabel.text = lastRun.distance.convertMetersIntoKilometers()
@@ -134,21 +135,23 @@ final class StartRunViewController: LocationViewController {
                                                                       meters: lastRun.distance)
     }
     
-    private func hidePreviousRunView() {
+    private func resetRunView() {
+        if mapView.overlays.count > 0 {
+            mapView.removeOverlays(mapView.overlays)
+        }
         previousRunView.isHidden = true
+        centerMapOnUserLocation()
     }
 }
 
 // MARK: - IBActions
 extension StartRunViewController {
     @IBAction func didTapLocateUserButton(_ sender: Any) {
-        self.previousRunView.isHidden = true
-        centerMapOnUserLocation()
+        resetRunView()
     }
     
     @IBAction func didTapClosePreviousRun(_ sender: Any) {
-        self.previousRunView.isHidden = true
-        centerMapOnUserLocation()
+        resetRunView()
     }
     
     @IBAction func didTapStartRunButton(_ sender: Any) {
