@@ -6,20 +6,27 @@
 //  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
 //
 import UIKit
+import MapKit
 
 final class SessionDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            mapView.delegate = self
+            mapView.isUserInteractionEnabled = false
+        }
+    }
     
     var run: Run!
-    private var tableViewHeaderHeight: CGFloat = 350
+    private var tableViewHeaderHeight: CGFloat = 325
     private var headerView: UIView!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
         title = "Breakdown"
+        drawRouteOnMap()
         setupTableView()
     }
     
@@ -27,6 +34,18 @@ final class SessionDetailViewController: UIViewController {
            updateHeaderView()
        }
     
+    private func drawRouteOnMap() {
+        if let overlay = RouteDrawer.addLastRunToMap(mapView: mapView, run: run) {
+            if mapView.overlays.count > 0 {
+                mapView.removeOverlays(mapView.overlays)
+            }
+            mapView.addOverlay(overlay)
+        }
+    }
+}
+
+//MARK: - UITableView Helper Methods
+extension SessionDetailViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -73,5 +92,16 @@ extension SessionDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+// MARK: - Map View Delegate
+extension SessionDetailViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor  = .systemGreen
+        renderer.lineWidth = 4
+        return renderer
     }
 }

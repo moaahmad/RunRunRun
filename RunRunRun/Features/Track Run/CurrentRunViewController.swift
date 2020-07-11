@@ -129,11 +129,7 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
             startLocation = locations.first
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
-            distanceLabel.text = runDistance.convertMetersIntoKilometers()
-            
-            lastLocation.altitude
-            
-            
+            distanceLabel.text = runDistance.convertMetersIntoKilometers()            
             let newLocation = Location(context: context)
             newLocation.timestamp = Date()
             newLocation.latitude = lastLocation.coordinate.latitude

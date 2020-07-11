@@ -18,6 +18,7 @@
 		F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDD24A927F4004D705F /* Double+Extensions.swift */; };
 		F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */; };
 		F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */; };
+		F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F424BA18FE0037589D /* RouteDrawer.swift */; };
 		F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */; };
 		F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AE24A7CCAF0083FD5F /* SceneDelegate.swift */; };
 		F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0A674B524A7CCAF0083FD5F /* RunRunRun.xcdatamodeld */; };
@@ -63,6 +64,7 @@
 		F04A6EDD24A927F4004D705F /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Extensions.swift"; sourceTree = "<group>"; };
+		F085B9F424BA18FE0037589D /* RouteDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDrawer.swift; sourceTree = "<group>"; };
 		F0A674A924A7CCAF0083FD5F /* RunRunRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunRunRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0A674AE24A7CCAF0083FD5F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */,
 				F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */,
+				F085B9F424BA18FE0037589D /* RouteDrawer.swift */,
 				F0284AD724AE4D6F007283F4 /* Views */,
 				F0D2BA3024A8DA2C00BE815F /* UI Components */,
 				F0A674DF24A7F07B0083FD5F /* Extensions */,
@@ -412,6 +415,7 @@
 				F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */,
 				F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */,
+				F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */,
 				F0A674E824A7F6BB0083FD5F /* MainTabBarController.swift in Sources */,
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
