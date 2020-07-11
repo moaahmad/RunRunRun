@@ -16,7 +16,7 @@ extension Double {
     func convertMetersIntoKilometers() -> String {
         let kilometers = self / 1000
         let result = String(format: "%.2f", kilometers)
-        return result + " km"
+        return result
     }
     
     func formatToAvgPaceString() -> String {

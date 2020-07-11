@@ -75,7 +75,7 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
         switch editingStyle {
         case .delete:
             PersistenceManager.store.delete(at: indexPath)
-        default: () // Unsupported
+        default: break
         }
     }
     

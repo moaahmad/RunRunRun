@@ -21,12 +21,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </mapView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPL-LZ-52G">
-                                        <rect key="frame" x="352" y="788" width="50" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPL-LZ-52G">
+                                        <rect key="frame" x="357" y="793" width="45" height="45"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="auf-p5-hgX"/>
-                                            <constraint firstAttribute="width" constant="50" id="vxG-17-M4a"/>
+                                            <constraint firstAttribute="height" constant="45" id="auf-p5-hgX"/>
+                                            <constraint firstAttribute="width" constant="45" id="vxG-17-M4a"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="location.fill" catalog="system"/>

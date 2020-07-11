@@ -13,7 +13,11 @@ final class SessionDetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
             mapView.delegate = self
-            mapView.isUserInteractionEnabled = false
+        }
+    }
+    @IBOutlet weak var locationButton: UIButton! {
+        didSet {
+            locationButton.makeCircular()
         }
     }
     
@@ -25,9 +29,13 @@ final class SessionDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Breakdown"
+        title = DateFormatter.mediumStyleDateFormatter.string(from: run.startDateTime ?? Date())
         drawRouteOnMap()
         setupTableView()
+    }
+    
+    @IBAction func didTapLocationButton(_ sender: Any) {
+        drawRouteOnMap()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

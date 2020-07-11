@@ -29,7 +29,7 @@ final class CurrentRunViewController: LocationViewController {
     }
     @IBOutlet weak var distanceLabel: UILabel! {
         didSet {
-            distanceLabel.text = "0.00 km"
+            distanceLabel.text = "0.00"
         }
     }
     @IBOutlet weak var pauseButton: UIButton! {
@@ -42,6 +42,7 @@ final class CurrentRunViewController: LocationViewController {
             stopButton.makeCircular()
         }
     }
+    private var isPaused = false
     private var startDateTime: Date!
     private var startLocation: CLLocation!
     private var lastLocation: CLLocation!
@@ -81,8 +82,16 @@ final class CurrentRunViewController: LocationViewController {
     }
     
     @IBAction func didTapPauseButton(_ sender: Any) {
-        pauseTimer()
-        manager?.stopUpdatingLocation()
+        isPaused = !isPaused
+        if isPaused {
+            pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            pauseTimer()
+            manager?.stopUpdatingLocation()
+        } else {
+            pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            pauseTimer()
+            manager?.startUpdatingLocation()
+        }
     }
     
     @IBAction func didTapStopButton(_ sender: Any) {

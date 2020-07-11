@@ -113,8 +113,8 @@
 		F0284AD724AE4D6F007283F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0284AE224AE79B1007283F4 /* RunDetail */,
 				F0284AE124AE79A4007283F4 /* Session */,
+				F0284AE224AE79B1007283F4 /* RunDetail */,
 			);
 			path = Views;
 			sourceTree = "<group>";

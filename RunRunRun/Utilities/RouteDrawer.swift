@@ -46,7 +46,7 @@ final class RouteDrawer {
         }
         return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2,
                                                                  longitude: (minLng + maxLng) / 2),
-                                  span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3,
-                                                         longitudeDelta: (maxLng - minLng) * 1.3 ))
+                                  span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.4,
+                                                         longitudeDelta: (maxLng - minLng) * 1.4 ))
     }
 }

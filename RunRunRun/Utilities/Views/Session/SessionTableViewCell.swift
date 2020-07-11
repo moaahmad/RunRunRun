@@ -24,6 +24,6 @@ final class SessionTableViewCell: UITableViewCell {
     func configureSession(run: Run) {
         guard let startDateTime = run.startDateTime else { return }
         self.dateLabel.text = DateFormatter.shortStyleDateFormatter.string(from: startDateTime)
-        self.distanceLabel.text = run.distance.convertMetersIntoKilometers()
+        self.distanceLabel.text = run.distance.convertMetersIntoKilometers() + " km"
     }
 }
