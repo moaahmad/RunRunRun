@@ -8,23 +8,28 @@
 import UIKit
 
 final class SessionDetailViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-        }
-    }
+    @IBOutlet weak var tableView: UITableView!
     
-    var tableViewHeaderHeight: CGFloat = 350
-    var headerView: UIView!
     var run: Run!
+    private var tableViewHeaderHeight: CGFloat = 350
+    private var headerView: UIView!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = false
         title = "Breakdown"
+        setupTableView()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+           updateHeaderView()
+       }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(UINib(nibName: runDetailNib, bundle: nil),
                            forCellReuseIdentifier: runDetailCellIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
@@ -40,11 +45,7 @@ final class SessionDetailViewController: UIViewController {
         updateHeaderView()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateHeaderView()
-    }
-    
-    func updateHeaderView() {
+    private func updateHeaderView() {
         var headerRect = CGRect(x: 0,
                                 y: -tableViewHeaderHeight,
                                 width: tableView.bounds.width,
