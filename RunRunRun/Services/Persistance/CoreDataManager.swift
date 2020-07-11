@@ -29,13 +29,14 @@ struct CoreDataManager: LocalPersistence {
         return fetchedResultsController
     }
 
-    func save(duration: Int, distance: Double, pace: Double, startDateTime: Date) {
+    func save(duration: Int, distance: Double, pace: Double, startDateTime: Date, locations: [Location]) {
         let savedRun = Run(context: context)
         savedRun.duration = Int32(duration)
         savedRun.distance = distance
         savedRun.pace = pace
         savedRun.startDateTime = startDateTime
         savedRun.finishDateTime = Date()
+        savedRun.locations = NSSet(array: locations)
         
         do {
             try context.save()

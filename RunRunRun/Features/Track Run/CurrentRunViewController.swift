@@ -14,6 +14,8 @@ protocol UpdateDurationDelegate: class {
 }
 
 final class CurrentRunViewController: LocationViewController {
+    private let context = (UIApplication.shared.delegate as! AppDelegate)
+        .persistentContainer.viewContext
     
     @IBOutlet weak var durationLabel: UILabel! {
         didSet {
@@ -43,6 +45,7 @@ final class CurrentRunViewController: LocationViewController {
     private var startDateTime: Date!
     private var startLocation: CLLocation!
     private var lastLocation: CLLocation!
+    private var coordinateLocations = [Location]()
     private var runDistance = 0.0
     private var pace = 0.0
     private var runSession: RepeatingTimer!
@@ -50,13 +53,18 @@ final class CurrentRunViewController: LocationViewController {
         SessionUtilities.calculateAveragePace(time: runSession.counter,
                                               meters: runDistance)
     }
+    private var fetchRuns: NSFetchedResultsController<Run> {
+        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
+        return setupFetch
+    }
+    private var runs: NSFetchedResultsController<Run>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         manager?.allowsBackgroundLocationUpdates = true
         manager?.pausesLocationUpdatesAutomatically = false
         runSession = RepeatingTimer(timeInterval: 1, delegate: self)
-        
+        runs = fetchRuns
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +90,8 @@ final class CurrentRunViewController: LocationViewController {
         PersistenceManager.store.save(duration: runSession.counter,
                                       distance: runDistance,
                                       pace: pace,
-                                      startDateTime: startDateTime)
+                                      startDateTime: startDateTime,
+                                      locations: coordinateLocations)
         dismiss(animated: true, completion: nil)
     }
     
@@ -121,6 +130,15 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
             distanceLabel.text = runDistance.convertMetersIntoKilometers()
+            
+            lastLocation.altitude
+            
+            
+            let newLocation = Location(context: context)
+            newLocation.timestamp = Date()
+            newLocation.latitude = lastLocation.coordinate.latitude
+            newLocation.longitude = lastLocation.coordinate.longitude
+            coordinateLocations.append(newLocation)
             if runSession.counter > 0 && runDistance > 0 {
                 averagePaceLabel.text = getAveragePace
             }

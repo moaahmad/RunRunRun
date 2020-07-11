@@ -23,5 +23,3 @@ class LocationViewController: UIViewController {
         manager?.requestWhenInUseAuthorization()
     }
 }
-
-extension LocationViewController: MKMapViewDelegate { }

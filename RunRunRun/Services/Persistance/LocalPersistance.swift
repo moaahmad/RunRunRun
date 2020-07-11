@@ -10,7 +10,7 @@ import CoreData
 
 public protocol LocalPersistence {
     // CRUD database operations
-    func save(duration: Int, distance: Double, pace: Double, startDateTime: Date)
+    func save(duration: Int, distance: Double, pace: Double, startDateTime: Date, locations: [Location])
     mutating func setupFetchedRunsController() -> NSFetchedResultsController<Run>
     func readAll() -> [Run]?
     func delete(at indexPath: IndexPath)

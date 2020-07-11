@@ -8,10 +8,5 @@
 import Foundation
 
 public struct PersistenceManager {
-    
     public static var store: LocalPersistence = CoreDataManager()
-    
-//    static func configureLocalPersistence() {
-//        self.store = CoreDataManager()
-//    }
 }

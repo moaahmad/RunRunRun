@@ -232,9 +232,6 @@
                         <outlet property="mapView" destination="r0v-D0-erW" id="Ale-pE-Pk1"/>
                         <outlet property="previousRunView" destination="z4w-GO-Joe" id="EDg-Qt-hJn"/>
                         <outlet property="startButton" destination="f7a-WC-aaf" id="aai-NT-dQD"/>
-                        <outletCollection property="summaryBackgroundViews" destination="uQG-Ji-lfT" collectionClass="NSMutableArray" id="FRR-Mu-lKn"/>
-                        <outletCollection property="summaryBackgroundViews" destination="pUH-dh-CAi" collectionClass="NSMutableArray" id="bPX-yt-UYz"/>
-                        <outletCollection property="summaryBackgroundViews" destination="WhZ-WR-10S" collectionClass="NSMutableArray" id="bAr-FM-LR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbS-jW-PTa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

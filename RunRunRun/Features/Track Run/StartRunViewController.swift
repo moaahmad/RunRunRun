@@ -26,16 +26,12 @@ final class StartRunViewController: LocationViewController {
             startButton.makeCircular()
         }
     }
-    @IBOutlet var summaryBackgroundViews: [UIView]! {
-        didSet {
-//            let _ = summaryBackgroundViews.forEach { $0.makeCircular() }
-        }
-    }
+
     private var fetchRuns: NSFetchedResultsController<Run> {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
-        setupFetch.delegate = self
         return setupFetch
     }
+    
     private var runs: NSFetchedResultsController<Run>!
     
     override func viewDidLoad() {
@@ -49,33 +45,56 @@ final class StartRunViewController: LocationViewController {
         mapView.delegate = self
         manager?.startUpdatingLocation()
         runs = fetchRuns
-        configurePreviousRun()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        centerMapOnUserLocation()
+        setupMapView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         manager?.stopUpdatingLocation()
     }
     
-    private func addLastRunToMap() {
-        guard let lastRun = PersistenceManager.store.readAll()?.first else {
-            return
+    func setupMapView() {
+        if let overlay = addLastRunToMap() {
+            if mapView.overlays.count > 0 {
+                mapView.removeOverlays(mapView.overlays)
+            }
+            mapView.addOverlay(overlay)
+            previousRunView.isHidden = false
+            manager?.stopUpdatingLocation()
+        } else {
+            previousRunView.isHidden = true
+            manager?.startUpdatingLocation()
+            centerMapOnUserLocation()
+        }
+    }
+    
+    private func addLastRunToMap() -> MKPolyline? {
+        guard let lastRun = runs.runsOrderedByDate().first,
+            let lastRunLocations = lastRun.locations as? Set<Location> else {
+            return nil
         }
         averagePaceLabel.text = SessionUtilities.calculateAveragePace(time: Int(lastRun.duration),
                                                                       meters: lastRun.distance)
-        distanceLabel.text = String(lastRun.distance)
-        durationLabel.text = String(lastRun.duration)
+        distanceLabel.text = lastRun.distance.convertMetersIntoKilometers()
+        durationLabel.text = lastRun.duration.formatToTimeString()
         
-//        var coordinate = [CLLocationCoordinate2D]()
-//        guard let locations = lastRun.locations else { return }
-//        for location in locations {
-//            coordinate.append(CLLocationCoordinate2D(latitude: location.latitude,
-//                                                     longitude: location.longitude))
-//        }
+        let sortedCoordinates = lastRunLocations.sorted { (locationA, locationB) -> Bool in
+            guard let locationATimestamp = locationA.timestamp,
+                let locationBTimestamp = locationB.timestamp else { return false }
+            return locationATimestamp > locationBTimestamp
+        }
+        
+        let coordinates = sortedCoordinates.map { (location) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        }
+                
+        mapView.userTrackingMode = .none
+        mapView.setRegion(centerMapOnPrevRoute(locations: Array(lastRunLocations)),
+                          animated: true)
+
+        return MKPolyline(coordinates: coordinates, count: coordinates.count)
     }
     
     private func centerMapOnUserLocation() {
@@ -86,8 +105,27 @@ final class StartRunViewController: LocationViewController {
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    func centerMapOnPrevRoute(locations: [Location]) -> MKCoordinateRegion {
+        guard let initialLocation = locations.first else { return MKCoordinateRegion() }
+        var minLat = initialLocation.latitude
+        var minLng = initialLocation.longitude
+        var maxLat = minLat
+        var maxLng = minLng
+        
+        for location in locations {
+            minLat = min(minLat, location.latitude)
+            minLng = min(minLng, location.longitude)
+            maxLat = max(maxLat, location.latitude)
+            maxLng = max(maxLng, location.longitude)
+        }
+        return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2,
+                                                                 longitude: (minLng + maxLng) / 2),
+                                  span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.4,
+                                                         longitudeDelta: (maxLng - minLng) * 1.4))
+    }
+    
     private func configurePreviousRun() {
-        guard let lastRun = runs.fetchedObjects?.last else {
+        guard let lastRun = runs.runsOrderedByDate().first else {
             return hidePreviousRunView()
         }
         durationLabel.text = lastRun.duration.formatToTimeString()
@@ -104,11 +142,13 @@ final class StartRunViewController: LocationViewController {
 // MARK: - IBActions
 extension StartRunViewController {
     @IBAction func didTapLocateUserButton(_ sender: Any) {
+        self.previousRunView.isHidden = true
         centerMapOnUserLocation()
     }
     
     @IBAction func didTapClosePreviousRun(_ sender: Any) {
         self.previousRunView.isHidden = true
+        centerMapOnUserLocation()
     }
     
     @IBAction func didTapStartRunButton(_ sender: Any) {
@@ -126,49 +166,13 @@ extension StartRunViewController: CLLocationManagerDelegate {
     }
 }
 
-//MARK: - NSFetchedResultsControllerDelegate Methods
-extension StartRunViewController: NSFetchedResultsControllerDelegate {
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-//                    didChange anObject: Any,
-//                    at indexPath: IndexPath?,
-//                    for type: NSFetchedResultsChangeType,
-//                    newIndexPath: IndexPath?) {
-//        switch type {
-//        case .insert:
-//            tableView.insertRows(at: [newIndexPath!], with: .fade)
-//            break
-//        case .delete:
-//            tableView.deleteRows(at: [indexPath!], with: .fade)
-//            break
-//        case .update:
-//            tableView.reloadRows(at: [indexPath!], with: .fade)
-//        case .move:
-//            tableView.moveRow(at: indexPath!, to: newIndexPath!)
-//        @unknown default:
-//            fatalError()
-//        }
-//    }
-    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-//                    didChange sectionInfo: NSFetchedResultsSectionInfo,
-//                    atSectionIndex sectionIndex: Int,
-//                    for type: NSFetchedResultsChangeType) {
-//        let indexSet = IndexSet(integer: sectionIndex)
-//        switch type {
-//        case .insert: tableView.insertSections(indexSet, with: .fade)
-//        case .delete: tableView.deleteSections(indexSet, with: .fade)
-//        case .update, .move:
-//            fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
-//        @unknown default:
-//            fatalError()
-//        }
-//    }
-    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.beginUpdates()
-//    }
-    
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.endUpdates()
-//    }
+// MARK: - Map View Delegate
+extension StartRunViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor  = .systemGreen
+        renderer.lineWidth = 4
+        return renderer
+    }
 }
