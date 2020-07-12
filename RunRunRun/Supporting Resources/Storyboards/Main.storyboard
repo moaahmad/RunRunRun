@@ -46,11 +46,11 @@
             </objects>
             <point key="canvasLocation" x="1129" y="-670"/>
         </scene>
-        <!--Start Run-->
+        <!--Navigation Controller-->
         <scene sceneID="sxh-hu-cMM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mh8-eY-GHZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Start Run" image="flame.fill" catalog="system" id="k9Y-Hw-M7N"/>
+                    <tabBarItem key="tabBarItem" title="" image="run" id="k9Y-Hw-M7N"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M2T-dt-yr1">
@@ -65,11 +65,11 @@
             </objects>
             <point key="canvasLocation" x="2204" y="-1061"/>
         </scene>
-        <!--Workouts-->
+        <!--Navigation Controller-->
         <scene sceneID="2gA-yp-mYi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fl2-SD-gVC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Workouts" image="folder.fill" catalog="system" id="HPO-09-lX5"/>
+                    <tabBarItem key="tabBarItem" title="" image="timer" id="HPO-09-lX5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="52g-bR-Xpq">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -87,7 +87,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="flame.fill" catalog="system" width="109" height="128"/>
-        <image name="folder.fill" catalog="system" width="128" height="95"/>
+        <image name="run" width="30" height="30"/>
+        <image name="timer" width="25" height="30"/>
     </resources>
 </document>

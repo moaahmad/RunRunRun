@@ -22,7 +22,7 @@ final class SessionDetailViewController: UIViewController {
     }
     
     var run: Run!
-    private var tableViewHeaderHeight: CGFloat = 325
+    private var tableViewHeaderHeight: CGFloat = 300
     private var headerView: UIView!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"

@@ -13,6 +13,8 @@ final class SessionLogViewController: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.register(UINib(nibName: sessionNibName, bundle: nil),
+                               forCellReuseIdentifier: sessionLogCellIdentifier)
         }
     }
     
@@ -28,9 +30,7 @@ final class SessionLogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Workouts"
-        tableView.register(UINib(nibName: sessionNibName, bundle: nil),
-                           forCellReuseIdentifier: sessionLogCellIdentifier)
+        navigationItem.title = "Activity"
         runs = fetchRuns
     }
     

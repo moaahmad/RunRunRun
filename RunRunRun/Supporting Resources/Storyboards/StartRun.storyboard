@@ -44,11 +44,11 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7a-WC-aaf">
-                                <rect key="frame" x="147" y="718" width="120" height="120"/>
+                                <rect key="frame" x="152" y="728" width="110" height="110"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="euN-Yf-Def"/>
-                                    <constraint firstAttribute="height" constant="120" id="zu8-bI-51n"/>
+                                    <constraint firstAttribute="width" constant="110" id="euN-Yf-Def"/>
+                                    <constraint firstAttribute="height" constant="110" id="zu8-bI-51n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <state key="normal" title="START">

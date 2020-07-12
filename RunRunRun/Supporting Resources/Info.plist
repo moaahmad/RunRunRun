@@ -69,5 +69,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
+	<key>CFBundleDisplayName</key>
+	<string>Runmo</string>
 </dict>
 </plist>

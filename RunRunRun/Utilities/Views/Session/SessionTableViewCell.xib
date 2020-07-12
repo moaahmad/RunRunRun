@@ -16,13 +16,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="332" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="avz-9Y-JWv">
-                        <rect key="frame" x="177" y="45" width="42" height="52"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5bJ-tU-vA7">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fast" translatesAutoresizingMaskIntoConstraints="NO" id="5bJ-tU-vA7">
                         <rect key="frame" x="20" y="20" width="60" height="60"/>
-                        <color key="backgroundColor" red="0.96078431369999995" green="0.50980392159999999" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="Kuv-Hx-tBk"/>
                             <constraint firstAttribute="width" constant="60" id="nMp-oa-CzO"/>
@@ -70,7 +66,6 @@
                         </constraints>
                     </stackView>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 <constraints>
                     <constraint firstItem="Qj3-UZ-m5K" firstAttribute="leading" secondItem="5bJ-tU-vA7" secondAttribute="trailing" constant="12" id="6x2-c1-sAs"/>
                     <constraint firstAttribute="trailing" secondItem="poa-f0-cDA" secondAttribute="trailing" constant="12" id="Jtz-4b-Ker"/>
@@ -95,5 +90,6 @@
     </objects>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="fast" width="44" height="30"/>
     </resources>
 </document>

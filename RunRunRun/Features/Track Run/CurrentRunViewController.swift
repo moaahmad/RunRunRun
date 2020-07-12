@@ -60,6 +60,27 @@ final class CurrentRunViewController: LocationViewController {
     }
     private var runs: NSFetchedResultsController<Run>!
     
+    private var pauseRun: Void {
+        pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        pauseTimer
+        manager?.stopUpdatingLocation()
+    }
+    
+    private var playRun: Void {
+        pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        pauseTimer
+        manager?.startUpdatingLocation()
+    }
+    
+    private var startTimer: Void {
+        manager?.startUpdatingLocation()
+        runSession.resume()
+    }
+    
+    private var pauseTimer: Void {
+        runSession.suspend()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         manager?.allowsBackgroundLocationUpdates = true
@@ -71,46 +92,29 @@ final class CurrentRunViewController: LocationViewController {
     override func viewWillAppear(_ animated: Bool) {
         manager?.delegate = self
         manager?.distanceFilter = 10
-        startTimer()
+        startTimer
         startDateTime = Date()
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
-        pauseTimer()
+        pauseTimer
         manager?.stopUpdatingLocation()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapPauseButton(_ sender: Any) {
         isPaused = !isPaused
-        if isPaused {
-            pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-            pauseTimer()
-            manager?.stopUpdatingLocation()
-        } else {
-            pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-            pauseTimer()
-            manager?.startUpdatingLocation()
-        }
+        isPaused ? pauseRun : playRun
     }
     
     @IBAction func didTapStopButton(_ sender: Any) {
-        pauseTimer()
+        pauseTimer
         PersistenceManager.store.save(duration: runSession.counter,
                                       distance: runDistance,
                                       pace: pace,
                                       startDateTime: startDateTime,
                                       locations: coordinateLocations)
         dismiss(animated: true, completion: nil)
-    }
-    
-    private func startTimer() {
-        manager?.startUpdatingLocation()
-        runSession.resume()
-    }
-    
-    private func pauseTimer() {
-        runSession.suspend()
     }
 }
 
