@@ -126,6 +126,7 @@
                     <constraint firstAttribute="trailing" secondItem="AN8-Mz-pkt" secondAttribute="trailing" constant="20" id="fnj-cD-pr2"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="averagePaceLabel" destination="NgL-t2-21E" id="xMJ-ZY-YTo"/>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01C755E24BB516100CE5A17 /* NoSessionView.xib */; };
 		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
 		F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */; };
 		F0284ADB24AE4DEA007283F4 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F01C755E24BB516100CE5A17 /* NoSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoSessionView.xib; sourceTree = "<group>"; };
 		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
 		F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionTableViewCell.xib; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */,
 				F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */,
+				F01C755E24BB516100CE5A17 /* NoSessionView.xib */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			files = (
 				F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */,
 				F0284ADB24AE4DEA007283F4 /* SessionTableViewCell.xib in Resources */,
+				F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */,
 				F0A674DD24A7DF380083FD5F /* Main.storyboard in Resources */,
 				F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */,
 				F0A674BC24A7CCB50083FD5F /* LaunchScreen.storyboard in Resources */,

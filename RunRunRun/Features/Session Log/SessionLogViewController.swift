@@ -27,16 +27,32 @@ final class SessionLogViewController: UIViewController {
     private var index: IndexPath?
     private let sessionNibName = "SessionTableViewCell"
     private let sessionLogCellIdentifier = "SessionLogCell"
+    private var noSessionView: UIView?
+    
+    private var showNoSessionView: Void {
+        noSessionView = UINib(nibName: "NoSessionView", bundle: .main)
+            .instantiate(withOwner: nil, options: nil).first as? UIView
+        noSessionView?.frame = self.view.bounds
+        view.addSubview(noSessionView ?? UIView())
+    }
+    
+    private var showRunView: Void {
+        noSessionView?.isHidden = true
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Activity"
-        runs = fetchRuns
     }
     
     override func viewWillAppear(_ animated: Bool) {
         runs = fetchRuns
-        tableView.reloadData()
+        guard let runs = runs.fetchedObjects,
+            runs.count > 0 else {
+                return showNoSessionView
+        }
+        showRunView
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: false)
             tableView.reloadRows(at: [indexPath], with: .fade)
@@ -64,17 +80,20 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            index = indexPath
-            performSegue(withIdentifier: "showDetailSegue", sender: self)
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        index = indexPath
+        performSegue(withIdentifier: "showDetailSegue", sender: self)
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             PersistenceManager.store.delete(at: indexPath)
+            guard let runs = runs.fetchedObjects,
+                runs.count == 0 else { return }
+            showNoSessionView
         default: break
         }
     }
