@@ -14,9 +14,6 @@ protocol UpdateDurationDelegate: class {
 }
 
 final class CurrentRunViewController: LocationViewController {
-    private let context = (UIApplication.shared.delegate as! AppDelegate)
-        .persistentContainer.viewContext
-    
     @IBOutlet weak var durationLabel: UILabel! {
         didSet {
             durationLabel.text = "00:00"
@@ -42,6 +39,14 @@ final class CurrentRunViewController: LocationViewController {
             stopButton.makeCircular()
         }
     }
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate)
+    .persistentContainer.viewContext
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+    
     private var isPaused = false
     private var startDateTime: Date!
     private var startLocation: CLLocation!
@@ -50,6 +55,7 @@ final class CurrentRunViewController: LocationViewController {
     private var runDistance = 0.0
     private var pace = 0.0
     private var runSession: RepeatingTimer!
+    
     private var getAveragePace: String {
         SessionUtilities.calculateAveragePace(time: runSession.counter,
                                               meters: runDistance)
@@ -58,6 +64,7 @@ final class CurrentRunViewController: LocationViewController {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
         return setupFetch
     }
+    
     private var runs: NSFetchedResultsController<Run>!
     
     private var pauseRun: Void {
@@ -95,6 +102,8 @@ final class CurrentRunViewController: LocationViewController {
         startTimer
         startDateTime = Date()
     }
+    
+    
     
     @IBAction func didTapCancelButton(_ sender: Any) {
         pauseTimer
@@ -156,9 +165,9 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
         
         #if DEBUG
         if UIApplication.shared.applicationState == .active {
-            print("App is foreground. New location is %@", lastLocation ?? "nil")
+            print("App is foreground. New location is", lastLocation ?? "nil")
         } else if UIApplication.shared.applicationState == .background  {
-            print("App is backgrounded. New location is %@", lastLocation ?? "nil")
+            print("App is backgrounded. New location is", lastLocation ?? "nil")
         }
         #endif
     }

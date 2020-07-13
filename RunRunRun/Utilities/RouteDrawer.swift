@@ -8,7 +8,6 @@
 import MapKit
 
 final class RouteDrawer {
-    
     static func addLastRunToMap(mapView: MKMapView, run: Run) -> MKPolyline? {
         guard let lastRunLocations = run.locations as? Set<Location> else {
             return nil
