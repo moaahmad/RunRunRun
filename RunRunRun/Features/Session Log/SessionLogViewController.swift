@@ -17,6 +17,8 @@ final class SessionLogViewController: UIViewController {
                                forCellReuseIdentifier: sessionLogCellIdentifier)
         }
     }
+    private let sessionNibName = "SessionTableViewCell"
+    private let sessionLogCellIdentifier = "SessionLogCell"
     
     private var fetchRuns: NSFetchedResultsController<Run> {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
@@ -25,19 +27,15 @@ final class SessionLogViewController: UIViewController {
     }
     private var runs: NSFetchedResultsController<Run>!
     private var index: IndexPath?
-    private let sessionNibName = "SessionTableViewCell"
-    private let sessionLogCellIdentifier = "SessionLogCell"
     private var noSessionView: UIView?
-    
     private var showNoSessionView: Void {
         noSessionView = UINib(nibName: "NoSessionView", bundle: .main)
             .instantiate(withOwner: nil, options: nil).first as? UIView
         noSessionView?.frame = self.view.bounds
         view.addSubview(noSessionView ?? UIView())
     }
-    
     private var showRunView: Void {
-        noSessionView?.isHidden = true
+        noSessionView?.removeFromSuperview()
         tableView.reloadData()
     }
     
@@ -52,16 +50,18 @@ final class SessionLogViewController: UIViewController {
             runs.count > 0 else {
                 return showNoSessionView
         }
+        navigationItem.rightBarButtonItem = editButtonItem
         showRunView
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: false)
-            tableView.reloadRows(at: [indexPath], with: .fade)
-        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         runs = nil
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
     }
 }
 
@@ -93,6 +93,7 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
             PersistenceManager.store.delete(at: indexPath)
             guard let runs = runs.fetchedObjects,
                 runs.count == 0 else { return }
+            navigationItem.rightBarButtonItem = nil
             showNoSessionView
         default: break
         }

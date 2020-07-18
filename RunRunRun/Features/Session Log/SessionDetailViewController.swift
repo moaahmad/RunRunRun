@@ -9,6 +9,8 @@ import UIKit
 import MapKit
 
 final class SessionDetailViewController: UIViewController {
+    static let headerHeight = UIScreen.main.bounds.height * 0.4
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -22,7 +24,7 @@ final class SessionDetailViewController: UIViewController {
     }
     
     var run: Run!
-    private var tableViewHeaderHeight: CGFloat = 300
+    private var tableViewHeaderHeight: CGFloat = headerHeight
     private var headerView: UIView!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
