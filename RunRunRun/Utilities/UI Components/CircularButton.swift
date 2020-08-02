@@ -9,14 +9,16 @@ import UIKit
 
 final class CircularButton: UIButton {
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        layer.masksToBounds = true
-//        layer.cornerRadius = bounds.width / 2
-//        backgroundColor = .black
-//    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
     
-    override func layoutSubviews() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configure() {
         super.layoutSubviews()
         backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         layer.masksToBounds = true

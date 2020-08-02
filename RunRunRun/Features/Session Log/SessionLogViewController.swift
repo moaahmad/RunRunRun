@@ -9,35 +9,23 @@ import UIKit
 import CoreData
 
 final class SessionLogViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: sessionNibName, bundle: nil),
                                forCellReuseIdentifier: sessionLogCellIdentifier)
+            tableView.addSubview(refreshControl)
         }
     }
     private let sessionNibName = "SessionTableViewCell"
     private let sessionLogCellIdentifier = "SessionLogCell"
+    private let sectionHeaderHeight = 30
     
-    private var fetchRuns: NSFetchedResultsController<Run> {
-        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
-        setupFetch.delegate = self
-        return setupFetch
-    }
     private var runs: NSFetchedResultsController<Run>!
     private var index: IndexPath?
     private var noSessionView: UIView?
-    private var showNoSessionView: Void {
-        noSessionView = UINib(nibName: "NoSessionView", bundle: .main)
-            .instantiate(withOwner: nil, options: nil).first as? UIView
-        noSessionView?.frame = self.view.bounds
-        view.addSubview(noSessionView ?? UIView())
-    }
-    private var showRunView: Void {
-        noSessionView?.removeFromSuperview()
-        tableView.reloadData()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +33,9 @@ final class SessionLogViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        runs = fetchRuns
-        guard let runs = runs.fetchedObjects,
-            runs.count > 0 else {
-                return showNoSessionView
-        }
-        navigationItem.rightBarButtonItem = editButtonItem
-        showRunView
+        // Initial runs fetched from Core Data
+        runs = fetchRuns()
+        configureView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -63,6 +47,49 @@ final class SessionLogViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
     }
+    
+    private func fetchRuns() -> NSFetchedResultsController<Run> {
+        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
+        setupFetch.delegate = self
+        return setupFetch
+    }
+    
+    private func configureView() {
+        guard let runs = runs.fetchedObjects,
+            runs.count > 0 else {
+                return showNoSessionView()
+        }
+        isEditing = false
+        navigationItem.rightBarButtonItem = editButtonItem
+        showRunView()
+    }
+    
+    private func showNoSessionView() {
+        noSessionView = UINib(nibName: "NoSessionView", bundle: .main)
+            .instantiate(withOwner: nil, options: nil).first as? UIView
+        noSessionView?.frame = self.tableView.bounds
+        tableView.addSubview(noSessionView ?? UIView())
+    }
+    private func showRunView() {
+        noSessionView?.removeFromSuperview()
+        tableView.reloadData()
+    }
+
+    // MARK: - Setup Refresh Control
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        return refreshControl
+    }()
+     
+     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+         runs = fetchRuns()
+         tableView.reloadData()
+         refreshControl.endRefreshing()
+     }
 }
 
 //MARK: - UITableView Delegate & DataSource Methods
@@ -94,7 +121,7 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
             guard let runs = runs.fetchedObjects,
                 runs.count == 0 else { return }
             navigationItem.rightBarButtonItem = nil
-            showNoSessionView
+            showNoSessionView()
         default: break
         }
     }

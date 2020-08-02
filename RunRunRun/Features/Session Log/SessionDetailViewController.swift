@@ -10,7 +10,7 @@ import MapKit
 
 final class SessionDetailViewController: UIViewController {
     static let headerHeight = UIScreen.main.bounds.height * 0.4
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -28,7 +28,7 @@ final class SessionDetailViewController: UIViewController {
     private var headerView: UIView!
     private var runDetailNib = "RunDetailTableViewCell"
     private var runDetailCellIdentifier = "RunDetailCell"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = DateFormatter.mediumStyleDateFormatter.string(from: run.startDateTime ?? Date())
@@ -36,13 +36,18 @@ final class SessionDetailViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .never
+    }
+    
     @IBAction func didTapLocationButton(_ sender: Any) {
         drawRouteOnMap()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-           updateHeaderView()
-       }
+        updateHeaderView()
+    }
     
     private func drawRouteOnMap() {
         if let overlay = RouteDrawer.addLastRunToMap(mapView: mapView, run: run) {
