@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 final class SessionLogViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -21,11 +20,12 @@ final class SessionLogViewController: UIViewController {
     }
     private let sessionNibName = "SessionTableViewCell"
     private let sessionLogCellIdentifier = "SessionLogCell"
-    private let sectionHeaderHeight = 30
     
-    private var runs: NSFetchedResultsController<Run>!
+    private var fetchedRuns: NSFetchedResultsController<Run>!
+    private var runs = [Run]()
     private var index: IndexPath?
     private var noSessionView: UIView?
+    var sections = [GroupedSection<Date, Run>]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +34,18 @@ final class SessionLogViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // Initial runs fetched from Core Data
-        runs = fetchRuns()
+        fetchedRuns = fetchRuns()
+        runs = fetchedRuns.runsOrderedByDate()
+        // Sort data into groups by month
+        sections = GroupedSection.group(rows: self.runs, by: { firstDayOfMonth(date: $0.startDateTime!) })
+        sections.sort { lhs, rhs in lhs.sectionItem > rhs.sectionItem }
+        
         configureView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        runs = nil
+        fetchedRuns = nil
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -55,7 +60,7 @@ final class SessionLogViewController: UIViewController {
     }
     
     private func configureView() {
-        guard let runs = runs.fetchedObjects,
+        guard let runs = fetchedRuns.fetchedObjects,
             runs.count > 0 else {
                 return showNoSessionView()
         }
@@ -70,9 +75,16 @@ final class SessionLogViewController: UIViewController {
         noSessionView?.frame = self.tableView.bounds
         tableView.addSubview(noSessionView ?? UIView())
     }
+    
     private func showRunView() {
         noSessionView?.removeFromSuperview()
         tableView.reloadData()
+    }
+    
+    private func firstDayOfMonth(date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month], from: date)
+        return calendar.date(from: components)!
     }
 
     // MARK: - Setup Refresh Control
@@ -81,12 +93,11 @@ final class SessionLogViewController: UIViewController {
         refreshControl.addTarget(self,
                                  action: #selector(handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
         return refreshControl
     }()
      
      @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-         runs = fetchRuns()
+         fetchedRuns = fetchRuns()
          tableView.reloadData()
          refreshControl.endRefreshing()
      }
@@ -94,15 +105,30 @@ final class SessionLogViewController: UIViewController {
 
 //MARK: - UITableView Delegate & DataSource Methods
 extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard self.sections.count > 0 else { return 1 }
+        return self.sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = self.sections[section]
+        let date = section.sectionItem
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        return dateFormatter.string(from: date)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sections = runs.sections else { return 0 }
-        return sections[section].numberOfObjects
+        let section = self.sections[section]
+        guard section.rows.count > 0 else { return 0 }
+        return section.rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: sessionLogCellIdentifier, for: indexPath)
             as? SessionTableViewCell else { return UITableViewCell() }
-        let run = runs.object(at: indexPath)
+        let section = self.sections[indexPath.section]
+        let run = section.rows[indexPath.row]
         cell.configureSession(run: run)
         return cell
     }
@@ -117,8 +143,9 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
                    forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
+            self.sections[indexPath.section].rows.remove(at: indexPath.row)
             PersistenceManager.store.delete(at: indexPath)
-            guard let runs = runs.fetchedObjects,
+            guard let runs = self.sections.first?.rows,
                 runs.count == 0 else { return }
             navigationItem.rightBarButtonItem = nil
             showNoSessionView()
@@ -130,7 +157,8 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
         guard segue.identifier == "showDetailSegue",
             let vc = segue.destination as? SessionDetailViewController,
             let index = index else { return }
-        vc.run = runs.object(at: index)
+        let section = self.sections[index.section]
+        vc.run = section.rows[index.row]
     }
 }
 

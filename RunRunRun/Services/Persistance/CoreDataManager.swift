@@ -20,6 +20,7 @@ struct CoreDataManager: LocalPersistence {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: "runs")
+        
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -31,6 +32,7 @@ struct CoreDataManager: LocalPersistence {
 
     func save(duration: Int, distance: Double, pace: Double, startDateTime: Date, locations: [Location]) {
         let savedRun = Run(context: context)
+        savedRun.id = UUID()
         savedRun.duration = Int32(duration)
         savedRun.distance = distance
         savedRun.pace = pace

@@ -37,6 +37,7 @@ final class StartRunViewController: LocationViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         manager?.stopUpdatingLocation()
+        manager?.delegate = nil
     }
     
     private func centerMapOnUserLocation() {
