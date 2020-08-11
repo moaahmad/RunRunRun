@@ -80,18 +80,16 @@ final class SessionLogViewController: UIViewController {
     }
     
     private func showNoSessionView() {
-        noSessionView.isHidden = false
-//        noSessionView = UINib(nibName: "NoSessionView", bundle: .main)
-//            .instantiate(withOwner: nil, options: nil).first as? UIView
         tableView.addSubview(noSessionView)
         noSessionView.translatesAutoresizingMaskIntoConstraints = false
-        noSessionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noSessionView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        noSessionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        noSessionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        noSessionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        noSessionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
     private func showRunView() {
         noSessionView.removeFromSuperview()
-        noSessionView.isHidden = true
         tableView.reloadData()
     }
     
