@@ -41,10 +41,10 @@ final class CurrentRunViewController: LocationViewController {
     }
     
     private let context = (UIApplication.shared.delegate as! AppDelegate)
-    .persistentContainer.viewContext
+        .persistentContainer.viewContext
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        .darkContent
     }
     
     private var isPaused = false
@@ -55,7 +55,7 @@ final class CurrentRunViewController: LocationViewController {
     private var runDistance = 0.0
     private var pace = 0.0
     private var runSession: RepeatingTimer!
-    
+    private var runs: NSFetchedResultsController<Run>!
     private var getAveragePace: String {
         SessionUtilities.calculateAveragePace(time: runSession.counter,
                                               meters: runDistance)
@@ -64,30 +64,7 @@ final class CurrentRunViewController: LocationViewController {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
         return setupFetch
     }
-    
-    private var runs: NSFetchedResultsController<Run>!
-    
-    private var pauseRun: Void {
-        pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        pauseTimer
-        manager?.stopUpdatingLocation()
-    }
-    
-    private var playRun: Void {
-        pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-        pauseTimer
-        manager?.startUpdatingLocation()
-    }
-    
-    private var startTimer: Void {
-        manager?.startUpdatingLocation()
-        runSession.resume()
-    }
-    
-    private var pauseTimer: Void {
-        runSession.suspend()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         manager?.allowsBackgroundLocationUpdates = true
@@ -99,25 +76,49 @@ final class CurrentRunViewController: LocationViewController {
     override func viewWillAppear(_ animated: Bool) {
         manager?.delegate = self
         manager?.distanceFilter = 10
-        startTimer
+        startTimer()
         startDateTime = Date()
     }
     
-    
-    
-    @IBAction func didTapCancelButton(_ sender: Any) {
-        pauseTimer
+    private func pauseRun() {
+        pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        pauseTimer()
         manager?.stopUpdatingLocation()
-        dismiss(animated: true, completion: nil)
     }
+    
+    private func playRun() {
+        pauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        pauseTimer()
+        manager?.startUpdatingLocation()
+    }
+    
+    private func startTimer() {
+        manager?.startUpdatingLocation()
+        runSession.resume()
+    }
+    
+    private func pauseTimer() {
+        runSession.suspend()
+    }
+}
+
+// MARK: - IBActions
+extension CurrentRunViewController {
+    /// Not currently used but may be brought back
+    //    @IBAction func didTapCancelButton(_ sender: Any) {
+    //        pauseTimer()
+    //        manager?.stopUpdatingLocation()
+    //        dismiss(animated: true, completion: nil)
+    //    }
     
     @IBAction func didTapPauseButton(_ sender: Any) {
         isPaused = !isPaused
-        isPaused ? pauseRun : playRun
+        isPaused ? pauseRun() : playRun()
     }
     
     @IBAction func didTapStopButton(_ sender: Any) {
-        pauseTimer
+        pauseTimer()
+        manager?.stopUpdatingLocation()
         PersistenceManager.store.save(duration: runSession.counter,
                                       distance: runDistance,
                                       pace: pace,
