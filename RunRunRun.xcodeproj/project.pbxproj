@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F007265725080C23009E00B7 /* SessionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265625080C23009E00B7 /* SessionHistoryViewController.swift */; };
+		F007265A25080D35009E00B7 /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265925080D35009E00B7 /* HistoryHeaderView.swift */; };
 		F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01910ED24D6F039007441A7 /* GroupedSection.swift */; };
 		F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01C755E24BB516100CE5A17 /* NoSessionView.xib */; };
 		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
@@ -42,6 +44,7 @@
 		F0D366FA24ABFBC8000FBFE5 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */; };
 		F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */; };
 		F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */; };
+		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F007265625080C23009E00B7 /* SessionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryViewController.swift; sourceTree = "<group>"; };
+		F007265925080D35009E00B7 /* HistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
 		F01910ED24D6F039007441A7 /* GroupedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedSection.swift; sourceTree = "<group>"; };
 		F01C755E24BB516100CE5A17 /* NoSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoSessionView.xib; sourceTree = "<group>"; };
 		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
@@ -94,6 +99,7 @@
 		F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtilities.swift; sourceTree = "<group>"; };
+		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,13 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F0284AD724AE4D6F007283F4 /* Views */ = {
+		F0284AD724AE4D6F007283F4 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				F0284AE124AE79A4007283F4 /* Session */,
 				F0284AE224AE79B1007283F4 /* RunDetail */,
+				F0D2BA3024A8DA2C00BE815F /* UI Components */,
 			);
-			path = Views;
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		F0284ADC24AE50D4007283F4 /* Session Log */ = {
@@ -128,6 +135,7 @@
 			children = (
 				F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */,
 				F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */,
+				F007265625080C23009E00B7 /* SessionHistoryViewController.swift */,
 			);
 			path = "Session Log";
 			sourceTree = "<group>";
@@ -137,7 +145,8 @@
 			children = (
 				F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */,
 				F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */,
-				F01C755E24BB516100CE5A17 /* NoSessionView.xib */,
+				F007265925080D35009E00B7 /* HistoryHeaderView.swift */,
+				F0E63DAE2502BC950024B73C /* No Session */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -176,6 +185,7 @@
 				F0A674D124A7CCC80083FD5F /* Model */,
 				F0D366F624ABF547000FBFE5 /* Services */,
 				F0A674D324A7CCE70083FD5F /* Features */,
+				F0284AD724AE4D6F007283F4 /* Custom Views */,
 				F0A674DE24A7F0650083FD5F /* Utilities */,
 				F0A674D524A7CCFF0083FD5F /* Supporting Resources */,
 			);
@@ -235,8 +245,6 @@
 				F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */,
 				F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */,
 				F085B9F424BA18FE0037589D /* RouteDrawer.swift */,
-				F0284AD724AE4D6F007283F4 /* Views */,
-				F0D2BA3024A8DA2C00BE815F /* UI Components */,
 				F0A674DF24A7F07B0083FD5F /* Extensions */,
 			);
 			path = Utilities;
@@ -301,6 +309,15 @@
 				F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */,
 			);
 			path = Persistance;
+			sourceTree = "<group>";
+		};
+		F0E63DAE2502BC950024B73C /* No Session */ = {
+			isa = PBXGroup;
+			children = (
+				F01C755E24BB516100CE5A17 /* NoSessionView.xib */,
+				F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */,
+			);
+			path = "No Session";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,8 +431,11 @@
 				F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */,
 				F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */,
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
+				F007265A25080D35009E00B7 /* HistoryHeaderView.swift in Sources */,
+				F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */,
 				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
+				F007265725080C23009E00B7 /* SessionHistoryViewController.swift in Sources */,
 				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */,

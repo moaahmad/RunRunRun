@@ -13,10 +13,10 @@ final class RepeatingTimer {
         case resumed
     }
 
-    let timeInterval: TimeInterval
+    private let timeInterval: TimeInterval
     var counter = 0
-    var state: State = .suspended
-    var eventHandler: (() -> Void)?
+    private var state: State = .suspended
+    private var eventHandler: (() -> Void)?
     weak var delegate: UpdateDurationDelegate?
 
     init(timeInterval: TimeInterval, delegate: UpdateDurationDelegate?) {

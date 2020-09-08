@@ -8,7 +8,6 @@
 import UIKit
 
 public class SessionUtilities {
-    
     static func calculateAveragePace(time seconds: Int, meters: Double) -> String {
         var pace = 0.0
         let kilometers = meters / 1000

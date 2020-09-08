@@ -18,6 +18,7 @@ final class SessionLogViewController: UIViewController {
             tableView.addSubview(refreshControl)
         }
     }
+    
     private let sessionNibName = "SessionTableViewCell"
     private let sessionLogCellIdentifier = "SessionLogCell"
     
@@ -32,7 +33,6 @@ final class SessionLogViewController: UIViewController {
         return view
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Activity"
@@ -55,7 +55,7 @@ final class SessionLogViewController: UIViewController {
     }
     
     private func loadRuns() {
-        // fetch runs from Core Data
+        // Fetch runs from Core Data
         fetchedRuns = fetchRuns()
         runs = fetchedRuns.runsOrderedByDate()
         // Sort run data into groups by month
@@ -71,7 +71,7 @@ final class SessionLogViewController: UIViewController {
     
     private func configureView() {
         guard let runs = fetchedRuns.fetchedObjects,
-            runs.count > 0 else {
+            !runs.isEmpty else {
                 return showNoSessionView()
         }
         isEditing = false
@@ -80,17 +80,21 @@ final class SessionLogViewController: UIViewController {
     }
     
     private func showNoSessionView() {
-        tableView.addSubview(noSessionView)
+        view.addSubview(noSessionView)
         noSessionView.translatesAutoresizingMaskIntoConstraints = false
-        noSessionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        noSessionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        noSessionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        noSessionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            noSessionView.topAnchor.constraint(equalTo: view.topAnchor),
+            noSessionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            noSessionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            noSessionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     private func showRunView() {
-        noSessionView.removeFromSuperview()
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.noSessionView.removeFromSuperview()
+        }
     }
     
     private func firstDayOfMonth(date: Date) -> Date {
@@ -118,12 +122,12 @@ final class SessionLogViewController: UIViewController {
 //MARK: - UITableView Delegate & DataSource Methods
 extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard sections.count > 0 else { return 1 }
+        guard !sections.isEmpty else { return 1 }
         return sections.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard runs.count > 0 else { return nil }
+        guard !runs.isEmpty else { return nil }
         let sectionData = sections[section]
         let date = sectionData.sectionItem
         let dateFormatter = DateFormatter()
@@ -132,9 +136,8 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard runs.count > 0 else { return 0 }
+        guard !sections.isEmpty else { return 0 }
         let section = sections[section]
-        guard section.rows.count > 0 else { return 0 }
         return section.rows.count
     }
     
@@ -160,10 +163,11 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
             sections[indexPath.section].rows.remove(at: indexPath.row)
             PersistenceManager.store.delete(at: indexPath)
             guard let runs = sections.first?.rows,
-                runs.count == 0 else { return }
+                runs.isEmpty else { return }
             navigationItem.rightBarButtonItem = nil
             showNoSessionView()
-        default: break
+        default:
+            break
         }
     }
     
