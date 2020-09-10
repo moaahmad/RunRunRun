@@ -7,10 +7,10 @@
 //
 import UIKit
 
-final class CircularButton: UIButton {
+final class RMActionButton: UIButton {
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: .zero)
         configure()
     }
     
@@ -18,12 +18,18 @@ final class CircularButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(title: String) {
+        self.init(frame: .zero)
+        self.setTitle(title, for: .normal)
+    }
+    
     private func configure() {
-        super.layoutSubviews()
-        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        frame = CGRect(x: 0, y: 0, width: 120, height: 120)
         layer.masksToBounds = true
         layer.cornerRadius = self.frame.width / 2
+        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
-        titleLabel?.font = UIFont(name: "SF-Pro-Display-Bold", size: 22)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

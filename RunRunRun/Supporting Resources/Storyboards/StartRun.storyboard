@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z7O-Mp-cdG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z7O-Mp-cdG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -30,9 +30,6 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="location.fill" catalog="system"/>
-                                        <connections>
-                                            <action selector="didTapLocateUserButton:" destination="z7O-Mp-cdG" eventType="touchUpInside" id="x7D-8X-RQj"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -54,10 +51,6 @@
                                 <state key="normal" title="START">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="didTapStartRunButton:" destination="z7O-Mp-cdG" eventType="touchUpInside" id="CPf-Cb-oIx"/>
-                                    <segue destination="N9H-uh-Msd" kind="presentation" modalPresentationStyle="fullScreen" id="mAD-Ts-3bC"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -73,11 +66,6 @@
                         <viewLayoutGuide key="safeArea" id="iu2-mG-ykV"/>
                     </view>
                     <navigationItem key="navigationItem" id="oig-xZ-22v"/>
-                    <connections>
-                        <outlet property="locateUserButton" destination="gPL-LZ-52G" id="Ip9-Fu-azD"/>
-                        <outlet property="mapView" destination="r0v-D0-erW" id="Ale-pE-Pk1"/>
-                        <outlet property="startButton" destination="f7a-WC-aaf" id="aai-NT-dQD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbS-jW-PTa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

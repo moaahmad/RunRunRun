@@ -9,25 +9,21 @@ import UIKit
 import MapKit
 
 final class StartRunViewController: LocationViewController {
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var locateUserButton: UIButton! {
-        didSet {
-            locateUserButton.makeCircular()
-        }
-    }
-    @IBOutlet weak var startButton: UIButton! {
-        didSet {
-            startButton.makeCircular()
-        }
-    }
+    let mapView = MKMapView()
+    let locationButton = RMLocationButton()
+    let startButton = RMActionButton(title: "START")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        styleVC()
+        configureMapview()
+        configureStartButton()
+        configureLocationButton()
         checkLocationAuthStatus()
+        manager?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        manager?.delegate = self
         manager?.startUpdatingLocation()
     }
     
@@ -37,7 +33,6 @@ final class StartRunViewController: LocationViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         manager?.stopUpdatingLocation()
-        manager?.delegate = nil
     }
     
     private func centerMapOnUserLocation() {
@@ -50,14 +45,60 @@ final class StartRunViewController: LocationViewController {
     }
 }
 
-// MARK: - IBActions
+// MARK: - Layout Configuration
 extension StartRunViewController {
-    @IBAction func didTapLocateUserButton(_ sender: Any) {
+    func styleVC() {
+        navigationController?.isNavigationBarHidden = true
+        view.backgroundColor = .systemBackground
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func configureMapview() {
+        view.addSubview(mapView)
+        
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    func configureStartButton() {
+        view.addSubview(startButton)
+        startButton.addTarget(self, action: #selector(didTapStartRunButton), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            startButton.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
+            startButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20),
+            startButton.heightAnchor.constraint(equalToConstant: 120),
+            startButton.widthAnchor.constraint(equalToConstant: 120)
+        ])
+    }
+    
+    func configureLocationButton() {
+        view.addSubview(locationButton)
+        locationButton.addTarget(self, action: #selector(didTapLocateUserButton), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            locationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -8),
+            locationButton.bottomAnchor.constraint(equalTo: startButton.bottomAnchor),
+            locationButton.heightAnchor.constraint(equalToConstant: 45),
+            locationButton.widthAnchor.constraint(equalToConstant: 45)
+        ])
+    }
+}
+
+// MARK: - Button Actions
+extension StartRunViewController {
+    @objc func didTapLocateUserButton() {
         centerMapOnUserLocation()
     }
     
-    @IBAction func didTapStartRunButton(_ sender: Any) {
-        print("Run Started")
+    @objc func didTapStartRunButton() {
+        let vc = CurrentRunViewController()
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.present(vc, animated: true)
     }
 }
 

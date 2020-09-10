@@ -1,14 +1,13 @@
 //
-//  HistoryHeaderView.swift
+//  RMHistoryHeaderView.swift
 //  RunRunRun
 //
 //  Created by Ahmad, Mohammed (UK - London) on 9/8/20.
 //  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
 //
-
 import UIKit
 
-class HistoryHeaderView: UIView {
+final class RMHistoryHeaderView: UIView {
     let summaryView = UIView()
     let titleLabel = UILabel()
     
@@ -23,15 +22,15 @@ class HistoryHeaderView: UIView {
     }
 }
 
-extension HistoryHeaderView {
+extension RMHistoryHeaderView {
     func styleView() {
         summaryView.translatesAutoresizingMaskIntoConstraints = false
         summaryView.layer.cornerRadius = 20
         summaryView.layer.masksToBounds = true
-        summaryView.backgroundColor = .systemPink
+        summaryView.backgroundColor = .secondarySystemBackground
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
         titleLabel.text = "Activity"
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byTruncatingTail
@@ -40,14 +39,15 @@ extension HistoryHeaderView {
     func configureLayout() {
         addSubview(summaryView)
         addSubview(titleLabel)
-        
+                
         NSLayoutConstraint.activate([
             summaryView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
-            summaryView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: summaryView.trailingAnchor, multiplier: 1),
+            summaryView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: summaryView.trailingAnchor, multiplier: 2),
+            summaryView.heightAnchor.constraint(equalToConstant: 250),
             
-            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 2),
-            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 5),
+            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             bottomAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 1)
         ])
     }

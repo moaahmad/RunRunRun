@@ -41,7 +41,7 @@ final class SessionLogViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadRuns()
-        configureView()
+        configureHistory()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -69,7 +69,7 @@ final class SessionLogViewController: UIViewController {
         return setupFetch
     }
     
-    private func configureView() {
+    private func configureHistory() {
         guard let runs = fetchedRuns.fetchedObjects,
             !runs.isEmpty else {
                 return showNoSessionView()
