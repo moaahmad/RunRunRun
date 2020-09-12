@@ -25,7 +25,7 @@ final class RMSecondaryTitleLabel: UILabel {
     }
     
     private func configure() {
-        textColor = .secondaryLabel
+        textColor = .darkGray
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingTail

@@ -22,12 +22,12 @@
 		F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */; };
 		F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDB24A91C25004D705F /* Int+Extensions.swift */; };
 		F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDD24A927F4004D705F /* Double+Extensions.swift */; };
-		F05E38D02509550C005B1916 /* RMSessionDetailSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38CF2509550C005B1916 /* RMSessionDetailSmallView.swift */; };
+		F05E38D02509550C005B1916 /* RMSessionDetailSmallStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38CF2509550C005B1916 /* RMSessionDetailSmallStackView.swift */; };
 		F05E38D3250955C0005B1916 /* RMTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D2250955C0005B1916 /* RMTitleLabel.swift */; };
 		F05E38D5250957E8005B1916 /* RMSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D4250957E8005B1916 /* RMSecondaryTitleLabel.swift */; };
 		F05E38D725097834005B1916 /* RMPausePlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D625097834005B1916 /* RMPausePlayButton.swift */; };
-		F05E38D9250991EB005B1916 /* RMSessionDetailLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D8250991EB005B1916 /* RMSessionDetailLargeView.swift */; };
-		F05E38DB25099E56005B1916 /* RMSessionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38DA25099E56005B1916 /* RMSessionButtonView.swift */; };
+		F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */; };
+		F05E38DB25099E56005B1916 /* RMSessionButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */; };
 		F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */; };
 		F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */; };
 		F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F424BA18FE0037589D /* RouteDrawer.swift */; };
@@ -80,12 +80,12 @@
 		F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		F04A6EDB24A91C25004D705F /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		F04A6EDD24A927F4004D705F /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
-		F05E38CF2509550C005B1916 /* RMSessionDetailSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailSmallView.swift; sourceTree = "<group>"; };
+		F05E38CF2509550C005B1916 /* RMSessionDetailSmallStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailSmallStackView.swift; sourceTree = "<group>"; };
 		F05E38D2250955C0005B1916 /* RMTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMTitleLabel.swift; sourceTree = "<group>"; };
 		F05E38D4250957E8005B1916 /* RMSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		F05E38D625097834005B1916 /* RMPausePlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPausePlayButton.swift; sourceTree = "<group>"; };
-		F05E38D8250991EB005B1916 /* RMSessionDetailLargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailLargeView.swift; sourceTree = "<group>"; };
-		F05E38DA25099E56005B1916 /* RMSessionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionButtonView.swift; sourceTree = "<group>"; };
+		F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailLargeStackView.swift; sourceTree = "<group>"; };
+		F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionButtonStackView.swift; sourceTree = "<group>"; };
 		F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Extensions.swift"; sourceTree = "<group>"; };
 		F085B9F424BA18FE0037589D /* RouteDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDrawer.swift; sourceTree = "<group>"; };
@@ -146,8 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */,
-				F05E38CF2509550C005B1916 /* RMSessionDetailSmallView.swift */,
-				F05E38D8250991EB005B1916 /* RMSessionDetailLargeView.swift */,
 				F0E63DAE2502BC950024B73C /* No Session */,
 			);
 			path = Views;
@@ -167,6 +165,7 @@
 			children = (
 				F007265D25081CB4009E00B7 /* TabBarControllers */,
 				F007265E25081CFC009E00B7 /* Views */,
+				F05E38DC250ABAD6005B1916 /* Stack Views */,
 				F007265F25081D29009E00B7 /* Cells */,
 				F0D2BA3024A8DA2C00BE815F /* Buttons */,
 				F05E38D12509559B005B1916 /* Labels */,
@@ -209,6 +208,16 @@
 				F05E38D4250957E8005B1916 /* RMSecondaryTitleLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		F05E38DC250ABAD6005B1916 /* Stack Views */ = {
+			isa = PBXGroup;
+			children = (
+				F05E38CF2509550C005B1916 /* RMSessionDetailSmallStackView.swift */,
+				F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */,
+				F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */,
+			);
+			path = "Stack Views";
 			sourceTree = "<group>";
 		};
 		F0A674A024A7CCAF0083FD5F = {
@@ -341,7 +350,6 @@
 				F0D2BA2E24A8DA2800BE815F /* RMActionButton.swift */,
 				F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */,
 				F05E38D625097834005B1916 /* RMPausePlayButton.swift */,
-				F05E38DA25099E56005B1916 /* RMSessionButtonView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -496,19 +504,19 @@
 				F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */,
 				F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */,
 				F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */,
-				F05E38D02509550C005B1916 /* RMSessionDetailSmallView.swift in Sources */,
+				F05E38D02509550C005B1916 /* RMSessionDetailSmallStackView.swift in Sources */,
 				F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */,
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
 				F05E38D3250955C0005B1916 /* RMTitleLabel.swift in Sources */,
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
-				F05E38D9250991EB005B1916 /* RMSessionDetailLargeView.swift in Sources */,
+				F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */,
 				F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */,
 				F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */,
 				F0A674DB24A7DF100083FD5F /* StartRunViewController.swift in Sources */,
 				F0D2BA2F24A8DA2800BE815F /* RMActionButton.swift in Sources */,
 				F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */,
-				F05E38DB25099E56005B1916 /* RMSessionButtonView.swift in Sources */,
+				F05E38DB25099E56005B1916 /* RMSessionButtonStackView.swift in Sources */,
 				F05E38D725097834005B1916 /* RMPausePlayButton.swift in Sources */,
 				F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */,
 				F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */,

@@ -14,11 +14,11 @@ protocol UpdateDurationDelegate: class {
 }
 
 final class CurrentRunViewController: LocationViewController {
-    
-    let averagePaceView = RMSessionDetailSmallView(value: "--'--", subtitle: "Pace")
-    let durationView = RMSessionDetailSmallView(value: "00:00", subtitle: "Time")
-    let distanceView = RMSessionDetailLargeView(value: "0.00", subtitle: "Kilometres")
-    let buttonView = RMSessionButtonView()
+        
+    let averagePaceView = RMSessionDetailSmallStackView(value: "--'--\"", subtitle: "Pace")
+    let durationView = RMSessionDetailSmallStackView(value: "00:00", subtitle: "Time")
+    let distanceView = RMSessionDetailLargeStackView(value: "0.00", subtitle: "Kilometres")
+    let buttonView = RMSessionButtonStackView()
     
     private let context = (UIApplication.shared.delegate as! AppDelegate)
         .persistentContainer.viewContext
@@ -27,20 +27,26 @@ final class CurrentRunViewController: LocationViewController {
         .darkContent
     }
     
+    private var buttonViewBottomConstraint: NSLayoutConstraint?
     private var isPaused = false
+    private var hasBeenPaused = false
+    
     private var startDateTime: Date!
+    
     private var startLocation: CLLocation!
     private var lastLocation: CLLocation!
     private var coordinateLocations = [Location]()
+    
     private var runDistance = 0.0
     private var pace = 0.0
-    private var runSession: RepeatingTimer!
-    private var runs: NSFetchedResultsController<Run>!
     private var getAveragePace: String {
-        SessionUtilities.calculateAveragePace(time: runSession.counter,
+        SessionUtilities.calculateAveragePace(time: sessionTimer.counter,
                                               meters: runDistance)
     }
+    private var sessionTimer: RepeatingTimer!
+    
     #warning("Is this needed???")
+    private var runs: NSFetchedResultsController<Run>!
     private var fetchRuns: NSFetchedResultsController<Run> {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
         return setupFetch
@@ -50,7 +56,7 @@ final class CurrentRunViewController: LocationViewController {
         super.viewDidLoad()
         configureLocationManager()
         configureLayout()
-        runSession = RepeatingTimer(timeInterval: 1, delegate: self)
+        sessionTimer = RepeatingTimer(timeInterval: 1, delegate: self)
         runs = fetchRuns
     }
     
@@ -109,13 +115,28 @@ extension CurrentRunViewController {
     
     private func configureButtonView() {
         view.addSubview(buttonView)
+        
+        buttonView.pausePlayButton.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        buttonView.finishButton.isHidden = !isPaused
+        
         buttonView.pausePlayButton.addTarget(self, action: #selector(didTapPauseButton), for: .touchUpInside)
         buttonView.finishButton.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
         
+        buttonViewBottomConstraint = buttonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -68)
+        
         NSLayoutConstraint.activate([
             buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonViewBottomConstraint!
         ])
+    }
+    
+    private func animateButtonViewLayout() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.buttonView.pausePlayButton.transform = self.isPaused ? CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 1.4, y: 1.4)
+            self.buttonViewBottomConstraint?.constant = self.isPaused ? -8 : -68
+            self.buttonView.finishButton.transform = self.isPaused ? CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 0, y: 0)
+            self.buttonView.hideShowFinishButton(self.isPaused)
+        })
     }
 }
 
@@ -131,15 +152,16 @@ extension CurrentRunViewController {
         buttonView.pausePlayButton.setImage(name: "pause.fill")
         startTimer()
         manager?.startUpdatingLocation()
+        hasBeenPaused = true
     }
     
     private func startTimer() {
         manager?.startUpdatingLocation()
-        runSession.resume()
+        sessionTimer.resume()
     }
     
     private func pauseTimer() {
-        runSession.suspend()
+        sessionTimer.suspend()
     }
 }
 
@@ -149,12 +171,14 @@ extension CurrentRunViewController {
     @objc private func didTapPauseButton() {
         isPaused = !isPaused
         isPaused ? pauseRun() : playRun()
+        
+        animateButtonViewLayout()
     }
     
     @objc private func didTapFinishButton() {
         pauseTimer()
         manager?.stopUpdatingLocation()
-        PersistenceManager.store.save(duration: runSession.counter,
+        PersistenceManager.store.save(duration: sessionTimer.counter,
                                       distance: runDistance,
                                       pace: pace,
                                       startDateTime: startDateTime,
@@ -184,19 +208,15 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         
-        if startLocation == nil {
+        if startLocation == nil || hasBeenPaused {
             startLocation = locations.first
+            hasBeenPaused = false
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
             distanceView.valueLabel.text = runDistance.convertMetersIntoKilometers()
-            let newLocation = Location(context: context)
-            newLocation.timestamp = Date()
-            newLocation.latitude = lastLocation.coordinate.latitude
-            newLocation.longitude = lastLocation.coordinate.longitude
-            coordinateLocations.append(newLocation)
-            if runSession.counter > 0 && runDistance > 0 {
-                averagePaceView.valueLabel.text = getAveragePace
-            }
+            
+            recordAveragePace()
+            recordLocationData()
         }
         lastLocation = locations.last
         
@@ -207,5 +227,19 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
             print("App is backgrounded. New location is", lastLocation ?? "nil")
         }
         #endif
+    }
+    
+    private func recordAveragePace() {
+        if sessionTimer.counter > 0 && runDistance > 0 {
+            averagePaceView.valueLabel.text = getAveragePace
+        }
+    }
+    
+    private func recordLocationData() {
+        let newLocation = Location(context: context)
+        newLocation.timestamp = Date()
+        newLocation.latitude = lastLocation.coordinate.latitude
+        newLocation.longitude = lastLocation.coordinate.longitude
+        coordinateLocations.append(newLocation)
     }
 }

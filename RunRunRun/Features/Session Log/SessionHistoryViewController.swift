@@ -223,8 +223,8 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
                                                        delay: 0,
                                                        options: [],
                                                        animations: {
-                                                        self.headerViewTopConstraint?.constant = shouldSnap ? -viewHeight : 0
-                                                        self.view.layoutIfNeeded()
+            self.headerViewTopConstraint?.constant = shouldSnap ? -viewHeight : 0
+            self.view.layoutIfNeeded()
         })
     }
 }

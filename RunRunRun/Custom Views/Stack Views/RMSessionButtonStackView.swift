@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RMSessionButtonView: UIStackView {
+final class RMSessionButtonStackView: UIStackView {
     
     let pausePlayButton = RMPausePlayButton()
     let finishButton = RMActionButton(title: "FINISH")
@@ -21,11 +21,16 @@ final class RMSessionButtonView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    convenience init(isPaused: Bool) {
+//        self.init(frame: .zero)
+//        finishButton.isHidden = isPaused ? false : true
+//    }
 }
 
-extension RMSessionButtonView {
+extension RMSessionButtonStackView {
     
-    func configure() {
+    private func configure() {
         axis = .vertical
         distribution = .fill
         alignment = .center
@@ -51,5 +56,9 @@ extension RMSessionButtonView {
             finishButton.heightAnchor.constraint(equalToConstant: 120),
             finishButton.widthAnchor.constraint(equalToConstant: 120)
         ])
+    }
+    
+    func hideShowFinishButton(_ isPaused: Bool) {
+        finishButton.isHidden = !isPaused
     }
 }
