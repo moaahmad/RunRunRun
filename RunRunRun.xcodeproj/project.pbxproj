@@ -51,6 +51,7 @@
 		F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */; };
 		F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */; };
 		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
+		F0EC45A9252B62930069EACD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EC45A8252B62930069EACD /* Date+Extensions.swift */; };
 		F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtilities.swift; sourceTree = "<group>"; };
 		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
+		F0EC45A8252B62930069EACD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,11 +166,11 @@
 			isa = PBXGroup;
 			children = (
 				F007265D25081CB4009E00B7 /* TabBarControllers */,
+				F007265F25081D29009E00B7 /* Cells */,
+				F05E38D12509559B005B1916 /* Labels */,
+				F0D2BA3024A8DA2C00BE815F /* Buttons */,
 				F007265E25081CFC009E00B7 /* Views */,
 				F05E38DC250ABAD6005B1916 /* Stack Views */,
-				F007265F25081D29009E00B7 /* Cells */,
-				F0D2BA3024A8DA2C00BE815F /* Buttons */,
-				F05E38D12509559B005B1916 /* Labels */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -177,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */,
-				F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */,
 				F007265625080C23009E00B7 /* SessionHistoryViewController.swift */,
+				F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */,
 			);
 			path = "Session Log";
 			sourceTree = "<group>";
@@ -316,6 +318,7 @@
 				F04A6EDB24A91C25004D705F /* Int+Extensions.swift */,
 				F04A6EDD24A927F4004D705F /* Double+Extensions.swift */,
 				F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */,
+				F0EC45A8252B62930069EACD /* Date+Extensions.swift */,
 				F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */,
 				F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */,
 			);
@@ -517,6 +520,7 @@
 				F0D2BA2F24A8DA2800BE815F /* RMActionButton.swift in Sources */,
 				F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */,
 				F05E38DB25099E56005B1916 /* RMSessionButtonStackView.swift in Sources */,
+				F0EC45A9252B62930069EACD /* Date+Extensions.swift in Sources */,
 				F05E38D725097834005B1916 /* RMPausePlayButton.swift in Sources */,
 				F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */,
 				F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */,

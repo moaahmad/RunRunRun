@@ -5,7 +5,6 @@
 //  Created by Ahmad, Mohammed (UK - London) on 9/10/20.
 //  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
 //
-
 import UIKit
 
 final class RMSessionButtonStackView: UIStackView {
@@ -21,14 +20,12 @@ final class RMSessionButtonStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    convenience init(isPaused: Bool) {
-//        self.init(frame: .zero)
-//        finishButton.isHidden = isPaused ? false : true
-//    }
 }
 
 extension RMSessionButtonStackView {
+    func hideShowFinishButton(_ isPaused: Bool) {
+            finishButton.isHidden = !isPaused
+        }
     
     private func configure() {
         axis = .vertical
@@ -56,9 +53,5 @@ extension RMSessionButtonStackView {
             finishButton.heightAnchor.constraint(equalToConstant: 120),
             finishButton.widthAnchor.constraint(equalToConstant: 120)
         ])
-    }
-    
-    func hideShowFinishButton(_ isPaused: Bool) {
-        finishButton.isHidden = !isPaused
     }
 }

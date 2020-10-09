@@ -9,10 +9,7 @@ import UIKit
 import CoreData
 
 final class SessionHistoryViewController: UIViewController {
-    let headerView = RMHistoryHeaderView()
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
-    var headerViewTopConstraint: NSLayoutConstraint?
 
     private let sessionNibName = "SessionTableViewCell"
     private let sessionLogCellIdentifier = "SessionLogCell"
@@ -21,7 +18,6 @@ final class SessionHistoryViewController: UIViewController {
     private var runs = [Run]()
     private var index: IndexPath?
     var sections = [GroupedSection<Date, Run>]()
-    
 
     private lazy var noSessionView: UIView = {
         let view = UINib(nibName: "NoSessionView", bundle: .main)
@@ -29,23 +25,22 @@ final class SessionHistoryViewController: UIViewController {
         return view
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Activity...")
+        return refreshControl
+    }()
+    
+    // MARK: - UIView Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configureTableView()
         styleVC()
         configureLayout()
-    }
-    
-    func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.register(UINib(nibName: sessionNibName, bundle: nil),
-                           forCellReuseIdentifier: sessionLogCellIdentifier)
-        tableView.addSubview(refreshControl)
-//        tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 12, right: 0)
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,12 +59,39 @@ final class SessionHistoryViewController: UIViewController {
         tableView.setEditing(editing, animated: animated)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showDetailSegue",
+            let vc = segue.destination as? SessionDetailViewController,
+            let index = index else { return }
+        let section = sections[index.section]
+        vc.run = section.rows[index.row]
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateHeaderViewHeight(for: tableView.tableHeaderView)
+    }
+
+    private func updateHeaderViewHeight(for header: UIView?) {
+        guard let header = header else { return }
+        header.frame.size.height = 300
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        fetchedRuns = fetchRuns()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+}
+// MARK: - Load Runs
+extension SessionHistoryViewController {
     private func loadRuns() {
         // Fetch runs from Core Data
         fetchedRuns = fetchRuns()
         runs = fetchedRuns.runsOrderedByDate()
         // Sort run data into groups by month
-        sections = GroupedSection.group(rows: self.runs, by: { firstDayOfMonth(date: $0.startDateTime!) })
+        sections = GroupedSection.group(rows: self.runs,
+                                        by: { $0.startDateTime!.firstDayOfMonth() })
         sections.sort { lhs, rhs in lhs.sectionItem > rhs.sectionItem }
     }
     
@@ -77,6 +99,38 @@ final class SessionHistoryViewController: UIViewController {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
         setupFetch.delegate = self
         return setupFetch
+    }
+}
+// MARK: - Configure Layout
+extension SessionHistoryViewController {
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(UINib(nibName: sessionNibName, bundle: nil),
+                           forCellReuseIdentifier: sessionLogCellIdentifier)
+        
+        tableView.addSubview(refreshControl)
+        tableView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 12, right: 0)
+        
+        //header
+        let headerView = RMHistoryHeaderView()
+        tableView.tableHeaderView = headerView
+    }
+    
+    func styleVC() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func configureLayout() {
+        view.addSubview(tableView)
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     private func configureHistory() {
@@ -91,65 +145,20 @@ final class SessionHistoryViewController: UIViewController {
         tableView.addSubview(noSessionView)
         noSessionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            noSessionView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor, constant: -25),
+            noSessionView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor,
+                                                   constant: -25),
             noSessionView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor)
         ])
     }
     
     private func showRunView() {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
             self.noSessionView.removeFromSuperview()
+            self.tableView.reloadData()
         }
     }
-    
-    private func firstDayOfMonth(date: Date) -> Date {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month], from: date)
-        return calendar.date(from: components)!
-    }
-
-    // MARK: - Setup Refresh Control
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self,
-                                 action: #selector(handleRefresh(_:)),
-                                 for: UIControl.Event.valueChanged)
-        return refreshControl
-    }()
-     
-     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-         fetchedRuns = fetchRuns()
-         tableView.reloadData()
-         refreshControl.endRefreshing()
-     }
 }
-
-extension SessionHistoryViewController {
-    func styleVC() {
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func configureLayout() {
-        view.addSubview(headerView)
-        view.addSubview(tableView)
-        
-        headerViewTopConstraint = headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        
-        NSLayoutConstraint.activate([
-            headerViewTopConstraint!,
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-}
-
+// MARK: - UITableView Datasource and Delegate
 extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         guard !sections.isEmpty else { return 1 }
@@ -200,35 +209,7 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
             break
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showDetailSegue",
-            let vc = segue.destination as? SessionDetailViewController,
-            let index = index else { return }
-        let section = sections[index.section]
-        vc.run = section.rows[index.row]
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y = scrollView.contentOffset.y
-        
-        let shouldSnap = y > 30
-        let viewHeight = headerView.summaryView.frame.height + 16
-        
-        UIView.animate(withDuration: 0.3) {
-            self.headerView.summaryView.alpha = shouldSnap ? 0 : 1
-        }
-        
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3,
-                                                       delay: 0,
-                                                       options: [],
-                                                       animations: {
-            self.headerViewTopConstraint?.constant = shouldSnap ? -viewHeight : 0
-            self.view.layoutIfNeeded()
-        })
-    }
 }
-
 //MARK: - NSFetchedResultsControllerDelegate Methods
 extension SessionHistoryViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,

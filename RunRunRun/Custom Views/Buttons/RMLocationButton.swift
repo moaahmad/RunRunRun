@@ -5,7 +5,6 @@
 //  Created by Ahmad, Mohammed (UK - London) on 9/9/20.
 //  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
 //
-
 import UIKit
 
 final class RMLocationButton: UIButton {

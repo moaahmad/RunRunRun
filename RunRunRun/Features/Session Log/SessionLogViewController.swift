@@ -25,6 +25,7 @@ final class SessionLogViewController: UIViewController {
     private var fetchedRuns: NSFetchedResultsController<Run>!
     private var runs = [Run]()
     private var index: IndexPath?
+    var groupedRuns: [Date: [Run]]?
     var sections = [GroupedSection<Date, Run>]()
 
     private lazy var noSessionView: UIView = {
@@ -59,6 +60,9 @@ final class SessionLogViewController: UIViewController {
         fetchedRuns = fetchRuns()
         runs = fetchedRuns.runsOrderedByDate()
         // Sort run data into groups by month
+        groupedRuns = .init(grouping: runs, by: { firstDayOfMonth(date: $0.startDateTime!) })
+        print(groupedRuns)
+        #warning("Finish off refactoring the groupedRuns to not need GroupedSection helper")
         sections = GroupedSection.group(rows: self.runs, by: { firstDayOfMonth(date: $0.startDateTime!) })
         sections.sort { lhs, rhs in lhs.sectionItem > rhs.sectionItem }
     }
