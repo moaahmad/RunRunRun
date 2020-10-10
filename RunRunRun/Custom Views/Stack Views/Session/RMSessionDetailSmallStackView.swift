@@ -1,5 +1,5 @@
 //
-//  RMSessionDetailLargeStackView.swift
+//  RMSessionDetailSmallStackView.swift
 //  RunRunRun
 //
 //  Created by Ahmad, Mohammed (UK - London) on 9/9/20.
@@ -7,10 +7,14 @@
 //
 import UIKit
 
-final class RMSessionDetailLargeStackView: UIStackView {
+final class RMSessionDetailSmallStackView: UIStackView {
     
-    let valueLabel = RMTitleLabel(textAlignment: .center, fontSize: 90, color: .black)
-    let descriptionLabel = RMSecondaryTitleLabel(fontSize: 17)
+    let valueLabel = RMTitleLabel(textAlignment: .center,
+                                  fontSize: 32,
+                                  color: .black)
+    let descriptionLabel = RMSecondaryTitleLabel(fontSize: 17,
+                                                 fontWeight: .semibold,
+                                                 color: .darkGray)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,13 +32,13 @@ final class RMSessionDetailLargeStackView: UIStackView {
     }
 }
 
-extension RMSessionDetailLargeStackView {
+extension RMSessionDetailSmallStackView {
     
     private func configure() {
         axis = .vertical
         distribution = .fill
         alignment = .center
-        spacing = -8
+        spacing = 2
         
         addArrangedSubview(valueLabel)
         addArrangedSubview(descriptionLabel)

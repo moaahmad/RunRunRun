@@ -15,7 +15,6 @@
 		F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */; };
 		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
 		F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */; };
-		F0284ADB24AE4DEA007283F4 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */; };
 		F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */; };
 		F0284AE024AE7054007283F4 /* SessionDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */; };
 		F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */; };
@@ -44,6 +43,9 @@
 		F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674E524A7F4870083FD5F /* StartRun.storyboard */; };
 		F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */; };
 		F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */; };
+		F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */; };
+		F0BEC2F325310BBD0021526A /* RMSummaryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */; };
+		F0BEC2F9253132120021526A /* RMSummaryDetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */; };
 		F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */; };
 		F0D2BA2F24A8DA2800BE815F /* RMActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2E24A8DA2800BE815F /* RMActionButton.swift */; };
 		F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */; };
@@ -74,7 +76,6 @@
 		F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationButton.swift; sourceTree = "<group>"; };
 		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
 		F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionTableViewCell.xib; sourceTree = "<group>"; };
 		F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogViewController.swift; sourceTree = "<group>"; };
 		F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionDetail.storyboard; sourceTree = "<group>"; };
 		F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -107,6 +108,9 @@
 		F0A674E524A7F4870083FD5F /* StartRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartRun.storyboard; sourceTree = "<group>"; };
 		F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
+		F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryView.swift; sourceTree = "<group>"; };
+		F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryStackView.swift; sourceTree = "<group>"; };
+		F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryDetailStackView.swift; sourceTree = "<group>"; };
 		F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRunViewController.swift; sourceTree = "<group>"; };
 		F0D2BA2E24A8DA2800BE815F /* RMActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMActionButton.swift; sourceTree = "<group>"; };
 		F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistance.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */,
+				F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */,
 				F0E63DAE2502BC950024B73C /* No Session */,
 			);
 			path = Views;
@@ -189,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */,
-				F0284AD924AE4DEA007283F4 /* SessionTableViewCell.xib */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -215,9 +219,9 @@
 		F05E38DC250ABAD6005B1916 /* Stack Views */ = {
 			isa = PBXGroup;
 			children = (
-				F05E38CF2509550C005B1916 /* RMSessionDetailSmallStackView.swift */,
-				F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */,
-				F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */,
+				F0BEC2EF2531030B0021526A /* Session */,
+				F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */,
+				F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */,
 			);
 			path = "Stack Views";
 			sourceTree = "<group>";
@@ -347,6 +351,16 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		F0BEC2EF2531030B0021526A /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				F05E38CF2509550C005B1916 /* RMSessionDetailSmallStackView.swift */,
+				F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */,
+				F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
 		F0D2BA3024A8DA2C00BE815F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,7 +480,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */,
-				F0284ADB24AE4DEA007283F4 /* SessionTableViewCell.xib in Resources */,
 				F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */,
 				F0A674DD24A7DF380083FD5F /* Main.storyboard in Resources */,
 				F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */,
@@ -496,6 +509,7 @@
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
 				F007265A25080D35009E00B7 /* RMHistoryHeaderView.swift in Sources */,
 				F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */,
+				F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */,
 				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
 				F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
@@ -508,8 +522,10 @@
 				F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */,
 				F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */,
 				F05E38D02509550C005B1916 /* RMSessionDetailSmallStackView.swift in Sources */,
+				F0BEC2F9253132120021526A /* RMSummaryDetailStackView.swift in Sources */,
 				F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */,
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
+				F0BEC2F325310BBD0021526A /* RMSummaryStackView.swift in Sources */,
 				F05E38D3250955C0005B1916 /* RMTitleLabel.swift in Sources */,
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,

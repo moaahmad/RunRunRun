@@ -74,7 +74,7 @@ final class SessionHistoryViewController: UIViewController {
 
     private func updateHeaderViewHeight(for header: UIView?) {
         guard let header = header else { return }
-        header.frame.size.height = 300
+        header.frame.size.height = 250
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -107,8 +107,8 @@ extension SessionHistoryViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UINib(nibName: sessionNibName, bundle: nil),
-                           forCellReuseIdentifier: sessionLogCellIdentifier)
+        tableView.register(SessionTableViewCell.self,
+                           forCellReuseIdentifier: SessionTableViewCell.reuseID)
         
         tableView.addSubview(refreshControl)
         tableView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 12, right: 0)
@@ -181,11 +181,13 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: sessionLogCellIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SessionTableViewCell.reuseID,
+                                                       for: indexPath)
             as? SessionTableViewCell else { return UITableViewCell() }
         let section = sections[indexPath.section]
         let run = section.rows[indexPath.row]
         cell.configureSession(run: run)
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     

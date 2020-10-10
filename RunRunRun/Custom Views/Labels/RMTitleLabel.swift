@@ -18,10 +18,13 @@ final class RMTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat, color: UIColor) {
+    convenience init(textAlignment: NSTextAlignment,
+                     fontSize: CGFloat,
+                     color: UIColor,
+                     weight: UIFont.Weight = .bold) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
         self.textColor = color
     }
     

@@ -12,4 +12,8 @@ extension UIView {
         self.layer.masksToBounds = true
         self.layer.cornerRadius = self.frame.width / 2
     }
+    
+    func addSubviews(_ views: UIView...) {
+        views.forEach { addSubview($0) }
+    }
 }

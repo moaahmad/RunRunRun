@@ -8,7 +8,7 @@
 import UIKit
 
 final class RMHistoryHeaderView: UIView {
-    let summaryView = UIView()
+    let summaryView = RMSummaryView()
     let titleLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -27,7 +27,7 @@ extension RMHistoryHeaderView {
         summaryView.translatesAutoresizingMaskIntoConstraints = false
         summaryView.layer.cornerRadius = 20
         summaryView.layer.masksToBounds = true
-        summaryView.backgroundColor = .orange
+        summaryView.backgroundColor = .secondarySystemGroupedBackground
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
@@ -44,11 +44,11 @@ extension RMHistoryHeaderView {
             summaryView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
             summaryView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: summaryView.trailingAnchor, multiplier: 2),
-            summaryView.heightAnchor.constraint(equalToConstant: 250),
+            summaryView.heightAnchor.constraint(equalToConstant: 200),
             
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 5),
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
-            bottomAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 1),
+            bottomAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0),
             titleLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
