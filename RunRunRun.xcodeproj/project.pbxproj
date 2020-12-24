@@ -16,7 +16,6 @@
 		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
 		F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */; };
 		F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */; };
-		F0284AE024AE7054007283F4 /* SessionDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */; };
 		F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */; };
 		F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */; };
 		F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDB24A91C25004D705F /* Int+Extensions.swift */; };
@@ -53,6 +52,8 @@
 		F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */; };
 		F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */; };
 		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
+		F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */; };
+		F0E6C20A2594077700F44D89 /* RMSessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2092594077700F44D89 /* RMSessionDetailView.swift */; };
 		F0EC45A9252B62930069EACD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EC45A8252B62930069EACD /* Date+Extensions.swift */; };
 		F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -77,7 +78,6 @@
 		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
 		F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogViewController.swift; sourceTree = "<group>"; };
-		F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionDetail.storyboard; sourceTree = "<group>"; };
 		F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunDetailTableViewCell.xib; sourceTree = "<group>"; };
 		F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		F04A6EDB24A91C25004D705F /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
@@ -118,6 +118,8 @@
 		F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtilities.swift; sourceTree = "<group>"; };
 		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
+		F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMBottomSheetViewController.swift; sourceTree = "<group>"; };
+		F0E6C2092594077700F44D89 /* RMSessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailView.swift; sourceTree = "<group>"; };
 		F0EC45A8252B62930069EACD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 			children = (
 				F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */,
 				F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */,
+				F0E6C2092594077700F44D89 /* RMSessionDetailView.swift */,
 				F0E63DAE2502BC950024B73C /* No Session */,
 			);
 			path = Views;
@@ -171,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				F007265D25081CB4009E00B7 /* TabBarControllers */,
+				F0E6C1F62593D0E400F44D89 /* ViewControllers */,
 				F007265F25081D29009E00B7 /* Cells */,
 				F05E38D12509559B005B1916 /* Labels */,
 				F0D2BA3024A8DA2C00BE815F /* Buttons */,
@@ -346,7 +350,6 @@
 				F0A674DC24A7DF380083FD5F /* Main.storyboard */,
 				F0A674E524A7F4870083FD5F /* StartRun.storyboard */,
 				F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */,
-				F0284ADF24AE7054007283F4 /* SessionDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -396,6 +399,14 @@
 				F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */,
 			);
 			path = "No Session";
+			sourceTree = "<group>";
+		};
+		F0E6C1F62593D0E400F44D89 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,7 +497,6 @@
 				F0A674BC24A7CCB50083FD5F /* LaunchScreen.storyboard in Resources */,
 				F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */,
 				F0A674B924A7CCB40083FD5F /* Assets.xcassets in Resources */,
-				F0284AE024AE7054007283F4 /* SessionDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +527,7 @@
 				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */,
+				F0E6C20A2594077700F44D89 /* RMSessionDetailView.swift in Sources */,
 				F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */,
 				F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */,
@@ -527,6 +538,7 @@
 				F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */,
 				F0BEC2F325310BBD0021526A /* RMSummaryStackView.swift in Sources */,
 				F05E38D3250955C0005B1916 /* RMTitleLabel.swift in Sources */,
+				F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */,
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
 				F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */,

@@ -9,44 +9,45 @@ import UIKit
 import MapKit
 
 final class SessionDetailViewController: UIViewController {
-    static let headerHeight = UIScreen.main.bounds.height * 0.4
+    static let mapViewHeight = UIScreen.main.bounds.height * 0.425
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var mapView: MKMapView! {
-        didSet {
-            mapView.delegate = self
-        }
-    }
-    @IBOutlet weak var locationButton: UIButton! {
-        didSet {
-            locationButton.makeCircular()
-        }
-    }
-    
+    let mapView = MKMapView()
+    let locationButton = RMLocationButton()
+    var bottomSheet: UIViewController!
+
     var run: Run!
-    private var tableViewHeaderHeight: CGFloat = headerHeight
-    private var headerView: UIView!
-    private var runDetailNib = "RunDetailTableViewCell"
-    private var runDetailCellIdentifier = "RunDetailCell"
+    
+    init(run: Run) {
+        super.init(nibName: nil, bundle: nil)
+        self.run = run
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = DateFormatter.mediumStyleDateFormatter.string(from: run.startDateTime ?? Date())
+        configureMap()
+        configureLocationButton()
+        configureBottomSheetVC()
         drawRouteOnMap()
-        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func didTapLocationButton(_ sender: Any) {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didTapLocationButton() {
         drawRouteOnMap()
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateHeaderView()
     }
     
     private func drawRouteOnMap() {
@@ -59,54 +60,41 @@ final class SessionDetailViewController: UIViewController {
     }
 }
 
-//MARK: - UITableView Helper Methods
+// MARK: - Configure Layout
 extension SessionDetailViewController {
-    private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: runDetailNib, bundle: nil),
-                           forCellReuseIdentifier: runDetailCellIdentifier)
-        tableView.rowHeight = UITableView.automaticDimension
+    private func configureMap() {
+        mapView.delegate = self
+        mapView.pointOfInterestFilter = .excludingAll
         
-        headerView = tableView.tableHeaderView
-        tableView.tableHeaderView = nil
-        tableView.addSubview(headerView)
-        tableView.contentInset = UIEdgeInsets(top: tableViewHeaderHeight,
-                                              left: 0,
-                                              bottom: 0,
-                                              right: 0)
-        tableView.contentOffset = CGPoint(x: 0, y: -tableViewHeaderHeight)
-        updateHeaderView()
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(mapView)
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.heightAnchor.constraint(equalToConstant: SessionDetailViewController.mapViewHeight)
+        ])
     }
     
-    private func updateHeaderView() {
-        var headerRect = CGRect(x: 0,
-                                y: -tableViewHeaderHeight,
-                                width: tableView.bounds.width,
-                                height: tableViewHeaderHeight)
-        if tableView.contentOffset.y < -tableViewHeaderHeight {
-            headerRect.origin.y = tableView.contentOffset.y
-            headerRect.size.height = -tableView.contentOffset.y
-        }
-        headerView.frame = headerRect
-    }
-}
-
-// MARK: - UITableView Delegate Methods
-extension SessionDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    private func configureLocationButton() {
+        view.addSubview(locationButton)
+        locationButton.addTarget(self, action: #selector(didTapLocationButton), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            locationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -8),
+            locationButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -34),
+            locationButton.heightAnchor.constraint(equalToConstant: 45),
+            locationButton.widthAnchor.constraint(equalToConstant: 45)
+        ])
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: runDetailCellIdentifier, for: indexPath)
-            as? RunDetailTableViewCell else { return UITableViewCell() }
-        cell.configureRunDetail(run: run)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    private func configureBottomSheetVC() {
+        bottomSheet = RMBottomSheetViewController(run: run)
+        bottomSheet.view.backgroundColor = .systemBackground
+        addChild(bottomSheet)
+        view.addSubview(bottomSheet.view)
+        NSLayoutConstraint.activate([
+            bottomSheet.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 

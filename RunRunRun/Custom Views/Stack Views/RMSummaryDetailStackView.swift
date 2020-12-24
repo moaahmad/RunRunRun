@@ -8,11 +8,9 @@
 import UIKit
 
 final class RMSummaryDetailStackView: UIStackView {
-    
-    let imageView = UIImageView()
-    
+        
     let valueLabel = RMTitleLabel(textAlignment: .center,
-                                  fontSize: 19,
+                                  fontSize: 22,
                                   color: .label,
                                   weight: .semibold)
     
@@ -24,16 +22,14 @@ final class RMSummaryDetailStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
-        styleLayout()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(image: UIImage, value: String, title: String) {
+    convenience init(value: String, title: String) {
         self.init(frame: .zero)
-        imageView.image = image.withTintColor(.systemOrange)
         valueLabel.text = value
         titleLabel.text = title
     }
@@ -48,23 +44,12 @@ extension RMSummaryDetailStackView {
         
         let textStackView = UIStackView(arrangedSubviews: [valueLabel, titleLabel])
         textStackView.axis = .vertical
-        textStackView.alignment = .center
-        textStackView.spacing = 4
+        textStackView.alignment = .leading
+        textStackView.spacing = 8
         
-        addArrangedSubview(imageView)
         addArrangedSubview(textStackView)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func styleLayout() {
-        imageView.contentMode = .scaleAspectFit
-        
-        NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 35),
-            imageView.widthAnchor.constraint(equalToConstant: 35)
-        ])
     }
 }

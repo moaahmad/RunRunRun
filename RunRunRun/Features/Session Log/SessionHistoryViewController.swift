@@ -38,13 +38,13 @@ final class SessionHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        styleVC()
         configureLayout()
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         loadRuns()
         configureHistory()
     }
@@ -118,13 +118,11 @@ extension SessionHistoryViewController {
         tableView.tableHeaderView = headerView
     }
     
-    func styleVC() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     func configureLayout() {
         view.addSubview(tableView)
 
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -135,8 +133,8 @@ extension SessionHistoryViewController {
     
     private func configureHistory() {
         guard let runs = fetchedRuns.fetchedObjects,
-            !runs.isEmpty else {
-                return showNoSessionView()
+              !runs.isEmpty else {
+            return showNoSessionView()
         }
         showRunView()
     }
@@ -145,8 +143,7 @@ extension SessionHistoryViewController {
         tableView.addSubview(noSessionView)
         noSessionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            noSessionView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor,
-                                                   constant: -25),
+            noSessionView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
             noSessionView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor)
         ])
     }
@@ -194,7 +191,10 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         index = indexPath
-        performSegue(withIdentifier: "showDetailSegue", sender: self)
+        
+        let run = runs[indexPath.row]
+        let destVC = SessionDetailViewController(run: run)
+        navigationController?.pushViewController(destVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,

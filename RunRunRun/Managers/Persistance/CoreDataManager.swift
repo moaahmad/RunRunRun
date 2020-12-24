@@ -30,7 +30,11 @@ struct CoreDataManager: LocalPersistence {
         return fetchedResultsController
     }
 
-    func save(duration: Int, distance: Double, pace: Double, startDateTime: Date, locations: [Location]) {
+    func save(duration: Int,
+              distance: Double,
+              pace: Double,
+              startDateTime: Date,
+              locations: [Location]) {
         let savedRun = Run(context: context)
         savedRun.id = UUID()
         savedRun.duration = Int32(duration)

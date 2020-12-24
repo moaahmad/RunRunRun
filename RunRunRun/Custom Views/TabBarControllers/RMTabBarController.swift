@@ -30,9 +30,9 @@ class RMTabBarController: UITabBarController {
         return UINavigationController(rootViewController: startRunVC)
     }
 
-    func createSessionHistoryViewController() -> UIViewController {
+    func createSessionHistoryViewController() -> UINavigationController {
         let sessionHistoryVC = SessionHistoryViewController()
         sessionHistoryVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "timer"), tag: 1)
-        return sessionHistoryVC
+        return UINavigationController(rootViewController: sessionHistoryVC)
     }
 }

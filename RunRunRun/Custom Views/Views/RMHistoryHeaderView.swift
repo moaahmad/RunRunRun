@@ -44,7 +44,7 @@ extension RMHistoryHeaderView {
             summaryView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
             summaryView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: summaryView.trailingAnchor, multiplier: 2),
-            summaryView.heightAnchor.constraint(equalToConstant: 200),
+            summaryView.heightAnchor.constraint(equalToConstant: 150),
             
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 5),
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),

@@ -7,6 +7,4 @@
 //
 import UIKit
 
-class NoSessionView: UIView {
-    
-}
+class NoSessionView: UIView { }

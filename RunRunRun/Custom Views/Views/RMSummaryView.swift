@@ -8,7 +8,6 @@
 import UIKit
 
 final class RMSummaryView: UIView {
-    
     private(set) var titleLabel = RMTitleLabel(textAlignment: .center,
                                                fontSize: 21,
                                                color: .label)
@@ -46,6 +45,6 @@ extension RMSummaryView {
     
     private func styleLayout() {
         titleLabel.text = "History"
-        titleLabel.textColor = .label
+        titleLabel.textColor = .systemGreen
     }
 }
