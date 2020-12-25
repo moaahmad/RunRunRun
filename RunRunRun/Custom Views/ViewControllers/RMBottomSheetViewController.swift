@@ -15,7 +15,7 @@ final class RMBottomSheetViewController: UIViewController {
     
     private enum Constant {
         static let fullViewYPosition: CGFloat = 100
-        static var partialViewYPosition: CGFloat { UIScreen.main.bounds.height * 0.525 }
+        static var partialViewYPosition: CGFloat { UIScreen.main.bounds.height * 0.55 }
     }
     
     let notchView = UIView()

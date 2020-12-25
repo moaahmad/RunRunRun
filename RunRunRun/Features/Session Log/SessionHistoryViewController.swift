@@ -11,7 +11,6 @@ import CoreData
 final class SessionHistoryViewController: UIViewController {
     private var fetchedRuns: NSFetchedResultsController<Run>!
     private var runs = [Run]()
-    private var index: IndexPath?
     var sections = [GroupedSection<Date, Run>]()
     
     private lazy var tableView: UITableView = {
@@ -56,14 +55,6 @@ final class SessionHistoryViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showDetailSegue",
-            let vc = segue.destination as? SessionDetailViewController,
-            let index = index else { return }
-        let section = sections[index.section]
-        vc.run = section.rows[index.row]
     }
     
     override func viewWillLayoutSubviews() {
@@ -192,9 +183,8 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        index = indexPath
-        
-        let run = runs[indexPath.row]
+        let section = sections[indexPath.section]
+        let run = section.rows[indexPath.row]
         let destVC = SessionDetailViewController(run: run)
         navigationController?.pushViewController(destVC, animated: true)
     }

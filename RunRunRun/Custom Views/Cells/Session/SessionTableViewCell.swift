@@ -33,8 +33,20 @@ final class SessionTableViewCell: UITableViewCell {
     
     func configureSession(run: Run) {
         guard let startDateTime = run.startDateTime else { return }
-        self.dateLabel.text = DateFormatter.shortStyleDateFormatter.string(from: startDateTime)
+        configureDateFormat(date: startDateTime)
         self.distanceLabel.text = run.distance.convertMetersIntoKilometers() + " km"
+    }
+    
+    private func configureDateFormat(date: Date) {
+        if Calendar.current.isDateInToday(date) {
+            dateLabel.text = DateFormatter.timeStyleDateFormatter.string(for: date)
+        } else if Calendar.current.isDateInYesterday(date) {
+            dateLabel.text = RelativeDateTimeFormatter.relativeStyleDateFormatter.string(for: date)?.capitalized
+        } else if Calendar.current.isDate(date, equalTo: Date(), toGranularity: .weekOfMonth) {
+            dateLabel.text = DateFormatter.dayStyleDateFormatter.string(for: date)
+        } else {
+            self.dateLabel.text = DateFormatter.shortStyleDateFormatter.string(from: date)
+        }
     }
 }
 

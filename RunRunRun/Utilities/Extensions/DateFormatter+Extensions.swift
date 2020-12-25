@@ -28,4 +28,18 @@ extension DateFormatter {
         formatter.dateFormat = "E d MMM"
         return formatter
     }()
+    
+    /// Returns a time style date formatter in user's locale.  E.g., 13:50
+    static let timeStyleDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
+    
+    /// Returns a day style date formatter in user's locale.  E.g., Monday
+    static let dayStyleDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter
+    }()
 }

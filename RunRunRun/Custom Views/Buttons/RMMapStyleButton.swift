@@ -1,14 +1,15 @@
 //
-//  RMLocationButton.swift
+//  RMMapStyleButton.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 9/9/20.
+//  Created by Mohammed Ahmad on 12/25/20.
 //  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
 //
 import UIKit
 
-final class RMLocationButton: UIButton {
-    
+import UIKit
+
+final class RMMapStyleButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configure()
@@ -22,8 +23,8 @@ final class RMLocationButton: UIButton {
         frame = CGRect(x: 0, y: 0, width: 45, height: 45)
         layer.masksToBounds = true
         layer.cornerRadius = frame.width / 2
-        backgroundColor = #colorLiteral(red: 0, green: 0.7803921569, blue: 0.3490196078, alpha: 1)
-        setImage(UIImage(systemName: "location.fill"), for: .normal)
+        backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 0.7450502997)
+        setImage(UIImage(systemName: "globe"), for: .normal)
         tintColor = .white
         translatesAutoresizingMaskIntoConstraints = false
     }

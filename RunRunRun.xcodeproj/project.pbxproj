@@ -27,6 +27,9 @@
 		F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */; };
 		F05E38DB25099E56005B1916 /* RMSessionButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */; };
 		F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */; };
+		F08231FB25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */; };
+		F08232012596974F00D58C3D /* RMMapStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232002596974F00D58C3D /* RMMapStyleButton.swift */; };
+		F08232072596A90300D58C3D /* RMMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232062596A90300D58C3D /* RMMapViewController.swift */; };
 		F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */; };
 		F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F424BA18FE0037589D /* RouteDrawer.swift */; };
 		F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */; };
@@ -92,6 +95,9 @@
 		F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailLargeStackView.swift; sourceTree = "<group>"; };
 		F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionButtonStackView.swift; sourceTree = "<group>"; };
 		F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RelativeDateTimeFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		F08232002596974F00D58C3D /* RMMapStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMMapStyleButton.swift; sourceTree = "<group>"; };
+		F08232062596A90300D58C3D /* RMMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMMapViewController.swift; sourceTree = "<group>"; };
 		F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Extensions.swift"; sourceTree = "<group>"; };
 		F085B9F424BA18FE0037589D /* RouteDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDrawer.swift; sourceTree = "<group>"; };
 		F0A674A924A7CCAF0083FD5F /* RunRunRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunRunRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,6 +339,7 @@
 				F04A6EDB24A91C25004D705F /* Int+Extensions.swift */,
 				F04A6EDD24A927F4004D705F /* Double+Extensions.swift */,
 				F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */,
+				F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */,
 				F0EC45A8252B62930069EACD /* Date+Extensions.swift */,
 				F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */,
 				F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */,
@@ -377,6 +384,7 @@
 			children = (
 				F0D2BA2E24A8DA2800BE815F /* RMActionButton.swift */,
 				F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */,
+				F08232002596974F00D58C3D /* RMMapStyleButton.swift */,
 				F05E38D625097834005B1916 /* RMPausePlayButton.swift */,
 			);
 			path = Buttons;
@@ -414,6 +422,7 @@
 			children = (
 				F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */,
 				F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */,
+				F08232062596A90300D58C3D /* RMMapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -548,6 +557,7 @@
 				F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */,
 				F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */,
+				F08232072596A90300D58C3D /* RMMapViewController.swift in Sources */,
 				F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */,
 				F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */,
 				F0E6C21C2594FFB100F44D89 /* RMSessionDetailTableViewCell.swift in Sources */,
@@ -558,9 +568,11 @@
 				F0BEC2F325310BBD0021526A /* RMSummaryStackView.swift in Sources */,
 				F05E38D3250955C0005B1916 /* RMTitleLabel.swift in Sources */,
 				F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */,
+				F08231FB25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift in Sources */,
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
 				F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */,
+				F08232012596974F00D58C3D /* RMMapStyleButton.swift in Sources */,
 				F0E6C2122594E46300F44D89 /* RMSessionDetailTileView.swift in Sources */,
 				F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */,
 				F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */,
