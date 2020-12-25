@@ -82,7 +82,7 @@ extension StartRunViewController {
         
         NSLayoutConstraint.activate([
             locationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -8),
-            locationButton.bottomAnchor.constraint(equalTo: startButton.bottomAnchor),
+            locationButton.bottomAnchor.constraint(equalTo: startButton.bottomAnchor, constant: -4),
             locationButton.heightAnchor.constraint(equalToConstant: 45),
             locationButton.widthAnchor.constraint(equalToConstant: 45)
         ])

@@ -15,7 +15,7 @@ final class RMBottomSheetViewController: UIViewController {
     
     private enum Constant {
         static let fullViewYPosition: CGFloat = 100
-        static var partialViewYPosition: CGFloat { UIScreen.main.bounds.height * 0.5 }
+        static var partialViewYPosition: CGFloat { UIScreen.main.bounds.height * 0.525 }
     }
     
     let notchView = UIView()
@@ -34,15 +34,8 @@ final class RMBottomSheetViewController: UIViewController {
         super.viewDidLoad()
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture))
         view.addGestureRecognizer(gesture)
+        self.moveView(state: .partial)
         configureLayout()
-        roundViews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UIView.animate(withDuration: 0.2, animations: {
-            self.moveView(state: .partial)
-        })
     }
     
     private func moveView(state: State) {
@@ -64,14 +57,10 @@ final class RMBottomSheetViewController: UIViewController {
         moveView(panGestureRecognizer: recognizer)
         
         if recognizer.state == .ended {
-            UIView.animate(withDuration: 0.4,
-                           delay: 0.0,
-                           options: [.allowUserInteraction],
-                           animations: {
-                            let state: State = recognizer.velocity(in: self.view).y >= 0 ? .partial : .full
-                            self.moveView(state: state)
-                           }
-            )
+            UIView.animate(withDuration: 0.4, delay: 0.0, options: [.allowUserInteraction], animations: {
+                let state: State = recognizer.velocity(in: self.view).y >= 0 ? .partial : .full
+                self.moveView(state: state)
+            })
         }
     }
 }
@@ -79,16 +68,22 @@ final class RMBottomSheetViewController: UIViewController {
 // MARK: - Configure UI Layout
 extension RMBottomSheetViewController {
     private func configureLayout() {
+        roundViews()
         configureNotchView()
-        let sessionDetailView = RMSessionDetailView(title: "RUN",
-                                                    subtitle: DateFormatter.mediumStyleDateFormatter.string(from: run.startDateTime ?? Date()))
-        view.addSubview(sessionDetailView)
+        configureSessionDetailVC()
+    }
+    
+    private func configureSessionDetailVC() {
+        let sessionDetailVC = RMSessionDetailViewController(title: "RUN", run: run)
+        addChild(sessionDetailVC)
+        view.addSubview(sessionDetailVC.view)
+        sessionDetailVC.didMove(toParent: self)
         NSLayoutConstraint.activate([
-            sessionDetailView.topAnchor.constraint(equalToSystemSpacingBelow: notchView.bottomAnchor, multiplier: 1),
-            sessionDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            sessionDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+            sessionDetailVC.view.topAnchor.constraint(equalToSystemSpacingBelow: notchView.bottomAnchor, multiplier: 2),
+            sessionDetailVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            sessionDetailVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            sessionDetailVC.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
-
     }
     
     private func configureNotchView() {

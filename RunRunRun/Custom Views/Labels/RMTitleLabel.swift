@@ -30,7 +30,7 @@ final class RMTitleLabel: UILabel {
     
     private func configure() {
         adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.9
+        minimumScaleFactor = 0.8
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }

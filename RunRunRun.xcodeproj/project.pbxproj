@@ -42,6 +42,7 @@
 		F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674E524A7F4870083FD5F /* StartRun.storyboard */; };
 		F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */; };
 		F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */; };
+		F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B0F631259521B800C0357C /* UITableView+Extensions.swift */; };
 		F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */; };
 		F0BEC2F325310BBD0021526A /* RMSummaryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */; };
 		F0BEC2F9253132120021526A /* RMSummaryDetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */; };
@@ -53,7 +54,9 @@
 		F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */; };
 		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
 		F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */; };
-		F0E6C20A2594077700F44D89 /* RMSessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2092594077700F44D89 /* RMSessionDetailView.swift */; };
+		F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */; };
+		F0E6C2122594E46300F44D89 /* RMSessionDetailTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2112594E46300F44D89 /* RMSessionDetailTileView.swift */; };
+		F0E6C21C2594FFB100F44D89 /* RMSessionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C21B2594FFB100F44D89 /* RMSessionDetailTableViewCell.swift */; };
 		F0EC45A9252B62930069EACD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EC45A8252B62930069EACD /* Date+Extensions.swift */; };
 		F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -108,6 +111,7 @@
 		F0A674E524A7F4870083FD5F /* StartRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartRun.storyboard; sourceTree = "<group>"; };
 		F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
+		F0B0F631259521B800C0357C /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryView.swift; sourceTree = "<group>"; };
 		F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryStackView.swift; sourceTree = "<group>"; };
 		F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryDetailStackView.swift; sourceTree = "<group>"; };
@@ -119,7 +123,9 @@
 		F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtilities.swift; sourceTree = "<group>"; };
 		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMBottomSheetViewController.swift; sourceTree = "<group>"; };
-		F0E6C2092594077700F44D89 /* RMSessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailView.swift; sourceTree = "<group>"; };
+		F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailViewController.swift; sourceTree = "<group>"; };
+		F0E6C2112594E46300F44D89 /* RMSessionDetailTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailTileView.swift; sourceTree = "<group>"; };
+		F0E6C21B2594FFB100F44D89 /* RMSessionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F0EC45A8252B62930069EACD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,7 +161,7 @@
 			children = (
 				F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */,
 				F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */,
-				F0E6C2092594077700F44D89 /* RMSessionDetailView.swift */,
+				F0E6C2112594E46300F44D89 /* RMSessionDetailTileView.swift */,
 				F0E63DAE2502BC950024B73C /* No Session */,
 			);
 			path = Views;
@@ -165,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				F0284AE124AE79A4007283F4 /* Session */,
+				F0E6C2102594E44000F44D89 /* SessionDetail */,
 				F0284AE224AE79B1007283F4 /* RunDetail */,
 			);
 			path = Cells;
@@ -329,6 +336,7 @@
 				F0EC45A8252B62930069EACD /* Date+Extensions.swift */,
 				F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */,
 				F0EDEBCF25082B1A00773014 /* UIFont+Extensions.swift */,
+				F0B0F631259521B800C0357C /* UITableView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -405,8 +413,17 @@
 			isa = PBXGroup;
 			children = (
 				F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */,
+				F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F0E6C2102594E44000F44D89 /* SessionDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F0E6C21B2594FFB100F44D89 /* RMSessionDetailTableViewCell.swift */,
+			);
+			path = SessionDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -521,17 +538,19 @@
 				F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */,
 				F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */,
 				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
+				F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */,
 				F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
 				F007265725080C23009E00B7 /* SessionHistoryViewController.swift in Sources */,
 				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */,
-				F0E6C20A2594077700F44D89 /* RMSessionDetailView.swift in Sources */,
+				F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */,
 				F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */,
 				F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */,
 				F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */,
+				F0E6C21C2594FFB100F44D89 /* RMSessionDetailTableViewCell.swift in Sources */,
 				F05E38D02509550C005B1916 /* RMSessionDetailSmallStackView.swift in Sources */,
 				F0BEC2F9253132120021526A /* RMSummaryDetailStackView.swift in Sources */,
 				F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */,
@@ -542,6 +561,7 @@
 				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
 				F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */,
+				F0E6C2122594E46300F44D89 /* RMSessionDetailTileView.swift in Sources */,
 				F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */,
 				F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */,
 				F0A674DB24A7DF100083FD5F /* StartRunViewController.swift in Sources */,

@@ -8,11 +8,10 @@
 import UIKit
 
 final class RMSummaryStackView: UIStackView {
-    
     let totalDistanceStackView = RMSummaryDetailStackView(value: "--",
                                                           title: "Kilometres")
     
-    let totalDurationStackView = RMSummaryDetailStackView(value: "00:00:00",
+    let totalDurationStackView = RMSummaryDetailStackView(value: "--:--:--",
                                                           title: "Time")
 
     let totalAveragePaceStackView = RMSummaryDetailStackView(value: "--'--\"",
@@ -28,6 +27,10 @@ final class RMSummaryStackView: UIStackView {
     }
     
     private func configureLayout() {
+        totalDistanceStackView.translatesAutoresizingMaskIntoConstraints = false
+        totalDurationStackView.translatesAutoresizingMaskIntoConstraints = false
+        totalAveragePaceStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         axis = .horizontal
         distribution = .fillEqually
         alignment = .center
@@ -36,9 +39,5 @@ final class RMSummaryStackView: UIStackView {
         addArrangedSubview(totalDistanceStackView)
         addArrangedSubview(totalDurationStackView)
         addArrangedSubview(totalAveragePaceStackView)
-        
-        totalDistanceStackView.translatesAutoresizingMaskIntoConstraints = false
-        totalDurationStackView.translatesAutoresizingMaskIntoConstraints = false
-        totalAveragePaceStackView.translatesAutoresizingMaskIntoConstraints = false
     }
 }

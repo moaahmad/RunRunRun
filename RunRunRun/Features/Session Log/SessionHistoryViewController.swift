@@ -9,16 +9,15 @@ import UIKit
 import CoreData
 
 final class SessionHistoryViewController: UIViewController {
-    let tableView = UITableView(frame: .zero, style: .insetGrouped)
-
-    private let sessionNibName = "SessionTableViewCell"
-    private let sessionLogCellIdentifier = "SessionLogCell"
-    
     private var fetchedRuns: NSFetchedResultsController<Run>!
     private var runs = [Run]()
     private var index: IndexPath?
     var sections = [GroupedSection<Date, Run>]()
-
+    
+    private lazy var tableView: UITableView = {
+        return UITableView(frame: .zero, style: .insetGrouped)
+    }()
+    
     private lazy var noSessionView: UIView = {
         let view = UINib(nibName: "NoSessionView", bundle: .main)
             .instantiate(withOwner: nil, options: nil).first as! UIView
@@ -74,7 +73,7 @@ final class SessionHistoryViewController: UIViewController {
 
     private func updateHeaderViewHeight(for header: UIView?) {
         guard let header = header else { return }
-        header.frame.size.height = 250
+        header.frame.size.height = 210
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -83,6 +82,7 @@ final class SessionHistoryViewController: UIViewController {
         refreshControl.endRefreshing()
     }
 }
+
 // MARK: - Load Runs
 extension SessionHistoryViewController {
     private func loadRuns() {
@@ -101,9 +101,10 @@ extension SessionHistoryViewController {
         return setupFetch
     }
 }
+
 // MARK: - Configure Layout
 extension SessionHistoryViewController {
-    func configureTableView() {
+    private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -113,12 +114,12 @@ extension SessionHistoryViewController {
         tableView.addSubview(refreshControl)
         tableView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 12, right: 0)
         
-        //header
+        // Header Setup
         let headerView = RMHistoryHeaderView()
         tableView.tableHeaderView = headerView
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         view.addSubview(tableView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -155,6 +156,7 @@ extension SessionHistoryViewController {
         }
     }
 }
+
 // MARK: - UITableView Datasource and Delegate
 extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -212,6 +214,7 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
         }
     }
 }
+
 //MARK: - NSFetchedResultsControllerDelegate Methods
 extension SessionHistoryViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,

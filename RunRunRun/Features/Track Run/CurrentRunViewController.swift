@@ -167,7 +167,6 @@ extension CurrentRunViewController {
 
 // MARK: - Button Actions
 extension CurrentRunViewController {
-    
     @objc private func didTapPauseButton() {
         isPaused = !isPaused
         isPaused ? pauseRun() : playRun()

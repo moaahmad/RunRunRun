@@ -8,13 +8,12 @@
 import UIKit
 
 final class RMSummaryDetailStackView: UIStackView {
-        
-    let valueLabel = RMTitleLabel(textAlignment: .center,
+    private let valueLabel = RMTitleLabel(textAlignment: .center,
                                   fontSize: 22,
                                   color: .label,
                                   weight: .semibold)
     
-    let titleLabel = RMSecondaryTitleLabel(fontSize: 14,
+    private let titleLabel = RMSecondaryTitleLabel(fontSize: 14,
                                            fontWeight: .light,
                                            color: .secondaryLabel,
                                            textAlignment: .center)
@@ -37,10 +36,12 @@ final class RMSummaryDetailStackView: UIStackView {
 
 extension RMSummaryDetailStackView {
     private func configureLayout() {
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         axis = .vertical
         distribution = .fill
         alignment = .center
-        spacing = 12
         
         let textStackView = UIStackView(arrangedSubviews: [valueLabel, titleLabel])
         textStackView.axis = .vertical
@@ -48,8 +49,5 @@ extension RMSummaryDetailStackView {
         textStackView.spacing = 8
         
         addArrangedSubview(textStackView)
-        
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
     }
 }

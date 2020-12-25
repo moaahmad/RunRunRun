@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 final class SessionDetailViewController: UIViewController {
-    static let mapViewHeight = UIScreen.main.bounds.height * 0.425
+    static let mapViewHeight = UIScreen.main.bounds.height * 0.4525
     
     let mapView = MKMapView()
     let locationButton = RMLocationButton()
@@ -91,6 +91,7 @@ extension SessionDetailViewController {
         bottomSheet = RMBottomSheetViewController(run: run)
         bottomSheet.view.backgroundColor = .systemBackground
         addChild(bottomSheet)
+        bottomSheet.didMove(toParent: self)
         view.addSubview(bottomSheet.view)
         NSLayoutConstraint.activate([
             bottomSheet.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

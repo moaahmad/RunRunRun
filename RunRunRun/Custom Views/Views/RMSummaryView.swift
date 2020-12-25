@@ -8,11 +8,11 @@
 import UIKit
 
 final class RMSummaryView: UIView {
-    private(set) var titleLabel = RMTitleLabel(textAlignment: .center,
+    private var titleLabel = RMTitleLabel(textAlignment: .center,
                                                fontSize: 21,
                                                color: .label)
     
-    let summaryStackView = RMSummaryStackView()
+    private let summaryStackView = RMSummaryStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,19 +27,20 @@ final class RMSummaryView: UIView {
 
 extension RMSummaryView {
     private func configureLayout() {
-        addSubviews(titleLabel, summaryStackView)
-        
+        translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         summaryStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubviews(titleLabel, summaryStackView)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            summaryStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            summaryStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             summaryStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             summaryStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            summaryStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            summaryStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
         ])
     }
     

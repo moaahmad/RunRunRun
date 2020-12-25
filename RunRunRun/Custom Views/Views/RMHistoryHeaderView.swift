@@ -8,8 +8,8 @@
 import UIKit
 
 final class RMHistoryHeaderView: UIView {
-    let summaryView = RMSummaryView()
-    let titleLabel = UILabel()
+    private let summaryView = RMSummaryView()
+    private let titleLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -23,7 +23,7 @@ final class RMHistoryHeaderView: UIView {
 }
 
 extension RMHistoryHeaderView {
-    func styleView() {
+    private func styleView() {
         summaryView.translatesAutoresizingMaskIntoConstraints = false
         summaryView.layer.cornerRadius = 20
         summaryView.layer.masksToBounds = true
@@ -36,17 +36,16 @@ extension RMHistoryHeaderView {
         titleLabel.lineBreakMode = .byTruncatingTail
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         addSubview(summaryView)
         addSubview(titleLabel)
                 
         NSLayoutConstraint.activate([
-            summaryView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            summaryView.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 0),
             summaryView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: summaryView.trailingAnchor, multiplier: 2),
-            summaryView.heightAnchor.constraint(equalToConstant: 150),
             
-            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 5),
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 4),
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             bottomAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0),
             titleLabel.heightAnchor.constraint(equalToConstant: 50)
