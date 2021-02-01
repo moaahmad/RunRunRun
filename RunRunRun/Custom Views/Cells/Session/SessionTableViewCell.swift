@@ -41,7 +41,7 @@ final class SessionTableViewCell: UITableViewCell {
         if Calendar.current.isDateInToday(date) {
             dateLabel.text = DateFormatter.timeStyleDateFormatter.string(for: date)
         } else if Calendar.current.isDateInYesterday(date) {
-            dateLabel.text = RelativeDateTimeFormatter.relativeStyleDateFormatter.string(for: date)?.capitalized
+            dateLabel.text = "Yesterday"
         } else if Calendar.current.isDate(date, equalTo: Date(), toGranularity: .weekOfMonth) {
             dateLabel.text = DateFormatter.dayStyleDateFormatter.string(for: date)
         } else {

@@ -16,7 +16,7 @@ final class StartRunViewController: LocationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         styleVC()
-        configureMapview()
+        configureMapView()
         configureStartButton()
         configureLocationButton()
         checkLocationAuthStatus()
@@ -38,6 +38,7 @@ final class StartRunViewController: LocationViewController {
     private func centerMapOnUserLocation() {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+        mapView.showsScale = true
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
                                                   latitudinalMeters: 1000,
                                                   longitudinalMeters: 1000)
@@ -50,12 +51,11 @@ extension StartRunViewController {
     func styleVC() {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .systemBackground
-        mapView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configureMapview() {
+    func configureMapView() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
-        
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -77,6 +77,7 @@ extension StartRunViewController {
     }
     
     func configureLocationButton() {
+        locationButton.adjustsImageWhenHighlighted = false
         view.addSubview(locationButton)
         locationButton.addTarget(self, action: #selector(didTapLocateUserButton), for: .touchUpInside)
         
@@ -93,6 +94,7 @@ extension StartRunViewController {
 extension StartRunViewController {
     @objc func didTapLocateUserButton() {
         centerMapOnUserLocation()
+        UISelectionFeedbackGenerator().selectionChanged()
     }
     
     @objc func didTapStartRunButton() {

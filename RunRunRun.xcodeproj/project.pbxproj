@@ -30,6 +30,8 @@
 		F08231FB25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */; };
 		F08232012596974F00D58C3D /* RMMapStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232002596974F00D58C3D /* RMMapStyleButton.swift */; };
 		F08232072596A90300D58C3D /* RMMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232062596A90300D58C3D /* RMMapViewController.swift */; };
+		F082320B259788BA00D58C3D /* RMPausedSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F082320A259788BA00D58C3D /* RMPausedSessionViewController.swift */; };
+		F08232132597E19E00D58C3D /* RMSessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232122597E19E00D58C3D /* RMSessionDetailView.swift */; };
 		F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */; };
 		F085B9F524BA18FE0037589D /* RouteDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085B9F424BA18FE0037589D /* RouteDrawer.swift */; };
 		F0A674AD24A7CCAF0083FD5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674AC24A7CCAF0083FD5F /* AppDelegate.swift */; };
@@ -98,6 +100,8 @@
 		F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RelativeDateTimeFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		F08232002596974F00D58C3D /* RMMapStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMMapStyleButton.swift; sourceTree = "<group>"; };
 		F08232062596A90300D58C3D /* RMMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMMapViewController.swift; sourceTree = "<group>"; };
+		F082320A259788BA00D58C3D /* RMPausedSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPausedSessionViewController.swift; sourceTree = "<group>"; };
+		F08232122597E19E00D58C3D /* RMSessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailView.swift; sourceTree = "<group>"; };
 		F085B9F224B9245E0037589D /* NSFetchedResultsController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Extensions.swift"; sourceTree = "<group>"; };
 		F085B9F424BA18FE0037589D /* RouteDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDrawer.swift; sourceTree = "<group>"; };
 		F0A674A924A7CCAF0083FD5F /* RunRunRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunRunRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +172,7 @@
 				F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */,
 				F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */,
 				F0E6C2112594E46300F44D89 /* RMSessionDetailTileView.swift */,
+				F08232122597E19E00D58C3D /* RMSessionDetailView.swift */,
 				F0E63DAE2502BC950024B73C /* No Session */,
 			);
 			path = Views;
@@ -423,6 +428,7 @@
 				F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */,
 				F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */,
 				F08232062596A90300D58C3D /* RMMapViewController.swift */,
+				F082320A259788BA00D58C3D /* RMPausedSessionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -544,6 +550,8 @@
 				F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */,
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
 				F007265A25080D35009E00B7 /* RMHistoryHeaderView.swift in Sources */,
+				F082320B259788BA00D58C3D /* RMPausedSessionViewController.swift in Sources */,
+				F08232132597E19E00D58C3D /* RMSessionDetailView.swift in Sources */,
 				F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */,
 				F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */,
 				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
@@ -748,7 +756,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.mo.RunRunRun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -766,7 +774,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.mo.RunRunRun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -6,7 +6,6 @@
 //  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
 //
 import UIKit
-import MapKit
 import CoreData
 
 protocol UpdateDurationDelegate: class {
@@ -14,10 +13,8 @@ protocol UpdateDurationDelegate: class {
 }
 
 final class CurrentRunViewController: LocationViewController {
-        
-    let averagePaceView = RMSessionDetailSmallStackView(value: "--'--\"", subtitle: "Pace")
-    let durationView = RMSessionDetailSmallStackView(value: "00:00", subtitle: "Time")
-    let distanceView = RMSessionDetailLargeStackView(value: "0.00", subtitle: "Kilometres")
+    let sessionDetailView = RMSessionDetailView()
+    let pausedSessionView = RMPausedSessionViewController()
     let buttonView = RMSessionButtonStackView()
     
     private let context = (UIApplication.shared.delegate as! AppDelegate)
@@ -40,12 +37,11 @@ final class CurrentRunViewController: LocationViewController {
     private var runDistance = 0.0
     private var pace = 0.0
     private var getAveragePace: String {
-        SessionUtilities.calculateAveragePace(time: sessionTimer.counter,
-                                              meters: runDistance)
+        SessionUtilities.calculateAveragePace(time: sessionTimer.counter, meters: runDistance)
     }
+   
     private var sessionTimer: RepeatingTimer!
     
-    #warning("Is this needed???")
     private var runs: NSFetchedResultsController<Run>!
     private var fetchRuns: NSFetchedResultsController<Run> {
         let setupFetch = PersistenceManager.store.setupFetchedRunsController()
@@ -54,13 +50,15 @@ final class CurrentRunViewController: LocationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGreen
+        runs = fetchRuns
         configureLocationManager()
         configureLayout()
         sessionTimer = RepeatingTimer(timeInterval: 1, delegate: self)
-        runs = fetchRuns
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         manager?.delegate = self
         manager?.distanceFilter = 10
         startTimer()
@@ -73,43 +71,32 @@ final class CurrentRunViewController: LocationViewController {
     }
 }
 
+// MARK: - Configure UI Layout
 extension CurrentRunViewController {
-    
     private func configureLayout() {
-        view.backgroundColor = .systemGreen
-        
-        configureAveragePaceView()
-        configureDurationView()
-        configureDistanceView()
         configureButtonView()
+        configureSessionDetailView()
     }
     
-    private func configureAveragePaceView() {
-        view.addSubview(averagePaceView)
-    
+    private func configureSessionDetailView() {
+        view.addSubview(sessionDetailView)
         NSLayoutConstraint.activate([
-            averagePaceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
-            averagePaceView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
-            averagePaceView.widthAnchor.constraint(equalToConstant: 120)
+            sessionDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            sessionDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            sessionDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
         ])
     }
     
-    private func configureDurationView() {
-        view.addSubview(durationView)
-        
+    private func configurePauseSessionView() {
+        pausedSessionView.addRouteToMap(coordinateLocations: coordinateLocations)
+        addChild(pausedSessionView)
+        didMove(toParent: self)
+        view.addSubview(pausedSessionView.view)
         NSLayoutConstraint.activate([
-            durationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
-            durationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            durationView.widthAnchor.constraint(equalToConstant: 120)
-        ])
-    }
-    
-    private func configureDistanceView() {
-        view.addSubview(distanceView)
-        
-        NSLayoutConstraint.activate([
-            distanceView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            distanceView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            pausedSessionView.view.topAnchor.constraint(equalTo: view.superview!.topAnchor),
+            pausedSessionView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pausedSessionView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pausedSessionView.view.bottomAnchor.constraint(equalTo: buttonView.topAnchor, constant: -20)
         ])
     }
     
@@ -123,7 +110,6 @@ extension CurrentRunViewController {
         buttonView.finishButton.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
         
         buttonViewBottomConstraint = buttonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -68)
-        
         NSLayoutConstraint.activate([
             buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonViewBottomConstraint!
@@ -140,15 +126,21 @@ extension CurrentRunViewController {
     }
 }
 
+// MARK: - Pause & Play
 extension CurrentRunViewController {
-    
     private func pauseRun() {
+        sessionDetailView.removeFromSuperview()
+        configurePauseSessionView()
+        view.backgroundColor = .white
         buttonView.pausePlayButton.setImage(name: "play.fill")
         pauseTimer()
         manager?.stopUpdatingLocation()
     }
     
     private func playRun() {
+        pausedSessionView.view.removeFromSuperview()
+        configureSessionDetailView()
+        view.backgroundColor = .systemGreen
         buttonView.pausePlayButton.setImage(name: "pause.fill")
         startTimer()
         manager?.startUpdatingLocation()
@@ -169,9 +161,8 @@ extension CurrentRunViewController {
 extension CurrentRunViewController {
     @objc private func didTapPauseButton() {
         isPaused = !isPaused
-        isPaused ? pauseRun() : playRun()
-        
         animateButtonViewLayout()
+        isPaused ? pauseRun() : playRun()
     }
     
     @objc private func didTapFinishButton() {
@@ -190,7 +181,7 @@ extension CurrentRunViewController {
 extension CurrentRunViewController: UpdateDurationDelegate {
     func updateDurationLabel(with counter: Int) {
         DispatchQueue.main.async {
-            self.durationView.valueLabel.text = counter.formatToTimeString()
+            self.sessionDetailView.durationView.valueLabel.text = counter.formatToTimeString()
         }
     }
 }
@@ -206,14 +197,12 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
-        
         if startLocation == nil || hasBeenPaused {
             startLocation = locations.first
             hasBeenPaused = false
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
-            distanceView.valueLabel.text = runDistance.convertMetersIntoKilometers()
-            
+            sessionDetailView.distanceView.valueLabel.text = runDistance.convertMetersIntoKilometers()
             recordAveragePace()
             recordLocationData()
         }
@@ -230,7 +219,7 @@ extension CurrentRunViewController: CLLocationManagerDelegate {
     
     private func recordAveragePace() {
         if sessionTimer.counter > 0 && runDistance > 0 {
-            averagePaceView.valueLabel.text = getAveragePace
+            sessionDetailView.averagePaceView.valueLabel.text = getAveragePace
         }
     }
     

@@ -8,8 +8,8 @@
 import MapKit
 
 final class RouteDrawer {
-    static func addLastRunToMap(mapView: MKMapView, run: Run) -> MKPolyline? {
-        guard let lastRunLocations = run.locations as? Set<Location> else {
+    static func addRouteToMap(mapView: MKMapView, routeLocation: NSSet?) -> MKPolyline? {
+        guard let lastRunLocations = routeLocation as? Set<Location> else {
             return nil
         }
         
@@ -25,6 +25,18 @@ final class RouteDrawer {
                 
         mapView.userTrackingMode = .none
         mapView.setRegion(centerMapOnPrevRoute(locations: Array(lastRunLocations)),
+                          animated: true)
+
+        return MKPolyline(coordinates: coordinates, count: coordinates.count)
+    }
+    
+    static func addLiveRouteToMap(mapView: MKMapView, routeLocations: [Location]) -> MKPolyline? {
+        let coordinates = routeLocations.map { (location) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        }
+                
+        mapView.userTrackingMode = .none
+        mapView.setRegion(centerMapOnPrevRoute(locations: routeLocations),
                           animated: true)
 
         return MKPolyline(coordinates: coordinates, count: coordinates.count)

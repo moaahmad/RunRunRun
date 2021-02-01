@@ -49,6 +49,7 @@ extension RMSessionDetailTileView {
         layer.cornerRadius = 20
         
         imageView.backgroundColor = .white
+        imageView.makeCircular()
     }
     
     private func configureLayout() {
@@ -80,7 +81,7 @@ extension RMSessionDetailTileView {
         textStackView.axis = .vertical
         textStackView.alignment = .leading
         textStackView.distribution = .fill
-        textStackView.spacing = 4
+        textStackView.spacing = 2
         
         textStackView.addArrangedSubview(valueLabel)
         textStackView.addArrangedSubview(subtitleLabel)

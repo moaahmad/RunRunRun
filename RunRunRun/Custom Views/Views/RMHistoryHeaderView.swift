@@ -22,6 +22,7 @@ final class RMHistoryHeaderView: UIView {
     }
 }
 
+// Configure UI Layout
 extension RMHistoryHeaderView {
     private func styleView() {
         summaryView.translatesAutoresizingMaskIntoConstraints = false

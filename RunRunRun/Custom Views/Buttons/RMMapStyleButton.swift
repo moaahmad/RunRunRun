@@ -7,8 +7,6 @@
 //
 import UIKit
 
-import UIKit
-
 final class RMMapStyleButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -23,7 +21,7 @@ final class RMMapStyleButton: UIButton {
         frame = CGRect(x: 0, y: 0, width: 45, height: 45)
         layer.masksToBounds = true
         layer.cornerRadius = frame.width / 2
-        backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 0.7450502997)
+        backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.5960784314, blue: 0.6156862745, alpha: 0.7513912671)
         setImage(UIImage(systemName: "globe"), for: .normal)
         tintColor = .white
         translatesAutoresizingMaskIntoConstraints = false

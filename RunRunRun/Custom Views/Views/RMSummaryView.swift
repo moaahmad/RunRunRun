@@ -25,6 +25,7 @@ final class RMSummaryView: UIView {
     }
 }
 
+// MARK: - Configure UI Layout
 extension RMSummaryView {
     private func configureLayout() {
         translatesAutoresizingMaskIntoConstraints = false
