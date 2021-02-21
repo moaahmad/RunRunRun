@@ -19,8 +19,8 @@ final class RMMapViewController: UIViewController {
         configureMapStyleButton()
     }
     
-    func drawRouteOnMap(forRun run: Run) {
-        if let overlay = RouteDrawer.addRouteToMap(mapView: mapView, routeLocation: run.locations) {
+    func drawRouteOnMap(forActivity activity: Activity) {
+        if let overlay = RouteDrawer.addRouteToMap(mapView: mapView, routeLocation: activity.locations) {
             if mapView.overlays.count > 0 {
                 mapView.removeOverlays(mapView.overlays)
             }

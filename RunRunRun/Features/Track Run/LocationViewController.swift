@@ -19,7 +19,7 @@ class LocationViewController: UIViewController {
     }
     
     func checkLocationAuthStatus() {
-        guard CLLocationManager.authorizationStatus() != .authorizedWhenInUse else { return }
+        guard manager?.authorizationStatus != .authorizedWhenInUse else { return }
         manager?.requestWhenInUseAuthorization()
     }
 }

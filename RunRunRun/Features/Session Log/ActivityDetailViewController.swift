@@ -1,5 +1,5 @@
 //
-//  SessionDetailViewController.swift
+//  ActivityDetailViewController.swift
 //  RunRunRun
 //
 //  Created by Ahmad, Mohammed (UK - London) on 7/2/20.
@@ -7,15 +7,15 @@
 //
 import UIKit
 
-final class SessionDetailViewController: UIViewController {
+final class ActivityDetailViewController: UIViewController {
     private var mapView = RMMapViewController()
     private var bottomSheet: UIViewController!
 
-    var run: Run!
+    var activity: Activity!
     
-    init(run: Run) {
+    init(activity: Activity) {
         super.init(nibName: nil, bundle: nil)
-        self.run = run
+        self.activity = activity
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +24,7 @@ final class SessionDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = DateFormatter.mediumStyleDateFormatter.string(from: run.startDateTime ?? Date())
+        title = DateFormatter.mediumStyleDateFormatter.string(from: activity.startDateTime ?? Date())
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.setNavigationBarHidden(false, animated: true)
         
@@ -39,9 +39,9 @@ final class SessionDetailViewController: UIViewController {
 }
 
 // MARK: - Configure Layout
-extension SessionDetailViewController {
+extension ActivityDetailViewController {
     private func configureMapVC() {
-        mapView.drawRouteOnMap(forRun: run)
+        mapView.drawRouteOnMap(forActivity: activity)
         addChild(mapView)
         mapView.didMove(toParent: self)
         view.addSubview(mapView.view)
@@ -51,7 +51,7 @@ extension SessionDetailViewController {
     }
     
     private func configureBottomSheetVC() {
-        bottomSheet = RMBottomSheetViewController(run: run)
+        bottomSheet = RMBottomSheetViewController(run: activity as! Run)
         bottomSheet.view.backgroundColor = .systemBackground
         addChild(bottomSheet)
         bottomSheet.didMove(toParent: self)

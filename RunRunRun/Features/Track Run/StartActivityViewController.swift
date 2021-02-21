@@ -1,5 +1,5 @@
 //
-//  StartRunViewController.swift
+//  StartActivityViewController.swift
 //  RunRunRun
 //
 //  Created by Ahmad, Mohammed (UK - London) on 6/27/20.
@@ -8,11 +8,14 @@
 import UIKit
 import MapKit
 
-final class StartRunViewController: LocationViewController {
-    let mapView = MKMapView()
-    let locationButton = RMLocationButton()
-    let startButton = RMActionButton(title: "START")
-    
+final class StartActivityViewController: LocationViewController {
+    weak var coordinator: Coordinator?
+
+    private let mapView = MKMapView()
+    private let locationButton = RMLocationButton()
+    private let startButton = RMActionButton(title: "START")
+
+    // MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         styleVC()
@@ -24,14 +27,17 @@ final class StartRunViewController: LocationViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         manager?.startUpdatingLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         centerMapOnUserLocation()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         manager?.stopUpdatingLocation()
     }
     
@@ -47,13 +53,13 @@ final class StartRunViewController: LocationViewController {
 }
 
 // MARK: - Layout Configuration
-extension StartRunViewController {
-    func styleVC() {
+extension StartActivityViewController {
+    private func styleVC() {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .systemBackground
     }
     
-    func configureMapView() {
+    private func configureMapView() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
         NSLayoutConstraint.activate([
@@ -64,7 +70,7 @@ extension StartRunViewController {
         ])
     }
     
-    func configureStartButton() {
+    private func configureStartButton() {
         view.addSubview(startButton)
         startButton.addTarget(self, action: #selector(didTapStartRunButton), for: .touchUpInside)
         
@@ -76,7 +82,7 @@ extension StartRunViewController {
         ])
     }
     
-    func configureLocationButton() {
+    private func configureLocationButton() {
         locationButton.adjustsImageWhenHighlighted = false
         view.addSubview(locationButton)
         locationButton.addTarget(self, action: #selector(didTapLocateUserButton), for: .touchUpInside)
@@ -91,21 +97,21 @@ extension StartRunViewController {
 }
 
 // MARK: - Button Actions
-extension StartRunViewController {
+extension StartActivityViewController {
     @objc func didTapLocateUserButton() {
         centerMapOnUserLocation()
         UISelectionFeedbackGenerator().selectionChanged()
     }
     
     @objc func didTapStartRunButton() {
-        let vc = CurrentRunViewController()
-        vc.modalPresentationStyle = .fullScreen
-        navigationController?.present(vc, animated: true)
+        if let coordinator = coordinator as? StartActivityCoordinator {
+            coordinator.showLiveActivityVC()
+        }
     }
 }
 
 // MARK: - Location Manager Delegate
-extension StartRunViewController: CLLocationManagerDelegate {
+extension StartActivityViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse else { return }

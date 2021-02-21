@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F007265725080C23009E00B7 /* SessionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265625080C23009E00B7 /* SessionHistoryViewController.swift */; };
+		F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */; };
 		F007265A25080D35009E00B7 /* RMHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */; };
 		F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265B25081CAE009E00B7 /* RMTabBarController.swift */; };
 		F01910EE24D6F039007441A7 /* GroupedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01910ED24D6F039007441A7 /* GroupedSection.swift */; };
@@ -27,6 +27,8 @@
 		F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */; };
 		F05E38DB25099E56005B1916 /* RMSessionButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */; };
 		F05FFC3124B278EF0045D944 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */; };
+		F064E18B25E1C68C00948CC5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064E18A25E1C68C00948CC5 /* MainCoordinator.swift */; };
+		F064E19425E1C6A600948CC5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064E19325E1C6A600948CC5 /* Coordinator.swift */; };
 		F08231FB25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */; };
 		F08232012596974F00D58C3D /* RMMapStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232002596974F00D58C3D /* RMMapStyleButton.swift */; };
 		F08232072596A90300D58C3D /* RMMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08232062596A90300D58C3D /* RMMapViewController.swift */; };
@@ -41,22 +43,25 @@
 		F0A674BC24A7CCB50083FD5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674BA24A7CCB50083FD5F /* LaunchScreen.storyboard */; };
 		F0A674C724A7CCB50083FD5F /* RunRunRunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674C624A7CCB50083FD5F /* RunRunRunTests.swift */; };
 		F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674D824A7D3A70083FD5F /* LocationViewController.swift */; };
-		F0A674DB24A7DF100083FD5F /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674DA24A7DF100083FD5F /* StartRunViewController.swift */; };
+		F0A674DB24A7DF100083FD5F /* StartActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674DA24A7DF100083FD5F /* StartActivityViewController.swift */; };
 		F0A674DD24A7DF380083FD5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674DC24A7DF380083FD5F /* Main.storyboard */; };
 		F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */; };
 		F0A674E624A7F4870083FD5F /* StartRun.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A674E524A7F4870083FD5F /* StartRun.storyboard */; };
 		F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */; };
-		F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */; };
+		F0B09AEE24AE94EE00C3B5BE /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */; };
 		F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B0F631259521B800C0357C /* UITableView+Extensions.swift */; };
 		F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */; };
 		F0BEC2F325310BBD0021526A /* RMSummaryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */; };
 		F0BEC2F9253132120021526A /* RMSummaryDetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */; };
-		F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */; };
+		F0D2BA2D24A8BC9800BE815F /* LiveActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2C24A8BC9800BE815F /* LiveActivityViewController.swift */; };
 		F0D2BA2F24A8DA2800BE815F /* RMActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2BA2E24A8DA2800BE815F /* RMActionButton.swift */; };
 		F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */; };
 		F0D366FA24ABFBC8000FBFE5 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */; };
 		F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */; };
 		F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */; };
+		F0DC58B025E1DD07003E8507 /* StartActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58AF25E1DD07003E8507 /* StartActivityCoordinator.swift */; };
+		F0DC58B625E1E03A003E8507 /* ActivityHistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */; };
+		F0DC58BE25E1E174003E8507 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58BD25E1E174003E8507 /* Run.swift */; };
 		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
 		F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */; };
 		F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */; };
@@ -77,7 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F007265625080C23009E00B7 /* SessionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryViewController.swift; sourceTree = "<group>"; };
+		F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryViewController.swift; sourceTree = "<group>"; };
 		F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMHistoryHeaderView.swift; sourceTree = "<group>"; };
 		F007265B25081CAE009E00B7 /* RMTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMTabBarController.swift; sourceTree = "<group>"; };
 		F01910ED24D6F039007441A7 /* GroupedSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedSection.swift; sourceTree = "<group>"; };
@@ -97,6 +102,8 @@
 		F05E38D8250991EB005B1916 /* RMSessionDetailLargeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailLargeStackView.swift; sourceTree = "<group>"; };
 		F05E38DA25099E56005B1916 /* RMSessionButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionButtonStackView.swift; sourceTree = "<group>"; };
 		F05FFC3024B278EF0045D944 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		F064E18A25E1C68C00948CC5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		F064E19325E1C6A600948CC5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F08231FA25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RelativeDateTimeFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		F08232002596974F00D58C3D /* RMMapStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMMapStyleButton.swift; sourceTree = "<group>"; };
 		F08232062596A90300D58C3D /* RMMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMMapViewController.swift; sourceTree = "<group>"; };
@@ -115,22 +122,25 @@
 		F0A674C624A7CCB50083FD5F /* RunRunRunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunRunRunTests.swift; sourceTree = "<group>"; };
 		F0A674C824A7CCB50083FD5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0A674D824A7D3A70083FD5F /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		F0A674DA24A7DF100083FD5F /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
+		F0A674DA24A7DF100083FD5F /* StartActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewController.swift; sourceTree = "<group>"; };
 		F0A674DC24A7DF380083FD5F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F0A674E124A7F0990083FD5F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		F0A674E524A7F4870083FD5F /* StartRun.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartRun.storyboard; sourceTree = "<group>"; };
 		F0B09AEB24AE885100C3B5BE /* RunDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDetailTableViewCell.swift; sourceTree = "<group>"; };
-		F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailViewController.swift; sourceTree = "<group>"; };
+		F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 		F0B0F631259521B800C0357C /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryView.swift; sourceTree = "<group>"; };
 		F0BEC2F225310BBD0021526A /* RMSummaryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryStackView.swift; sourceTree = "<group>"; };
 		F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSummaryDetailStackView.swift; sourceTree = "<group>"; };
-		F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRunViewController.swift; sourceTree = "<group>"; };
+		F0D2BA2C24A8BC9800BE815F /* LiveActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityViewController.swift; sourceTree = "<group>"; };
 		F0D2BA2E24A8DA2800BE815F /* RMActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMActionButton.swift; sourceTree = "<group>"; };
 		F0D366F724ABFBB4000FBFE5 /* LocalPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistance.swift; sourceTree = "<group>"; };
 		F0D366F924ABFBC8000FBFE5 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUtilities.swift; sourceTree = "<group>"; };
+		F0DC58AF25E1DD07003E8507 /* StartActivityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityCoordinator.swift; sourceTree = "<group>"; };
+		F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryCoordinator.swift; sourceTree = "<group>"; };
+		F0DC58BD25E1E174003E8507 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailViewController.swift; sourceTree = "<group>"; };
@@ -206,8 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */,
-				F007265625080C23009E00B7 /* SessionHistoryViewController.swift */,
-				F0B09AED24AE94EE00C3B5BE /* SessionDetailViewController.swift */,
+				F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */,
+				F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */,
 			);
 			path = "Session Log";
 			sourceTree = "<group>";
@@ -246,6 +256,16 @@
 				F0BEC2F8253132120021526A /* RMSummaryDetailStackView.swift */,
 			);
 			path = "Stack Views";
+			sourceTree = "<group>";
+		};
+		F064E18E25E1C69000948CC5 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F0DC58AE25E1DCE8003E8507 /* Tabs */,
+				F064E18A25E1C68C00948CC5 /* MainCoordinator.swift */,
+				F064E19325E1C6A600948CC5 /* Coordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		F0A674A024A7CCAF0083FD5F = {
@@ -294,6 +314,7 @@
 			children = (
 				F0A674B524A7CCAF0083FD5F /* RunRunRun.xcdatamodeld */,
 				F01910ED24D6F039007441A7 /* GroupedSection.swift */,
+				F0DC58BD25E1E174003E8507 /* Run.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -329,10 +350,11 @@
 		F0A674DE24A7F0650083FD5F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F064E18E25E1C69000948CC5 /* Coordinator */,
+				F0A674DF24A7F07B0083FD5F /* Extensions */,
 				F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */,
 				F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */,
 				F085B9F424BA18FE0037589D /* RouteDrawer.swift */,
-				F0A674DF24A7F07B0083FD5F /* Extensions */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -357,8 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				F0A674D824A7D3A70083FD5F /* LocationViewController.swift */,
-				F0A674DA24A7DF100083FD5F /* StartRunViewController.swift */,
-				F0D2BA2C24A8BC9800BE815F /* CurrentRunViewController.swift */,
+				F0A674DA24A7DF100083FD5F /* StartActivityViewController.swift */,
+				F0D2BA2C24A8BC9800BE815F /* LiveActivityViewController.swift */,
 			);
 			path = "Track Run";
 			sourceTree = "<group>";
@@ -411,6 +433,15 @@
 				F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */,
 			);
 			path = Persistance;
+			sourceTree = "<group>";
+		};
+		F0DC58AE25E1DCE8003E8507 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				F0DC58AF25E1DD07003E8507 /* StartActivityCoordinator.swift */,
+				F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */,
+			);
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		F0E63DAE2502BC950024B73C /* No Session */ = {
@@ -546,9 +577,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0D2BA2D24A8BC9800BE815F /* CurrentRunViewController.swift in Sources */,
+				F0D2BA2D24A8BC9800BE815F /* LiveActivityViewController.swift in Sources */,
 				F0A674E224A7F0990083FD5F /* UIView+Extensions.swift in Sources */,
 				F0A674D924A7D3A70083FD5F /* LocationViewController.swift in Sources */,
+				F0DC58B625E1E03A003E8507 /* ActivityHistoryCoordinator.swift in Sources */,
+				F0DC58B025E1DD07003E8507 /* StartActivityCoordinator.swift in Sources */,
 				F007265A25080D35009E00B7 /* RMHistoryHeaderView.swift in Sources */,
 				F082320B259788BA00D58C3D /* RMPausedSessionViewController.swift in Sources */,
 				F08232132597E19E00D58C3D /* RMSessionDetailView.swift in Sources */,
@@ -558,10 +591,12 @@
 				F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */,
 				F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
-				F007265725080C23009E00B7 /* SessionHistoryViewController.swift in Sources */,
+				F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */,
+				F064E18B25E1C68C00948CC5 /* MainCoordinator.swift in Sources */,
 				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,
 				F0A674B724A7CCAF0083FD5F /* RunRunRun.xcdatamodeld in Sources */,
 				F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */,
+				F0DC58BE25E1E174003E8507 /* Run.swift in Sources */,
 				F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */,
 				F085B9F324B9245E0037589D /* NSFetchedResultsController+Extensions.swift in Sources */,
 				F04A6EDE24A927F4004D705F /* Double+Extensions.swift in Sources */,
@@ -584,13 +619,14 @@
 				F0E6C2122594E46300F44D89 /* RMSessionDetailTileView.swift in Sources */,
 				F0D366F824ABFBB4000FBFE5 /* LocalPersistance.swift in Sources */,
 				F0B09AEC24AE885100C3B5BE /* RunDetailTableViewCell.swift in Sources */,
-				F0A674DB24A7DF100083FD5F /* StartRunViewController.swift in Sources */,
+				F0A674DB24A7DF100083FD5F /* StartActivityViewController.swift in Sources */,
 				F0D2BA2F24A8DA2800BE815F /* RMActionButton.swift in Sources */,
 				F0D366FF24ACF734000FBFE5 /* SessionUtilities.swift in Sources */,
 				F05E38DB25099E56005B1916 /* RMSessionButtonStackView.swift in Sources */,
 				F0EC45A9252B62930069EACD /* Date+Extensions.swift in Sources */,
+				F064E19425E1C6A600948CC5 /* Coordinator.swift in Sources */,
 				F05E38D725097834005B1916 /* RMPausePlayButton.swift in Sources */,
-				F0B09AEE24AE94EE00C3B5BE /* SessionDetailViewController.swift in Sources */,
+				F0B09AEE24AE94EE00C3B5BE /* ActivityDetailViewController.swift in Sources */,
 				F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */,
 				F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */,
 				F0D366FA24ABFBC8000FBFE5 /* PersistanceManager.swift in Sources */,
@@ -678,7 +714,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -732,7 +768,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

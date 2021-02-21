@@ -1,5 +1,5 @@
 //
-//  CurrentRunViewController.swift
+//  LiveActivityViewController.swift
 //  RunRunRun
 //
 //  Created by Ahmad, Mohammed (UK - London) on 6/28/20.
@@ -13,6 +13,8 @@ protocol UpdateDurationDelegate: class {
 }
 
 final class LiveActivityViewController: LocationViewController {
+    weak var coordinator: Coordinator?
+
     let sessionDetailView = RMSessionDetailView()
     let pausedSessionView = RMPausedSessionViewController()
     let buttonView = RMSessionButtonStackView()
@@ -173,7 +175,8 @@ extension LiveActivityViewController {
                                       pace: pace,
                                       startDateTime: startDateTime,
                                       locations: coordinateLocations)
-        dismiss(animated: true, completion: nil)
+
+        coordinator?.dismissViewController(animated: true)
     }
 }
 

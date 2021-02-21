@@ -175,13 +175,13 @@ extension SessionLogViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showDetailSegue",
-            let vc = segue.destination as? SessionDetailViewController,
-            let index = index else { return }
-        let section = sections[index.section]
-        vc.run = section.rows[index.row]
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard segue.identifier == "showDetailSegue",
+//            let vc = segue.destination as? ActivityDetailViewController,
+//            let index = index else { return }
+//        let section = sections[index.section]
+//        vc.run = section.rows[index.row]
+//    }
 }
 
 //MARK: - NSFetchedResultsControllerDelegate Methods

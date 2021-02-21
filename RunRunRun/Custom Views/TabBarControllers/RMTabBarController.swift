@@ -7,31 +7,12 @@
 //
 import UIKit
 
-class RMTabBarController: UITabBarController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewControllers = [
-            createStartRunNavigationController(),
-            createSessionHistoryViewController()
-        ]
-        
+final class RMTabBarController: UITabBarController {
+    func configureItems() {
         UITabBar.appearance().tintColor = .systemGreen
         tabBar.itemPositioning = .centered
         tabBar.items?.forEach {
             $0.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         }
-    }
-    
-    private func createStartRunNavigationController() -> UINavigationController {
-        let startRunVC = StartRunViewController()
-        startRunVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "run"), tag: 0)
-        return UINavigationController(rootViewController: startRunVC)
-    }
-
-    private func createSessionHistoryViewController() -> UINavigationController {
-        let sessionHistoryVC = SessionHistoryViewController()
-        sessionHistoryVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "timer"), tag: 1)
-        return UINavigationController(rootViewController: sessionHistoryVC)
     }
 }

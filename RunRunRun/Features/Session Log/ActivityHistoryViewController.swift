@@ -1,5 +1,5 @@
 //
-//  SessionHistoryViewController.swift
+//  ActivityHistoryViewController.swift
 //  RunRunRun
 //
 //  Created by Ahmad, Mohammed (UK - London) on 9/8/20.
@@ -8,7 +8,9 @@
 import UIKit
 import CoreData
 
-final class SessionHistoryViewController: UIViewController {
+final class ActivityHistoryViewController: UIViewController {
+    weak var coordinator: Coordinator?
+
     private var fetchedRuns: NSFetchedResultsController<Run>!
     private var runs = [Run]()
     var sections = [GroupedSection<Date, Run>]()
@@ -75,7 +77,7 @@ final class SessionHistoryViewController: UIViewController {
 }
 
 // MARK: - Load Runs
-extension SessionHistoryViewController {
+extension ActivityHistoryViewController {
     private func loadRuns() {
         // Fetch runs from Core Data
         fetchedRuns = fetchRuns()
@@ -94,7 +96,7 @@ extension SessionHistoryViewController {
 }
 
 // MARK: - Configure Layout
-extension SessionHistoryViewController {
+extension ActivityHistoryViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -149,7 +151,7 @@ extension SessionHistoryViewController {
 }
 
 // MARK: - UITableView Datasource and Delegate
-extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSource {
+extension ActivityHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         guard !sections.isEmpty else { return 1 }
         return sections.count
@@ -185,8 +187,10 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
         let section = sections[indexPath.section]
         let run = section.rows[indexPath.row]
-        let destVC = SessionDetailViewController(run: run)
-        navigationController?.pushViewController(destVC, animated: true)
+
+        if let coordinator = coordinator as? ActivityHistoryCoordinator {
+            coordinator.showCurrentRunVC(activity: run)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
@@ -206,7 +210,7 @@ extension SessionHistoryViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 //MARK: - NSFetchedResultsControllerDelegate Methods
-extension SessionHistoryViewController: NSFetchedResultsControllerDelegate {
+extension ActivityHistoryViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange anObject: Any,
                     at indexPath: IndexPath?,
