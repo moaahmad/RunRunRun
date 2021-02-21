@@ -37,6 +37,7 @@ final class ActivityHistoryViewController: UIViewController {
     // MARK: - UIView Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Activity"
         view.backgroundColor = .systemBackground
         configureLayout()
         configureTableView()
@@ -44,7 +45,6 @@ final class ActivityHistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
         loadRuns()
         configureHistory()
     }
@@ -52,11 +52,6 @@ final class ActivityHistoryViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         fetchedRuns = nil
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.setEditing(editing, animated: animated)
     }
     
     override func viewWillLayoutSubviews() {
@@ -143,7 +138,8 @@ extension ActivityHistoryViewController {
     }
     
     private func showRunView() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.noSessionView.removeFromSuperview()
             self.tableView.reloadData()
         }

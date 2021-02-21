@@ -17,35 +17,41 @@ final class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let startActivityNavigationController = createStartActivityNavigationController()
-        let startActivityCoordinator = StartActivityCoordinator(navigationController: startActivityNavigationController)
-        startActivityCoordinator.parentCoordinator = self
-        startActivityCoordinator.start()
-        childCoordinators.append(startActivityCoordinator)
-
-        let activityHistoryNavigationController = createActivityHistoryNavigationController()
-        let activityHistoryCoordinator = ActivityHistoryCoordinator(navigationController: activityHistoryNavigationController)
-        activityHistoryCoordinator.parentCoordinator = self
-        activityHistoryCoordinator.start()
-        childCoordinators.append(activityHistoryCoordinator)
-
         tabBarController.viewControllers = [
-            startActivityNavigationController,
-            activityHistoryNavigationController
+            createStartActivityNavigationController(),
+            createActivityHistoryNavigationController()
         ]
     }
 }
 
 extension MainCoordinator {
     private func createStartActivityNavigationController() -> UINavigationController {
-        let startRunVC = StartActivityViewController()
-        startRunVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "run"), tag: 0)
-        return UINavigationController(rootViewController: startRunVC)
+        let startActivityNavigationController = UINavigationController()
+        startActivityNavigationController.tabBarItem = UITabBarItem(title: nil,
+                                                                    image: UIImage(named: "run"), tag: 0)
+        configureStartActivityCoordinator(with: startActivityNavigationController)
+        return startActivityNavigationController
     }
 
     private func createActivityHistoryNavigationController() -> UINavigationController {
-        let sessionHistoryVC = ActivityHistoryViewController()
-        sessionHistoryVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "timer"), tag: 1)
-        return UINavigationController(rootViewController: sessionHistoryVC)
+        let activityHistoryNavigationController = UINavigationController()
+        activityHistoryNavigationController.tabBarItem = UITabBarItem(title: nil,
+                                                                      image: UIImage(named: "timer"), tag: 1)
+        configureActivityHistoryCoordinator(with: activityHistoryNavigationController)
+        return activityHistoryNavigationController
+    }
+
+    private func configureStartActivityCoordinator(with navigationController: UINavigationController) {
+        let startActivityCoordinator = StartActivityCoordinator(navigationController: navigationController)
+        startActivityCoordinator.parentCoordinator = self
+        startActivityCoordinator.start()
+        childCoordinators.append(startActivityCoordinator)
+    }
+
+    private func configureActivityHistoryCoordinator(with navigationController: UINavigationController) {
+        let activityHistoryCoordinator = ActivityHistoryCoordinator(navigationController: navigationController)
+        activityHistoryCoordinator.parentCoordinator = self
+        activityHistoryCoordinator.start()
+        childCoordinators.append(activityHistoryCoordinator)
     }
 }

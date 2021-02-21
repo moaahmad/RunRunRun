@@ -13,19 +13,16 @@ protocol UpdateDurationDelegate: class {
 }
 
 final class LiveActivityViewController: LocationViewController {
+    // MARK: - Properties
     weak var coordinator: Coordinator?
 
-    let sessionDetailView = RMSessionDetailView()
-    let pausedSessionView = RMPausedSessionViewController()
-    let buttonView = RMSessionButtonStackView()
+    private let sessionDetailView = RMSessionDetailView()
+    private let pausedSessionView = RMPausedSessionViewController()
+    private let buttonView = RMSessionButtonStackView()
     
     private let context = (UIApplication.shared.delegate as! AppDelegate)
         .persistentContainer.viewContext
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .darkContent
-    }
-    
+
     private var buttonViewBottomConstraint: NSLayoutConstraint?
     private var isPaused = false
     private var hasBeenPaused = false
@@ -50,6 +47,11 @@ final class LiveActivityViewController: LocationViewController {
         return setupFetch
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .darkContent
+    }
+
+    // MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen

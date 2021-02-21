@@ -62,6 +62,7 @@
 		F0DC58B025E1DD07003E8507 /* StartActivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58AF25E1DD07003E8507 /* StartActivityCoordinator.swift */; };
 		F0DC58B625E1E03A003E8507 /* ActivityHistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */; };
 		F0DC58BE25E1E174003E8507 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58BD25E1E174003E8507 /* Run.swift */; };
+		F0DC58CA25E2826C003E8507 /* ActivityHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58C925E2826B003E8507 /* ActivityHistoryViewModel.swift */; };
 		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
 		F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */; };
 		F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */; };
@@ -141,6 +142,7 @@
 		F0DC58AF25E1DD07003E8507 /* StartActivityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityCoordinator.swift; sourceTree = "<group>"; };
 		F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryCoordinator.swift; sourceTree = "<group>"; };
 		F0DC58BD25E1E174003E8507 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		F0DC58C925E2826B003E8507 /* ActivityHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryViewModel.swift; sourceTree = "<group>"; };
 		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */,
 				F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */,
+				F0DC58C925E2826B003E8507 /* ActivityHistoryViewModel.swift */,
 				F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */,
 			);
 			path = "Session Log";
@@ -591,6 +594,7 @@
 				F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */,
 				F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
+				F0DC58CA25E2826C003E8507 /* ActivityHistoryViewModel.swift in Sources */,
 				F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */,
 				F064E18B25E1C68C00948CC5 /* MainCoordinator.swift in Sources */,
 				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,
