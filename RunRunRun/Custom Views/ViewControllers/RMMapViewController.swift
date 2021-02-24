@@ -72,7 +72,7 @@ extension RMMapViewController {
 // MARK: - MapView Delegate
 extension RMMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let polyline = overlay as! MKPolyline
+        guard let polyline = overlay as? MKPolyline else { return .init() }
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor  = .systemOrange
         renderer.lineWidth = 5

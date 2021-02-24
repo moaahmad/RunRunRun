@@ -79,7 +79,7 @@ extension RMSessionDetailViewController {
         ])
     }
     
-    private func configureTableView() {        
+    private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.removeExcessCells()

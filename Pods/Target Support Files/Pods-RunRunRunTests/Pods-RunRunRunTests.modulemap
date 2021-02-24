@@ -1,0 +1,6 @@
+framework module Pods_RunRunRunTests {
+  umbrella header "Pods-RunRunRunTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
