@@ -3,8 +3,9 @@
 //  RunRunRun
 //
 //  Created by Mohammed Ahmad on 12/24/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import UIKit
 
 final class RMSessionDetailTileView: UIView {

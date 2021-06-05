@@ -2,9 +2,10 @@
 //  Date+Extensions.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 10/5/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Created by Mohammed Ahmad on 10/5/20.
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import Foundation
 
 extension Date {

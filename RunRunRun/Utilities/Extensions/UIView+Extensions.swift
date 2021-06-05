@@ -2,9 +2,10 @@
 //  UIView+Extensions.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 6/27/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Created by Mohammed Ahmad on 6/27/20.
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import UIKit
 
 extension UIView {

@@ -2,33 +2,48 @@
 //  StartActivityViewController.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 6/27/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Created by Mohammed Ahmad on 6/27/20.
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import UIKit
 import MapKit
 
 final class StartActivityViewController: LocationViewController {
+    // MARK: - Properties
+
     weak var coordinator: Coordinator?
 
-    private let mapView = MKMapView()
-    private let locationButton = RMLocationButton()
-    private let startButton = RMActionButton(title: "START")
+    var viewModel: StartActivityViewModeling
+
+    private lazy var mapView = MKMapView()
+    private lazy var locationButton = RMLocationButton()
+    private lazy var startButton = RMActionButton(title: "START")
+
+    // MARK: - Initializers
+
+    init(viewModel: StartActivityViewModeling) {
+        self.viewModel = viewModel
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - View Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        styleVC()
-        configureMapView()
-        configureStartButton()
-        configureLocationButton()
+        manager.delegate = self
+        setupLayout()
         checkLocationAuthStatus()
-        manager?.delegate = self
+        statusBarEnterDarkBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        manager?.startUpdatingLocation()
+        manager.startUpdatingLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,9 +53,11 @@ final class StartActivityViewController: LocationViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        manager?.stopUpdatingLocation()
+        manager.stopUpdatingLocation()
     }
-    
+
+    // MARK: - Center On User Location
+
     private func centerMapOnUserLocation() {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
@@ -53,10 +70,15 @@ final class StartActivityViewController: LocationViewController {
 }
 
 // MARK: - Layout Configuration
+
 extension StartActivityViewController {
-    private func styleVC() {
+    private func setupLayout() {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .systemBackground
+
+        configureMapView()
+        configureStartButton()
+        configureLocationButton()
     }
     
     private func configureMapView() {
@@ -97,6 +119,7 @@ extension StartActivityViewController {
 }
 
 // MARK: - Button Actions
+
 extension StartActivityViewController {
     @objc func didTapLocateUserButton() {
         centerMapOnUserLocation()
@@ -111,6 +134,7 @@ extension StartActivityViewController {
 }
 
 // MARK: - Location Manager Delegate
+
 extension StartActivityViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {

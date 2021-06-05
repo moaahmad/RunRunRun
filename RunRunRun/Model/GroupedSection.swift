@@ -2,9 +2,10 @@
 //  GroupedSection.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 8/2/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Created by Mohammed Ahmad on 8/2/20.
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import Foundation
 
 struct GroupedSection<SectionItem: Hashable, RowItem> {

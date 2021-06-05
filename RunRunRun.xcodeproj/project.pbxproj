@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */; };
 		74433E6A3AE36932AE505DCD /* Pods_RunRunRunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */; };
 		DFD2EF7971B78B0250ECB7A7 /* Pods_RunRunRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F969EE6003E2EF4AEFF9F67E /* Pods_RunRunRun.framework */; };
 		F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */; };
@@ -17,7 +18,6 @@
 		F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */; };
 		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
 		F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */; };
-		F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */; };
 		F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */; };
 		F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */; };
 		F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDB24A91C25004D705F /* Int+Extensions.swift */; };
@@ -88,6 +88,7 @@
 /* Begin PBXFileReference section */
 		2614D522CEBDA03B192AA180 /* Pods-RunRunRun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.debug.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.debug.xcconfig"; sourceTree = "<group>"; };
 		420A24AE53A048C4690F2829 /* Pods-RunRunRunTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRunTests.release.xcconfig"; path = "Target Support Files/Pods-RunRunRunTests/Pods-RunRunRunTests.release.xcconfig"; sourceTree = "<group>"; };
+		4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewModel.swift; sourceTree = "<group>"; };
 		590576E684A8A2F00930D4E8 /* Pods-RunRunRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.release.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.release.xcconfig"; sourceTree = "<group>"; };
 		85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunRunRunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8AA12FACA3044AA07A7BF8F /* Pods-RunRunRunTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRunTests.debug.xcconfig"; path = "Target Support Files/Pods-RunRunRunTests/Pods-RunRunRunTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationButton.swift; sourceTree = "<group>"; };
 		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
 		F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLogViewController.swift; sourceTree = "<group>"; };
 		F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunDetailTableViewCell.xib; sourceTree = "<group>"; };
 		F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		F04A6EDB24A91C25004D705F /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
@@ -182,6 +182,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E79038E266B8DBA0026E88F /* Start Activity */ = {
+			isa = PBXGroup;
+			children = (
+				F0A674DA24A7DF100083FD5F /* StartActivityViewController.swift */,
+				4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */,
+			);
+			path = "Start Activity";
+			sourceTree = "<group>";
+		};
+		4E79038F266B8DC30026E88F /* Live Activity */ = {
+			isa = PBXGroup;
+			children = (
+				F0D2BA2C24A8BC9800BE815F /* LiveActivityViewController.swift */,
+			);
+			path = "Live Activity";
+			sourceTree = "<group>";
+		};
+		4E790390266B8DEB0026E88F /* Activity Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */,
+			);
+			path = "Activity Detail";
+			sourceTree = "<group>";
+		};
 		8D9539BE762E002572AC20DD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,10 +265,9 @@
 		F0284ADC24AE50D4007283F4 /* Activity History */ = {
 			isa = PBXGroup;
 			children = (
-				F0284ADD24AE5388007283F4 /* SessionLogViewController.swift */,
 				F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */,
 				F0DC58C925E2826B003E8507 /* ActivityHistoryViewModel.swift */,
-				F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */,
+				4E790390266B8DEB0026E88F /* Activity Detail */,
 			);
 			path = "Activity History";
 			sourceTree = "<group>";
@@ -407,8 +431,8 @@
 			isa = PBXGroup;
 			children = (
 				F0A674D824A7D3A70083FD5F /* LocationViewController.swift */,
-				F0A674DA24A7DF100083FD5F /* StartActivityViewController.swift */,
-				F0D2BA2C24A8BC9800BE815F /* LiveActivityViewController.swift */,
+				4E79038E266B8DBA0026E88F /* Start Activity */,
+				4E79038F266B8DC30026E88F /* Live Activity */,
 			);
 			path = "Track Activity";
 			sourceTree = "<group>";
@@ -560,7 +584,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1230;
-				ORGANIZATIONNAME = "Ahmad, Mohammed";
+				ORGANIZATIONNAME = "Mohammed Ahmad";
 				TargetAttributes = {
 					F0A674A824A7CCAF0083FD5F = {
 						CreatedOnToolsVersion = 11.5;
@@ -715,6 +739,7 @@
 				F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */,
 				F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */,
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
+				4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */,
 				F0DC58CA25E2826C003E8507 /* ActivityHistoryViewModel.swift in Sources */,
 				F0DC594225E30A29003E8507 /* FirestoreManager.swift in Sources */,
 				F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */,
@@ -738,7 +763,6 @@
 				F05E38D3250955C0005B1916 /* RMTitleLabel.swift in Sources */,
 				F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */,
 				F08231FB25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift in Sources */,
-				F0284ADE24AE5388007283F4 /* SessionLogViewController.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
 				F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */,
 				F08232012596974F00D58C3D /* RMMapStyleButton.swift in Sources */,

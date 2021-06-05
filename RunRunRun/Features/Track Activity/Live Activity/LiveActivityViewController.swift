@@ -2,28 +2,20 @@
 //  LiveActivityViewController.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 6/28/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Created by Mohammed Ahmad on 6/28/20.
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import UIKit
 import CoreData
 
-protocol UpdateDurationDelegate: class {
+protocol UpdateDurationDelegate: AnyObject {
     func updateDurationLabel(with counter: Int)
 }
 
 final class LiveActivityViewController: LocationViewController {
     // MARK: - Properties
     weak var coordinator: Coordinator?
-
-    private let sessionDetailView = RMSessionDetailView()
-    private let pausedSessionView = RMPausedSessionViewController()
-    private let buttonView = RMSessionButtonStackView()
-
-    private var context: NSManagedObjectContext {
-        (UIApplication.shared.delegate as? AppDelegate)?
-            .persistentContainer.viewContext ?? .init(concurrencyType: .mainQueueConcurrencyType)
-    }
 
     private var buttonViewBottomConstraint: NSLayoutConstraint?
     private var isPaused = false
@@ -49,8 +41,23 @@ final class LiveActivityViewController: LocationViewController {
         return setupFetch
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .darkContent
+    private lazy var sessionDetailView: RMSessionDetailView = {
+        let sessionDetailView = RMSessionDetailView()
+        statusBarEnterLightBackground()
+        return sessionDetailView
+    }()
+
+    private lazy var pausedSessionView: RMPausedSessionViewController = {
+        let pausedSessionView = RMPausedSessionViewController()
+        statusBarEnterDarkBackground()
+        return pausedSessionView
+    }()
+
+    private lazy var buttonView = RMSessionButtonStackView()
+
+    private var context: NSManagedObjectContext {
+        (UIApplication.shared.delegate as? AppDelegate)?
+            .persistentContainer.viewContext ?? .init(concurrencyType: .mainQueueConcurrencyType)
     }
 
     // MARK: - View Lifecycle Methods
@@ -65,15 +72,15 @@ final class LiveActivityViewController: LocationViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        manager?.delegate = self
-        manager?.distanceFilter = 10
+        manager.delegate = self
+        manager.distanceFilter = 10
         startTimer()
         startDateTime = Date()
     }
     
     private func configureLocationManager() {
-        manager?.allowsBackgroundLocationUpdates = true
-        manager?.pausesLocationUpdatesAutomatically = false
+        manager.allowsBackgroundLocationUpdates = true
+        manager.pausesLocationUpdatesAutomatically = false
     }
 }
 
@@ -124,9 +131,11 @@ extension LiveActivityViewController {
     
     private func animateButtonViewLayout() {
         UIView.animate(withDuration: 0.2, animations: {
-            self.buttonView.pausePlayButton.transform = self.isPaused ? CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 1.4, y: 1.4)
+            self.buttonView.pausePlayButton.transform = self.isPaused ?
+                CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 1.4, y: 1.4)
             self.buttonViewBottomConstraint?.constant = self.isPaused ? -8 : -68
-            self.buttonView.finishButton.transform = self.isPaused ? CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 0, y: 0)
+            self.buttonView.finishButton.transform = self.isPaused ?
+                CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 0, y: 0)
             self.buttonView.hideShowFinishButton(self.isPaused)
         })
     }
@@ -140,7 +149,7 @@ extension LiveActivityViewController {
         view.backgroundColor = .white
         buttonView.pausePlayButton.setImage(name: "play.fill")
         pauseTimer()
-        manager?.stopUpdatingLocation()
+        manager.stopUpdatingLocation()
     }
     
     private func playRun() {
@@ -149,12 +158,12 @@ extension LiveActivityViewController {
         view.backgroundColor = .systemGreen
         buttonView.pausePlayButton.setImage(name: "pause.fill")
         startTimer()
-        manager?.startUpdatingLocation()
+        manager.startUpdatingLocation()
         hasBeenPaused = true
     }
     
     private func startTimer() {
-        manager?.startUpdatingLocation()
+        manager.startUpdatingLocation()
         sessionTimer.resume()
     }
     
@@ -173,7 +182,7 @@ extension LiveActivityViewController {
     
     @objc private func didTapFinishButton() {
         pauseTimer()
-        manager?.stopUpdatingLocation()
+        manager.stopUpdatingLocation()
         PersistenceManager.store.save(duration: sessionTimer.counter,
                                       distance: runDistance,
                                       pace: pace,

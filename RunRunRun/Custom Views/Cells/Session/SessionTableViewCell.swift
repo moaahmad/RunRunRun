@@ -2,9 +2,10 @@
 //  SessionTableViewCell.swift
 //  RunRunRun
 //
-//  Created by Ahmad, Mohammed (UK - London) on 7/2/20.
-//  Copyright © 2020 Ahmad, Mohammed. All rights reserved.
-//
+//  Created by Mohammed Ahmad on 7/2/20.
+//  Copyright © 2020 Mohammed Ahmad. All rights reserved.
+// 
+
 import UIKit
 
 final class SessionTableViewCell: UITableViewCell {
@@ -73,6 +74,8 @@ extension SessionTableViewCell {
     }
     
     private func styleLayout() {
+//        layer.shouldRasterize = true
+        
         sessionImage.translatesAutoresizingMaskIntoConstraints = false
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
