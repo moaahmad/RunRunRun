@@ -12,8 +12,6 @@ import MapKit
 final class StartActivityViewController: LocationViewController {
     // MARK: - Properties
 
-    weak var coordinator: Coordinator?
-
     var viewModel: StartActivityViewModeling
 
     private lazy var mapView = MKMapView()
@@ -22,7 +20,7 @@ final class StartActivityViewController: LocationViewController {
 
     // MARK: - Initializers
 
-    init(viewModel: StartActivityViewModeling) {
+    init(viewModel: StartActivityViewModeling = StartActivityViewModel()) {
         self.viewModel = viewModel
         super.init()
     }
@@ -127,9 +125,7 @@ extension StartActivityViewController {
     }
     
     @objc func didTapStartRunButton() {
-        if let coordinator = coordinator as? StartActivityCoordinator {
-            coordinator.showLiveActivityVC()
-        }
+        viewModel.startRunDidTap()
     }
 }
 

@@ -17,7 +17,7 @@ final class StartActivityCoordinator: Coordinator {
 
     func start() {
         let vc = StartActivityViewController()
-        vc.coordinator = self
+        vc.viewModel.coordinator = self
         navigationController?.pushViewController(vc, animated: true)
     }
 
