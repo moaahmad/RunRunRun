@@ -10,8 +10,8 @@ import UIKit
 
 final class RMSummaryView: UIView {
     private var titleLabel = RMTitleLabel(textAlignment: .center,
-                                               fontSize: 21,
-                                               color: .label)
+                                          fontSize: 21,
+                                          color: .label)
     
     private let summaryStackView = RMSummaryStackView()
     
@@ -47,7 +47,7 @@ extension RMSummaryView {
     }
     
     private func styleLayout() {
-        titleLabel.text = "History"
+        titleLabel.text = "Total"
         titleLabel.textColor = .systemGreen
     }
 }

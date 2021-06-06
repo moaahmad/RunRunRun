@@ -38,8 +38,6 @@ final class ActivityHistoryViewController: UIViewController {
     // MARK: - UIView Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Activity"
-//        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         configureLayout()
         configureTableView()
@@ -47,12 +45,14 @@ final class ActivityHistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         loadRuns()
         configureHistory()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         fetchedRuns = nil
     }
     

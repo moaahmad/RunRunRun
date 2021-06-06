@@ -7,91 +7,121 @@
 // 
 
 import UIKit
-import CoreData
 
-protocol UpdateDurationDelegate: AnyObject {
-    func updateDurationLabel(with counter: Int)
-}
-
-final class LiveActivityViewController: LocationViewController {
+final class LiveActivityViewController: BaseViewController {
     // MARK: - Properties
-    weak var coordinator: Coordinator?
+
+    var viewModel: LiveActivityViewModeling
 
     private var buttonViewBottomConstraint: NSLayoutConstraint?
-    private var isPaused = false
-    private var hasBeenPaused = false
-    
-    private var startDateTime: Date!
-    
-    private var startLocation: CLLocation!
-    private var lastLocation: CLLocation!
-    private var coordinateLocations = [Location]()
-    
-    private var runDistance = 0.0
-    private var pace = 0.0
-    private var getAveragePace: String {
-        SessionUtilities.calculateAveragePace(time: sessionTimer.counter, meters: runDistance)
-    }
-   
-    private var sessionTimer: RepeatingTimer!
-    
-    private var runs: NSFetchedResultsController<Run>!
-    private var fetchRuns: NSFetchedResultsController<Run> {
-        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
-        return setupFetch
-    }
 
-    private lazy var sessionDetailView: RMSessionDetailView = {
-        let sessionDetailView = RMSessionDetailView()
-        statusBarEnterLightBackground()
-        return sessionDetailView
-    }()
-
-    private lazy var pausedSessionView: RMPausedSessionViewController = {
-        let pausedSessionView = RMPausedSessionViewController()
-        statusBarEnterDarkBackground()
-        return pausedSessionView
-    }()
-
+    private lazy var sessionDetailView = RMSessionDetailView()
+    private lazy var pausedSessionView = RMPausedSessionViewController()
     private lazy var buttonView = RMSessionButtonStackView()
 
-    private var context: NSManagedObjectContext {
-        (UIApplication.shared.delegate as? AppDelegate)?
-            .persistentContainer.viewContext ?? .init(concurrencyType: .mainQueueConcurrencyType)
+    init(viewModel: LiveActivityViewModeling = LiveActivityViewModel()) {
+        self.viewModel = viewModel
+        super.init()
+        setupBindings()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - View Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
-        configureLocationManager()
         configureLayout()
-        runs = fetchRuns
-        sessionTimer = RepeatingTimer(timeInterval: 1, delegate: self)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        manager.delegate = self
-        manager.distanceFilter = 10
-        startTimer()
-        startDateTime = Date()
+        viewModel.startActivity()
+    }
+}
+
+extension LiveActivityViewController {
+    func setupBindings() {
+        viewModel.didUpdateDuration = { [weak self] duration in
+            DispatchQueue.main.async {
+                self?.sessionDetailView.durationView.valueLabel.text = duration
+            }
+        }
+
+        viewModel.didUpdateDistance = { [weak self] distance in
+            DispatchQueue.main.async {
+                self?.sessionDetailView.distanceView.valueLabel.text = distance
+
+            }
+        }
+
+        viewModel.didUpdatePace = { [weak self] pace in
+            DispatchQueue.main.async {
+                self?.sessionDetailView.averagePaceView.valueLabel.text = pace
+            }
+        }
+    }
+}
+
+// MARK: - Pause & Play
+
+extension LiveActivityViewController {
+    private func didPauseActivity() {
+        viewModel.activityDidPause()
+
+        view.backgroundColor = .white
+        sessionDetailView.removeFromSuperview()
+        statusBarEnterDarkBackground()
+        configurePauseSessionView()
+        buttonView.pausePlayButton.setImage(name: "play.fill")
     }
     
-    private func configureLocationManager() {
-        manager.allowsBackgroundLocationUpdates = true
-        manager.pausesLocationUpdatesAutomatically = false
+    private func didPlayActivity() {
+        viewModel.activityDidPlay()
+
+        view.backgroundColor = .systemGreen
+        pausedSessionView.view.removeFromSuperview()
+        statusBarEnterLightBackground()
+        configureSessionDetailView()
+        buttonView.pausePlayButton.setImage(name: "pause.fill")
+    }
+}
+
+// MARK: - Button Actions
+
+extension LiveActivityViewController {
+    @objc private func didTapPauseButton() {
+        viewModel.pauseDidTap()
+        animateButtonViewLayout()
+        viewModel.isActivityPaused ? didPauseActivity() : didPlayActivity()
+    }
+    
+    @objc private func didTapFinishButton() {
+        removePausedView { [weak self] in
+            self?.viewModel.finishButtonDidTap()
+        }
+    }
+
+    private func removePausedView(completion: @escaping () -> Void) {
+        buttonView.finishButton.isEnabled = false
+        pausedSessionView.view.removeFromSuperview()
+        completion()
     }
 }
 
 // MARK: - Configure UI Layout
-extension LiveActivityViewController {
-    private func configureLayout() {
+
+private extension LiveActivityViewController {
+    func configureLayout() {
         configureButtonView()
         configureSessionDetailView()
     }
-    
-    private func configureSessionDetailView() {
+
+    func configureSessionDetailView() {
         view.addSubview(sessionDetailView)
         NSLayoutConstraint.activate([
             sessionDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -99,9 +129,9 @@ extension LiveActivityViewController {
             sessionDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
         ])
     }
-    
-    private func configurePauseSessionView() {
-        pausedSessionView.addRouteToMap(coordinateLocations: coordinateLocations)
+
+    func configurePauseSessionView() {
+        pausedSessionView.addRouteToMap(coordinateLocations: viewModel.locations)
         addChild(pausedSessionView)
         didMove(toParent: self)
         view.addSubview(pausedSessionView.view)
@@ -112,138 +142,33 @@ extension LiveActivityViewController {
             pausedSessionView.view.bottomAnchor.constraint(equalTo: buttonView.topAnchor, constant: -20)
         ])
     }
-    
-    private func configureButtonView() {
+
+    func configureButtonView() {
         view.addSubview(buttonView)
-        
+
         buttonView.pausePlayButton.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
-        buttonView.finishButton.isHidden = !isPaused
-        
+        buttonView.finishButton.isHidden = !viewModel.isActivityPaused
+
         buttonView.pausePlayButton.addTarget(self, action: #selector(didTapPauseButton), for: .touchUpInside)
         buttonView.finishButton.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
-        
+
         buttonViewBottomConstraint = buttonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -68)
         NSLayoutConstraint.activate([
             buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonViewBottomConstraint!
         ])
     }
-    
-    private func animateButtonViewLayout() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.buttonView.pausePlayButton.transform = self.isPaused ?
+
+    func animateButtonViewLayout() {
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            guard let self = self else { return }
+            let isPaused = self.viewModel.isActivityPaused
+            self.buttonView.pausePlayButton.transform = isPaused ?
                 CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 1.4, y: 1.4)
-            self.buttonViewBottomConstraint?.constant = self.isPaused ? -8 : -68
-            self.buttonView.finishButton.transform = self.isPaused ?
+            self.buttonViewBottomConstraint?.constant = isPaused ? -8 : -68
+            self.buttonView.finishButton.transform = isPaused ?
                 CGAffineTransform(scaleX: 1, y: 1) : CGAffineTransform(scaleX: 0, y: 0)
-            self.buttonView.hideShowFinishButton(self.isPaused)
+            self.buttonView.hideShowFinishButton(isPaused)
         })
-    }
-}
-
-// MARK: - Pause & Play
-extension LiveActivityViewController {
-    private func pauseRun() {
-        sessionDetailView.removeFromSuperview()
-        configurePauseSessionView()
-        view.backgroundColor = .white
-        buttonView.pausePlayButton.setImage(name: "play.fill")
-        pauseTimer()
-        manager.stopUpdatingLocation()
-    }
-    
-    private func playRun() {
-        pausedSessionView.view.removeFromSuperview()
-        configureSessionDetailView()
-        view.backgroundColor = .systemGreen
-        buttonView.pausePlayButton.setImage(name: "pause.fill")
-        startTimer()
-        manager.startUpdatingLocation()
-        hasBeenPaused = true
-    }
-    
-    private func startTimer() {
-        manager.startUpdatingLocation()
-        sessionTimer.resume()
-    }
-    
-    private func pauseTimer() {
-        sessionTimer.suspend()
-    }
-}
-
-// MARK: - Button Actions
-extension LiveActivityViewController {
-    @objc private func didTapPauseButton() {
-        isPaused = !isPaused
-        animateButtonViewLayout()
-        isPaused ? pauseRun() : playRun()
-    }
-    
-    @objc private func didTapFinishButton() {
-        pauseTimer()
-        manager.stopUpdatingLocation()
-        PersistenceManager.store.save(duration: sessionTimer.counter,
-                                      distance: runDistance,
-                                      pace: pace,
-                                      startDateTime: startDateTime,
-                                      locations: coordinateLocations)
-
-        coordinator?.dismissViewController(animated: true)
-    }
-}
-
-// MARK: - Update Duration Delegate
-extension LiveActivityViewController: UpdateDurationDelegate {
-    func updateDurationLabel(with counter: Int) {
-        DispatchQueue.main.async {
-            self.sessionDetailView.durationView.valueLabel.text = counter.formatToTimeString()
-        }
-    }
-}
-
-// MARK: - Core Location Manager Delegate
-extension LiveActivityViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager,
-                         didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            checkLocationAuthStatus()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager,
-                         didUpdateLocations locations: [CLLocation]) {
-        if startLocation == nil || hasBeenPaused {
-            startLocation = locations.first
-            hasBeenPaused = false
-        } else if let location = locations.last {
-            runDistance += lastLocation.distance(from: location)
-            sessionDetailView.distanceView.valueLabel.text = runDistance.convertMetersIntoKilometers()
-            recordAveragePace()
-            recordLocationData()
-        }
-        lastLocation = locations.last
-        
-        #if DEBUG
-        if UIApplication.shared.applicationState == .active {
-            print("App is foreground. New location is", lastLocation ?? "nil")
-        } else if UIApplication.shared.applicationState == .background {
-            print("App is backgrounded. New location is", lastLocation ?? "nil")
-        }
-        #endif
-    }
-    
-    private func recordAveragePace() {
-        if sessionTimer.counter > 0 && runDistance > 0 {
-            sessionDetailView.averagePaceView.valueLabel.text = getAveragePace
-        }
-    }
-    
-    private func recordLocationData() {
-        let newLocation = Location(context: context)
-        newLocation.timestamp = Date()
-        newLocation.latitude = lastLocation.coordinate.latitude
-        newLocation.longitude = lastLocation.coordinate.longitude
-        coordinateLocations.append(newLocation)
     }
 }

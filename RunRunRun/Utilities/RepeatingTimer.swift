@@ -62,6 +62,6 @@ final class RepeatingTimer {
     
     private func updateCounter() {
         counter += 1
-        self.delegate?.updateDurationLabel(with: self.counter)
+        self.delegate?.updateDuration(with: self.counter)
     }
 }

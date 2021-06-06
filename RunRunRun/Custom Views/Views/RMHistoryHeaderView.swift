@@ -33,7 +33,7 @@ extension RMHistoryHeaderView {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
-        titleLabel.text = "Activity"
+        titleLabel.text = "History"
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byTruncatingTail
     }

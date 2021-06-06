@@ -1,5 +1,5 @@
 //
-//  LocationViewController.swift
+//  BaseViewController.swift
 //  RunRunRun
 //
 //  Created by Mohammed Ahmad on 6/27/20.
@@ -7,10 +7,15 @@
 // 
 
 import UIKit
-import MapKit
 
-class LocationViewController: UIViewController {
-    var manager: CLLocationManager
+protocol StatusBarDisplayable {
+    var isDarkContentBackground: Bool { get set }
+    func statusBarEnterLightBackground()
+    func statusBarEnterDarkBackground()
+}
+
+class BaseViewController: UIViewController, StatusBarDisplayable {
+    // MARK: - Properties
 
     var isDarkContentBackground = false
 
@@ -22,26 +27,18 @@ class LocationViewController: UIViewController {
         }
     }
 
-    init(manager: CLLocationManager = CLLocationManager()) {
-        self.manager = manager
-        super.init(nibName: nil, bundle: nil)
-    }
+    // MARK: - Initializers
+
+    init() { super.init(nibName: nil, bundle: nil) }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.activityType = .fitness
-    }
-    
-    func checkLocationAuthStatus() {
-        guard manager.authorizationStatus != .authorizedWhenInUse else { return }
-        manager.requestWhenInUseAuthorization()
-    }
+// MARK: - Style Status Bar
 
+extension BaseViewController {
     func statusBarEnterLightBackground() {
         isDarkContentBackground = false
         UIView.animate(withDuration: 0.3) {

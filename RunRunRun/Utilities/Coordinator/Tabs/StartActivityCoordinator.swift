@@ -23,7 +23,7 @@ final class StartActivityCoordinator: Coordinator {
 
     func showLiveActivityVC() {
         let vc = LiveActivityViewController()
-        vc.coordinator = self
+        vc.viewModel.coordinator = self
         vc.modalPresentationStyle = .fullScreen
         navigationController?.present(vc, animated: true)
     }

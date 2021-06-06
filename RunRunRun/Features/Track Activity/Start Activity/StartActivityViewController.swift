@@ -9,7 +9,12 @@
 import UIKit
 import MapKit
 
-final class StartActivityViewController: LocationViewController {
+final class StartActivityViewController: BaseViewController {
+    private struct Metric {
+        static let latitudinalMeters = 1000.0
+        static let longitudinalMeters = 1000.0
+    }
+
     // MARK: - Properties
 
     var viewModel: StartActivityViewModeling
@@ -33,15 +38,14 @@ final class StartActivityViewController: LocationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.delegate = self
         setupLayout()
-        checkLocationAuthStatus()
+        viewModel.checkLocationAuthStatus()
         statusBarEnterDarkBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        manager.startUpdatingLocation()
+        viewModel.startUpdatingLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,26 +55,48 @@ final class StartActivityViewController: LocationViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        manager.stopUpdatingLocation()
+        viewModel.stopUpdatingLocation()
     }
 
-    // MARK: - Center On User Location
+    private func setupBindings() {
+        viewModel.didChangeAuthorization = { [weak self] in
+            self?.mapView.showsUserLocation = true
+        }
+    }
+}
 
-    private func centerMapOnUserLocation() {
+// MARK: - Center Map
+
+private extension StartActivityViewController {
+    func centerMapOnUserLocation() {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         mapView.showsScale = true
+
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
-                                                  latitudinalMeters: 1000,
-                                                  longitudinalMeters: 1000)
+                                                  latitudinalMeters: Metric.latitudinalMeters,
+                                                  longitudinalMeters: Metric.longitudinalMeters)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+}
+
+// MARK: - Button Actions
+
+extension StartActivityViewController {
+    @objc private func didTapLocateUserButton() {
+        centerMapOnUserLocation()
+        UISelectionFeedbackGenerator().selectionChanged()
+    }
+
+    @objc private func didTapStartRunButton() {
+        viewModel.startRunDidTap()
     }
 }
 
 // MARK: - Layout Configuration
 
-extension StartActivityViewController {
-    private func setupLayout() {
+private extension StartActivityViewController {
+    func setupLayout() {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .systemBackground
 
@@ -79,7 +105,7 @@ extension StartActivityViewController {
         configureLocationButton()
     }
     
-    private func configureMapView() {
+    func configureMapView() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
         NSLayoutConstraint.activate([
@@ -90,7 +116,7 @@ extension StartActivityViewController {
         ])
     }
     
-    private func configureStartButton() {
+    func configureStartButton() {
         view.addSubview(startButton)
         startButton.addTarget(self, action: #selector(didTapStartRunButton), for: .touchUpInside)
         
@@ -102,7 +128,7 @@ extension StartActivityViewController {
         ])
     }
     
-    private func configureLocationButton() {
+    func configureLocationButton() {
         locationButton.adjustsImageWhenHighlighted = false
         view.addSubview(locationButton)
         locationButton.addTarget(self, action: #selector(didTapLocateUserButton), for: .touchUpInside)
@@ -113,29 +139,5 @@ extension StartActivityViewController {
             locationButton.heightAnchor.constraint(equalToConstant: 45),
             locationButton.widthAnchor.constraint(equalToConstant: 45)
         ])
-    }
-}
-
-// MARK: - Button Actions
-
-extension StartActivityViewController {
-    @objc func didTapLocateUserButton() {
-        centerMapOnUserLocation()
-        UISelectionFeedbackGenerator().selectionChanged()
-    }
-    
-    @objc func didTapStartRunButton() {
-        viewModel.startRunDidTap()
-    }
-}
-
-// MARK: - Location Manager Delegate
-
-extension StartActivityViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager,
-                         didChangeAuthorization status: CLAuthorizationStatus) {
-        guard status == .authorizedWhenInUse else { return }
-        checkLocationAuthStatus()
-        mapView.showsUserLocation = true
     }
 }
