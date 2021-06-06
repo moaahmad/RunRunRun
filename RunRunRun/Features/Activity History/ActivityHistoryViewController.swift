@@ -93,8 +93,8 @@ extension ActivityHistoryViewController {
 }
 
 // MARK: - Configure Layout
-extension ActivityHistoryViewController {
-    private func configureTableView() {
+private extension ActivityHistoryViewController {
+    func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -109,7 +109,7 @@ extension ActivityHistoryViewController {
         tableView.tableHeaderView = headerView
     }
     
-    private func configureLayout() {
+    func configureLayout() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -120,7 +120,7 @@ extension ActivityHistoryViewController {
         ])
     }
     
-    private func configureHistory() {
+    func configureHistory() {
         guard let runs = fetchedRuns.fetchedObjects,
               !runs.isEmpty else {
             return showNoSessionView()
@@ -128,7 +128,7 @@ extension ActivityHistoryViewController {
         showRunView()
     }
     
-    private func showNoSessionView() {
+    func showNoSessionView() {
         tableView.addSubview(noSessionView)
         noSessionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -137,7 +137,7 @@ extension ActivityHistoryViewController {
         ])
     }
     
-    private func showRunView() {
+    func showRunView() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.noSessionView.removeFromSuperview()

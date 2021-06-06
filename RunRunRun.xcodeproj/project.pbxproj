@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4E73E154266C395C00B3A938 /* LiveActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E153266C395C00B3A938 /* LiveActivityViewModel.swift */; };
 		4E73E156266C3CB600B3A938 /* LocalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E155266C3CB600B3A938 /* LocalActivity.swift */; };
+		4E73E158266D6C0100B3A938 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */; };
 		4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */; };
 		74433E6A3AE36932AE505DCD /* Pods_RunRunRunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */; };
 		DFD2EF7971B78B0250ECB7A7 /* Pods_RunRunRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F969EE6003E2EF4AEFF9F67E /* Pods_RunRunRun.framework */; };
@@ -19,7 +20,6 @@
 		F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01C755E24BB516100CE5A17 /* NoSessionView.xib */; };
 		F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */; };
 		F0284AD624AE4A2C007283F4 /* SessionLog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */; };
-		F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */; };
 		F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */; };
 		F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */; };
 		F04A6EDC24A91C25004D705F /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04A6EDB24A91C25004D705F /* Int+Extensions.swift */; };
@@ -92,6 +92,7 @@
 		420A24AE53A048C4690F2829 /* Pods-RunRunRunTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRunTests.release.xcconfig"; path = "Target Support Files/Pods-RunRunRunTests/Pods-RunRunRunTests.release.xcconfig"; sourceTree = "<group>"; };
 		4E73E153266C395C00B3A938 /* LiveActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityViewModel.swift; sourceTree = "<group>"; };
 		4E73E155266C3CB600B3A938 /* LocalActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalActivity.swift; sourceTree = "<group>"; };
+		4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewModel.swift; sourceTree = "<group>"; };
 		590576E684A8A2F00930D4E8 /* Pods-RunRunRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.release.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.release.xcconfig"; sourceTree = "<group>"; };
 		85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunRunRunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +104,6 @@
 		F01C755E24BB516100CE5A17 /* NoSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoSessionView.xib; sourceTree = "<group>"; };
 		F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationButton.swift; sourceTree = "<group>"; };
 		F0284AD524AE4A2C007283F4 /* SessionLog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SessionLog.storyboard; sourceTree = "<group>"; };
-		F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		F0284AE424AE79D8007283F4 /* RunDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RunDetailTableViewCell.xib; sourceTree = "<group>"; };
 		F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		F04A6EDB24A91C25004D705F /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		F0284AE124AE79A4007283F4 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				F0284AD824AE4DEA007283F4 /* SessionTableViewCell.swift */,
+				4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -741,7 +741,6 @@
 				F08232132597E19E00D58C3D /* RMSessionDetailView.swift in Sources */,
 				F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */,
 				F0BEC2EC2530FECE0021526A /* RMSummaryView.swift in Sources */,
-				F0284ADA24AE4DEA007283F4 /* SessionTableViewCell.swift in Sources */,
 				F0B0F632259521B800C0357C /* UITableView+Extensions.swift in Sources */,
 				4E73E156266C3CB600B3A938 /* LocalActivity.swift in Sources */,
 				F0EDEBD025082B1A00773014 /* UIFont+Extensions.swift in Sources */,
@@ -788,6 +787,7 @@
 				F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */,
 				F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */,
 				F0D366FA24ABFBC8000FBFE5 /* PersistenceManager.swift in Sources */,
+				4E73E158266D6C0100B3A938 /* SessionTableViewCell.swift in Sources */,
 				F05E38D5250957E8005B1916 /* RMSecondaryTitleLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,22 +9,20 @@
 import UIKit
 
 final class RMSessionDetailTileView: UIView {
-    private let mainStackView = UIStackView()
+    private lazy var mainStackView = UIStackView()
+    private lazy var textStackView = UIStackView()
+    private lazy var imageView = UIImageView()
     
-    private let textStackView = UIStackView()
+    private lazy var subtitleLabel = RMSecondaryTitleLabel(fontSize: 12,
+                                                      fontWeight: .light,
+                                                      color: .secondaryLabel)
     
-    private let imageView = UIView()
+    private lazy var valueLabel = RMTitleLabel(textAlignment: .natural,
+                                          fontSize: 22,
+                                          color: .systemGreen,
+                                          weight: .semibold)
     
-    private let subtitleLabel = RMSecondaryTitleLabel(fontSize: 12,
-                                                        fontWeight: .light,
-                                                        color: .secondaryLabel)
-    
-    private let valueLabel = RMTitleLabel(textAlignment: .natural,
-                                               fontSize: 22,
-                                               color: .systemGreen,
-                                               weight: .semibold)
-    
-    private let screenWidth = UIScreen.main.bounds.width
+    private static let screenWidth = UIScreen.main.bounds.width
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,8 +47,8 @@ extension RMSessionDetailTileView {
         backgroundColor = .secondarySystemBackground
         layer.cornerRadius = 20
         
-        imageView.backgroundColor = .white
-        imageView.makeCircular()
+        imageView.image = UIImage(systemName: "circle.fill")
+        imageView.tintColor = .systemOrange
     }
     
     private func configureLayout() {
@@ -67,7 +65,7 @@ extension RMSessionDetailTileView {
         NSLayoutConstraint.activate([
             // Cell
             heightAnchor.constraint(equalToConstant: 80),
-            widthAnchor.constraint(equalToConstant: (screenWidth - 24 - 20) / 2),
+            widthAnchor.constraint(equalToConstant: (Self.screenWidth - 24 - 20) / 2),
             
             // MainStackView
             mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -93,7 +91,7 @@ extension RMSessionDetailTileView {
         mainStackView.axis = .horizontal
         mainStackView.alignment = .center
         mainStackView.distribution = .fill
-        mainStackView.spacing = 12
+        mainStackView.spacing = 4
         
         mainStackView.addArrangedSubview(imageView)
         mainStackView.addArrangedSubview(textStackView)

@@ -19,6 +19,8 @@ final class LiveActivityViewController: BaseViewController {
     private lazy var pausedSessionView = RMPausedSessionViewController()
     private lazy var buttonView = RMSessionButtonStackView()
 
+    // MARK: - Initializers
+
     init(viewModel: LiveActivityViewModeling = LiveActivityViewModel()) {
         self.viewModel = viewModel
         super.init()
@@ -43,6 +45,8 @@ final class LiveActivityViewController: BaseViewController {
         viewModel.startActivity()
     }
 }
+
+// MARK: - Setup Bindings
 
 extension LiveActivityViewController {
     func setupBindings() {
