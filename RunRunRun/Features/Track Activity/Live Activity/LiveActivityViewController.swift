@@ -13,11 +13,11 @@ final class LiveActivityViewController: BaseViewController {
 
     var viewModel: LiveActivityViewModeling
 
-    private var buttonViewBottomConstraint: NSLayoutConstraint?
-
     private lazy var sessionDetailView = RMSessionDetailView()
     private lazy var pausedSessionView = RMPausedSessionViewController()
     private lazy var buttonView = RMSessionButtonStackView()
+
+    private var buttonViewBottomConstraint: NSLayoutConstraint?
 
     // MARK: - Initializers
 
@@ -105,15 +105,13 @@ extension LiveActivityViewController {
     }
     
     @objc private func didTapFinishButton() {
-        removePausedView { [weak self] in
-            self?.viewModel.finishButtonDidTap()
-        }
+        removePausedView()
+        viewModel.finishButtonDidTap()
     }
 
-    private func removePausedView(completion: @escaping () -> Void) {
+    private func removePausedView() {
         buttonView.finishButton.isEnabled = false
         pausedSessionView.view.removeFromSuperview()
-        completion()
     }
 }
 

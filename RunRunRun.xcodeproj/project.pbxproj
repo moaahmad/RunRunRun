@@ -10,6 +10,7 @@
 		4E73E154266C395C00B3A938 /* LiveActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E153266C395C00B3A938 /* LiveActivityViewModel.swift */; };
 		4E73E156266C3CB600B3A938 /* LocalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E155266C3CB600B3A938 /* LocalActivity.swift */; };
 		4E73E158266D6C0100B3A938 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */; };
+		4E73E163266E827200B3A938 /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E162266E827200B3A938 /* UIViewHelper.swift */; };
 		4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */; };
 		74433E6A3AE36932AE505DCD /* Pods_RunRunRunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */; };
 		DFD2EF7971B78B0250ECB7A7 /* Pods_RunRunRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F969EE6003E2EF4AEFF9F67E /* Pods_RunRunRun.framework */; };
@@ -93,6 +94,7 @@
 		4E73E153266C395C00B3A938 /* LiveActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityViewModel.swift; sourceTree = "<group>"; };
 		4E73E155266C3CB600B3A938 /* LocalActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalActivity.swift; sourceTree = "<group>"; };
 		4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		4E73E162266E827200B3A938 /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewModel.swift; sourceTree = "<group>"; };
 		590576E684A8A2F00930D4E8 /* Pods-RunRunRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.release.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.release.xcconfig"; sourceTree = "<group>"; };
 		85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunRunRunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E73E161266E825200B3A938 /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E73E162266E827200B3A938 /* UIViewHelper.swift */,
+			);
+			path = "Test Extensions";
+			sourceTree = "<group>";
+		};
 		4E79038E266B8DBA0026E88F /* Start Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +370,7 @@
 		F0A674C524A7CCB50083FD5F /* RunRunRunTests */ = {
 			isa = PBXGroup;
 			children = (
+				4E73E161266E825200B3A938 /* Test Extensions */,
 				F0A674C624A7CCB50083FD5F /* RunRunRunTests.swift */,
 				F0A674C824A7CCB50083FD5F /* Info.plist */,
 			);
@@ -796,6 +807,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E73E163266E827200B3A938 /* UIViewHelper.swift in Sources */,
 				F0A674C724A7CCB50083FD5F /* RunRunRunTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

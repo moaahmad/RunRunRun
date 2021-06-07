@@ -128,16 +128,19 @@ extension LiveActivityViewModel: LiveActivityViewModeling {
                                      pace: pace,
                                      startDateTime: startDateTime,
                                      locations: coordinateLocations)
-        save(activity)
-        coordinator?.dismissViewController(animated: true)
+        save(activity) { [weak self] in
+            self?.coordinator?.dismissViewController(animated: true)
+        }
     }
 
-    private func save(_ activity: LocalActivity) {
+    private func save(_ activity: LocalActivity,
+                      _ completion: (() -> Void)?) {
         persistenceManager.save(duration: activity.duration,
                                 distance: activity.distance,
                                 pace: activity.pace,
                                 startDateTime: activity.startDateTime,
                                 locations: activity.locations)
+        completion?()
     }
 
     private func startTimer() {
