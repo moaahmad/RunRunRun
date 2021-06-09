@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 final class StartActivityViewController: BaseViewController {
-    private struct Constants {
+    private struct Constant {
         static let latitudinalMeters = 1000.0
         static let longitudinalMeters = 1000.0
         private init() {}
@@ -75,8 +75,8 @@ private extension StartActivityViewController {
         mapView.showsScale = true
 
         let coordinateRegion = MKCoordinateRegion(center: mapView.userLocation.coordinate,
-                                                  latitudinalMeters: Constants.latitudinalMeters,
-                                                  longitudinalMeters: Constants.longitudinalMeters)
+                                                  latitudinalMeters: Constant.latitudinalMeters,
+                                                  longitudinalMeters: Constant.longitudinalMeters)
         mapView.setRegion(coordinateRegion, animated: true)
     }
 }

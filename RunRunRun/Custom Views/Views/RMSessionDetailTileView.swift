@@ -91,7 +91,7 @@ extension RMSessionDetailTileView {
         mainStackView.axis = .horizontal
         mainStackView.alignment = .center
         mainStackView.distribution = .fill
-        mainStackView.spacing = 4
+        mainStackView.spacing = 8
         
         mainStackView.addArrangedSubview(imageView)
         mainStackView.addArrangedSubview(textStackView)

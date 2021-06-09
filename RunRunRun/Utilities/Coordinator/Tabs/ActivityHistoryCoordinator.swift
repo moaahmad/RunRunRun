@@ -16,8 +16,8 @@ final class ActivityHistoryCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = ActivityHistoryViewController()
-        vc.coordinator = self
+        let viewModel = ActivityHistoryViewModel(coordinator: self)
+        let vc = ActivityHistoryViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
 

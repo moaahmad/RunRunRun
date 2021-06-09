@@ -8,10 +8,18 @@
 
 import Foundation
 
-struct LocalActivity {
-    let duration: Int
-    let distance: Double
-    let pace: Double
-    let startDateTime: Date
-    let locations: [Location]
+protocol ActivityRepresentable {
+    var duration: Int? { get set }
+    var distance: Double? { get set }
+    var pace: Double? { get set }
+    var startDateTime: Date? { get set }
+    var locations: [Location]? { get set }
+}
+
+struct LocalActivity: ActivityRepresentable {
+    var duration: Int?
+    var distance: Double?
+    var pace: Double?
+    var startDateTime: Date?
+    var locations: [Location]?
 }

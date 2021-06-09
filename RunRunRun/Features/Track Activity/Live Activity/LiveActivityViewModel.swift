@@ -57,12 +57,6 @@ final class LiveActivityViewModel: NSObject {
 
     private var sessionTimer: RepeatingTimer!
 
-    private var runs: NSFetchedResultsController<Run>!
-    private var fetchRuns: NSFetchedResultsController<Run> {
-        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
-        return setupFetch
-    }
-
     private var context: NSManagedObjectContext {
         (UIApplication.shared.delegate as? AppDelegate)?
             .persistentContainer.viewContext ?? .init(concurrencyType: .mainQueueConcurrencyType)
@@ -84,7 +78,6 @@ final class LiveActivityViewModel: NSObject {
         super.init()
 
         setupLocationManager()
-        runs = fetchRuns
         sessionTimer = RepeatingTimer(timeInterval: 1, delegate: self)
     }
 }
@@ -135,11 +128,11 @@ extension LiveActivityViewModel: LiveActivityViewModeling {
 
     private func save(_ activity: LocalActivity,
                       _ completion: (() -> Void)?) {
-        persistenceManager.save(duration: activity.duration,
-                                distance: activity.distance,
-                                pace: activity.pace,
-                                startDateTime: activity.startDateTime,
-                                locations: activity.locations)
+        persistenceManager.save(duration: activity.duration ?? 0,
+                                distance: activity.distance ?? 0.0,
+                                pace: activity.pace ?? 0.0,
+                                startDateTime: activity.startDateTime ?? .init(),
+                                locations: activity.locations ?? [])
         completion?()
     }
 

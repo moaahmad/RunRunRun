@@ -14,27 +14,6 @@ struct CoreDataManager: LocalPersistence {
         (UIApplication.shared.delegate as? AppDelegate)?
             .persistentContainer.viewContext ?? .init(concurrencyType: .mainQueueConcurrencyType)
     }
-    
-    var fetchedResultsController: NSFetchedResultsController<Run>!
-    
-    mutating func setupFetchedRunsController() -> NSFetchedResultsController<Run> {
-        let fetchRequest: NSFetchRequest<Run> = Run.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "startDateTime", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                              managedObjectContext: context,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: "runs")
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError("The fetch could not be performed: \(error.localizedDescription)")
-        }
-        
-        return fetchedResultsController
-    }
 
     func save(duration: Int,
               distance: Double,
@@ -69,11 +48,10 @@ struct CoreDataManager: LocalPersistence {
             return runs
         }
     }
-    
-    func delete(at indexPath: IndexPath) {
-        let runToDelete = fetchedResultsController.object(at: indexPath)
-        context.delete(runToDelete)
-        
+
+    func delete(_ activity: Run) {
+        context.delete(activity)
+
         do {
             try context.save()
         } catch {

@@ -7,15 +7,23 @@
 // 
 
 import UIKit
-import CoreData
 
 final class ActivityHistoryViewController: UIViewController {
-    weak var coordinator: Coordinator?
+    // MARK: - Enums
 
-    private var fetchedRuns: NSFetchedResultsController<Run>!
-    private var runs = [Run]()
-    var sections = [GroupedSection<Date, Run>]()
-    
+    private struct Constant {
+        static let topInset: CGFloat = 20
+        static let headerHeight: CGFloat = 210
+        private init() {}
+    }
+
+    // MARK: - Properties
+
+    var viewModel: ActivityHistoryViewModeling
+    lazy var dataSource = ActivityHistoryDataSource()
+
+    // MARK: - Subviews
+
     private lazy var tableView: UITableView = {
         UITableView(frame: .zero, style: .insetGrouped)
     }()
@@ -34,26 +42,41 @@ final class ActivityHistoryViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing Activity...")
         return refreshControl
     }()
-    
+
+    private lazy var headerView = RMHistoryHeaderView()
+
+    // MARK: - Initializers
+
+    init(viewModel: ActivityHistoryViewModeling) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - UIView Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        viewModel.dataSource = dataSource
         configureLayout()
         configureTableView()
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        loadRuns()
-        configureHistory()
+        viewModel.loadRuns()
+        configureHistoryView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        fetchedRuns = nil
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,55 +84,42 @@ final class ActivityHistoryViewController: UIViewController {
         updateHeaderViewHeight(for: tableView.tableHeaderView)
     }
 
-    private func updateHeaderViewHeight(for header: UIView?) {
-        guard let header = header else { return }
-        header.frame.size.height = 210
+    private func setupBindings() {
+        dataSource.didDeleteRow = { [weak self] in
+            guard let runs = self?.viewModel.dataSource?.runs,
+                  runs.isEmpty else { return }
+            self?.showNoSessionView()
+            self?.tableView.reloadData()
+        }
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        fetchedRuns = fetchRuns()
+        viewModel.loadRuns()
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
 }
 
-// MARK: - Load Runs
-extension ActivityHistoryViewController {
-    private func loadRuns() {
-        // Fetch runs from Core Data
-        fetchedRuns = fetchRuns()
-        runs = fetchedRuns.runsOrderedByDate()
-        // Sort run data into groups by month
-        sections = GroupedSection.group(rows: self.runs,
-                                        by: { $0.startDateTime!.firstDayOfMonth() })
-        sections.sort { lhs, rhs in lhs.sectionItem > rhs.sectionItem }
-    }
-    
-    private func fetchRuns() -> NSFetchedResultsController<Run> {
-        let setupFetch = PersistenceManager.store.setupFetchedRunsController()
-        setupFetch.delegate = self
-        return setupFetch
-    }
-}
-
 // MARK: - Configure Layout
+
 private extension ActivityHistoryViewController {
     func configureTableView() {
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = dataSource
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.register(SessionTableViewCell.self,
                            forCellReuseIdentifier: SessionTableViewCell.reuseID)
         
         tableView.addSubview(refreshControl)
-        tableView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 12, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: Constant.topInset, left: 0, bottom: 0, right: 0)
         
         // Header Setup
-        let headerView = RMHistoryHeaderView()
         tableView.tableHeaderView = headerView
     }
     
     func configureLayout() {
+        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -119,9 +129,14 @@ private extension ActivityHistoryViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+
+    func updateHeaderViewHeight(for header: UIView?) {
+        guard let header = header else { return }
+        header.frame.size.height = Constant.headerHeight
+    }
     
-    func configureHistory() {
-        guard let runs = fetchedRuns.fetchedObjects,
+    func configureHistoryView() {
+        guard let runs = viewModel.dataSource?.runs,
               !runs.isEmpty else {
             return showNoSessionView()
         }
@@ -146,106 +161,11 @@ private extension ActivityHistoryViewController {
     }
 }
 
-// MARK: - UITableView Datasource and Delegate
-extension ActivityHistoryViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        guard !sections.isEmpty else { return 1 }
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard !runs.isEmpty else { return nil }
-        let sectionData = sections[section]
-        let date = sectionData.sectionItem
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM yyyy"
-        return dateFormatter.string(from: date)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !sections.isEmpty else { return 0 }
-        let section = sections[section]
-        return section.rows.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SessionTableViewCell.reuseID,
-                                                       for: indexPath)
-            as? SessionTableViewCell else { return UITableViewCell() }
-        let section = sections[indexPath.section]
-        let run = section.rows[indexPath.row]
-        cell.configureSession(run: run)
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }
-    
+// MARK: - UITableViewDelegate
+
+extension ActivityHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let section = sections[indexPath.section]
-        let run = section.rows[indexPath.row]
-
-        if let coordinator = coordinator as? ActivityHistoryCoordinator {
-            coordinator.showCurrentRunVC(activity: run)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
-                   forRowAt indexPath: IndexPath) {
-        switch editingStyle {
-        case .delete:
-            sections[indexPath.section].rows.remove(at: indexPath.row)
-            PersistenceManager.store.delete(at: indexPath)
-            guard let runs = sections.first?.rows,
-                runs.isEmpty else { return }
-            navigationItem.rightBarButtonItem = nil
-            showNoSessionView()
-        default:
-            break
-        }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate Methods
-extension ActivityHistoryViewController: NSFetchedResultsControllerDelegate {
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any,
-                    at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType,
-                    newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
-        case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
-        case .update:
-            tableView.reloadRows(at: [indexPath!], with: .fade)
-        case .move:
-            tableView.moveRow(at: indexPath!, to: newIndexPath!)
-        @unknown default:
-            fatalError()
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange sectionInfo: NSFetchedResultsSectionInfo,
-                    atSectionIndex sectionIndex: Int,
-                    for type: NSFetchedResultsChangeType) {
-        let indexSet = IndexSet(integer: sectionIndex)
-        switch type {
-        case .insert: tableView.insertSections(indexSet, with: .fade)
-        case .delete: tableView.deleteSections(indexSet, with: .fade)
-        case .update, .move:
-            fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
-        @unknown default:
-            fatalError()
-        }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+        viewModel.didSelectRun(atIndexPath: indexPath)
     }
 }
