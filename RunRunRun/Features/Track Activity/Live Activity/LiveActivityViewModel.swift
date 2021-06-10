@@ -9,11 +9,6 @@
 import UIKit
 import CoreData
 
-enum ActivityState {
-    case play
-    case pause
-}
-
 protocol UpdateDurationDelegate: AnyObject {
     func updateDuration(with counter: Int)
 }
@@ -36,8 +31,8 @@ final class LiveActivityViewModel: NSObject {
     // MARK: - Properties
 
     weak var coordinator: Coordinator?
-    let persistenceManager: LocalPersistence
-    var locationManager: CLLocationManager
+    private let persistenceManager: LocalPersistence
+    private var locationManager: CLLocationManager
 
     private var isPaused = false
     private var hasBeenPaused = false
@@ -50,6 +45,7 @@ final class LiveActivityViewModel: NSObject {
 
     private var runDistance = 0.0
     private var pace = 0.0
+
     private var getAveragePace: String {
         SessionUtilities.calculateAveragePace(time: sessionTimer.counter,
                                               meters: runDistance)
@@ -69,7 +65,7 @@ final class LiveActivityViewModel: NSObject {
     var didUpdateDistance: ((String) -> Void)?
     var didUpdatePace: ((String) -> Void)?
 
-    // MARK: - Init
+    // MARK: - Initializer
 
     init(persistenceManager: LocalPersistence = PersistenceManager.store,
          manager: CLLocationManager = CLLocationManager()) {

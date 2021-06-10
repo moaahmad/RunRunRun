@@ -16,4 +16,11 @@ extension UITableView {
     func removeExcessCells() {
         tableFooterView = UIView(frame: .zero)
     }
+
+    func scrollToTop() {
+        let topRow = IndexPath(row: 0, section: 0)
+        self.scrollToRow(at: topRow,
+                              at: .top,
+                              animated: true)
+    }
 }

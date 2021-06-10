@@ -37,7 +37,7 @@ struct CoreDataManager: LocalPersistence {
         }
     }
     
-    func readAll() -> [Run]? {
+    func readAll() throws -> [Run] {
         let fetchRequest = NSFetchRequest<Run>(entityName: "Run")
         var runs = [Run]()
         do {

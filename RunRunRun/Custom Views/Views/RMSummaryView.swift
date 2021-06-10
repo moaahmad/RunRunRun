@@ -9,18 +9,19 @@
 import UIKit
 
 final class RMSummaryView: UIView {
-    private var titleLabel = RMTitleLabel(textAlignment: .center,
-                                          fontSize: 21,
+    lazy var titleLabel = RMTitleLabel(textAlignment: .center,
+                                          fontSize: 24,
                                           color: .label)
     
-    private let summaryStackView = RMSummaryStackView()
+    lazy var summaryStackView = RMSummaryStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
         styleLayout()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,12 +37,12 @@ extension RMSummaryView {
         addSubviews(titleLabel, summaryStackView)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             
             summaryStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            summaryStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            summaryStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            summaryStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            summaryStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             summaryStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
         ])
     }

@@ -11,6 +11,6 @@ import Foundation
 public protocol LocalPersistence {
     // CRUD database operations
     func save(duration: Int, distance: Double, pace: Double, startDateTime: Date, locations: [Location])
-    func readAll() -> [Run]?
+    func readAll() throws -> [Run]
     func delete(_ activity: Run)
 }

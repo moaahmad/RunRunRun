@@ -9,14 +9,14 @@
 import UIKit
 
 final class RMSummaryStackView: UIStackView {
-    let totalDistanceStackView = RMSummaryDetailStackView(value: "--",
-                                                          title: "Kilometres")
-    
-    let totalDurationStackView = RMSummaryDetailStackView(value: "--:--:--",
-                                                          title: "Time")
+    lazy var totalWorkoutsStackView = RMSummaryDetailStackView(value: "0",
+                                                               title: "Workouts")
 
-    let totalAveragePaceStackView = RMSummaryDetailStackView(value: "--'--\"",
-                                                             title: "Avg. Pace")
+    lazy var totalDistanceStackView = RMSummaryDetailStackView(value: "0",
+                                                               title: "Kilometres")
+    
+    lazy var totalDurationStackView = RMSummaryDetailStackView(value: "00:00",
+                                                               title: "Time")
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,17 +28,17 @@ final class RMSummaryStackView: UIStackView {
     }
     
     private func configureLayout() {
+        totalWorkoutsStackView.translatesAutoresizingMaskIntoConstraints = false
         totalDistanceStackView.translatesAutoresizingMaskIntoConstraints = false
         totalDurationStackView.translatesAutoresizingMaskIntoConstraints = false
-        totalAveragePaceStackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         axis = .horizontal
         distribution = .fillEqually
         alignment = .center
         spacing = 8
         
+        addArrangedSubview(totalWorkoutsStackView)
         addArrangedSubview(totalDistanceStackView)
         addArrangedSubview(totalDurationStackView)
-        addArrangedSubview(totalAveragePaceStackView)
     }
 }

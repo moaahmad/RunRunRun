@@ -43,13 +43,14 @@ final class ActivityHistoryViewController: UIViewController {
         return refreshControl
     }()
 
-    private lazy var headerView = RMHistoryHeaderView()
+    private lazy var headerVC = RMHistoryHeaderView()
 
     // MARK: - Initializers
 
     init(viewModel: ActivityHistoryViewModeling) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        setupBindings()
     }
 
     @available(*, unavailable)
@@ -64,7 +65,6 @@ final class ActivityHistoryViewController: UIViewController {
         viewModel.dataSource = dataSource
         configureLayout()
         configureTableView()
-        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,18 +112,22 @@ private extension ActivityHistoryViewController {
                            forCellReuseIdentifier: SessionTableViewCell.reuseID)
         
         tableView.addSubview(refreshControl)
-        tableView.contentInset = UIEdgeInsets(top: Constant.topInset, left: 0, bottom: 0, right: 0)
+//        tableView.contentInset = UIEdgeInsets(top: Constant.topInset, left: 0, bottom: 0, right: 0)
         
-        // Header Setup
-        tableView.tableHeaderView = headerView
+        tableView.tableHeaderView = headerVC
     }
     
     func configureLayout() {
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
+//        addChild(headerVC)
+//        didMove(toParent: self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+//        headerVC.view.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                           constant: Constant.topInset),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -134,7 +138,7 @@ private extension ActivityHistoryViewController {
         guard let header = header else { return }
         header.frame.size.height = Constant.headerHeight
     }
-    
+
     func configureHistoryView() {
         guard let runs = viewModel.dataSource?.runs,
               !runs.isEmpty else {

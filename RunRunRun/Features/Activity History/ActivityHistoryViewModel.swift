@@ -15,10 +15,13 @@ protocol ActivityHistoryViewModeling {
 }
 
 struct ActivityHistoryViewModel: ActivityHistoryViewModeling {
+    // MARK: - Properties
+
     weak var coordinator: Coordinator?
     weak var dataSource: ActivityHistoryDataSourceable?
     private let persistenceManager: LocalPersistence
 
+    // MARK: - Init
 
     init(coordinator: Coordinator?,
          persistenceManager: LocalPersistence = PersistenceManager.store) {
@@ -26,6 +29,8 @@ struct ActivityHistoryViewModel: ActivityHistoryViewModeling {
         self.persistenceManager = persistenceManager
     }
 }
+
+// MARK: - ActivityHistoryViewModeling Functions
 
 extension ActivityHistoryViewModel {
     func loadRuns() {

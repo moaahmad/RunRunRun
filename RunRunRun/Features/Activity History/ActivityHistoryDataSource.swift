@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 protocol ActivityHistoryDataSourceable: UITableViewDataSource {
     var runs: [String: [Run]]? { get }
@@ -16,11 +15,14 @@ protocol ActivityHistoryDataSourceable: UITableViewDataSource {
 }
 
 final class ActivityHistoryDataSource: NSObject, ActivityHistoryDataSourceable {
+    // MARK: - Properties
 
     var runs: [String: [Run]]?
     private let persistenceManager: LocalPersistence
 
     var didDeleteRow: (() -> Void)?
+
+    // MARK: - Init
 
     init(persistenceManager: LocalPersistence = PersistenceManager.store) {
         self.persistenceManager = persistenceManager
@@ -31,9 +33,13 @@ final class ActivityHistoryDataSource: NSObject, ActivityHistoryDataSourceable {
     // MARK: - Load Runs
 
     func loadRuns() {
-        let loadedRuns = persistenceManager.readAll() ?? []
-        runs = .init(grouping: loadedRuns.sorted(by: { $0.startDateTime! > $1.startDateTime! }),
-                     by: configureSectionTitle(run:))
+        do {
+            let loadedRuns = try persistenceManager.readAll()
+            runs = .init(grouping: loadedRuns.sorted(by: { $0.startDateTime! > $1.startDateTime! }),
+                         by: configureSectionTitle(run:))
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
     }
 
     private func configureSectionTitle(run: Run) -> String {
@@ -53,20 +59,22 @@ extension ActivityHistoryDataSource {
         return runs.count
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
         guard let runs = runs,
               !runs.isEmpty else { return nil }
         return runs.keys.sorted()[section]
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let runs = runs, !runs.isEmpty else { return 0 }
-        let sectionKey = runs.keys.sorted()[section]
-        guard let section = runs[sectionKey] else { return 0 }
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
+        guard let runs = runs, !runs.isEmpty,
+              let section = runs[runs.keys.sorted()[section]] else { return 0 }
         return section.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SessionTableViewCell.reuseID,
                                                        for: indexPath) as? SessionTableViewCell else {
             return UITableViewCell()
@@ -81,7 +89,8 @@ extension ActivityHistoryDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
@@ -96,7 +105,8 @@ extension ActivityHistoryDataSource {
         }
     }
 
-    private func tableView(_ tableView: UITableView, runAt indexPath: IndexPath) -> Run? {
+    private func tableView(_ tableView: UITableView,
+                           runAt indexPath: IndexPath) -> Run? {
         guard let sectionKey = runs?.keys.sorted()[indexPath.section] else { return .init() }
         return runs?[sectionKey]?[indexPath.row]
     }

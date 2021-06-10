@@ -9,8 +9,8 @@
 import UIKit
 
 final class RMSummaryDetailStackView: UIStackView {
-    private let valueLabel = RMTitleLabel(textAlignment: .center,
-                                  fontSize: 22,
+    let valueLabel = RMTitleLabel(textAlignment: .center,
+                                  fontSize: 27,
                                   color: .label,
                                   weight: .semibold)
     
@@ -47,7 +47,7 @@ extension RMSummaryDetailStackView {
         let textStackView = UIStackView(arrangedSubviews: [valueLabel, titleLabel])
         textStackView.axis = .vertical
         textStackView.alignment = .leading
-        textStackView.spacing = 8
+        textStackView.spacing = 6
         
         addArrangedSubview(textStackView)
     }
