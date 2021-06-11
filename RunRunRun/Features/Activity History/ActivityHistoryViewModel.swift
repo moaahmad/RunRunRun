@@ -10,7 +10,9 @@ import UIKit
 
 protocol ActivityHistoryViewModeling {
     var dataSource: ActivityHistoryDataSourceable? { get set }
-    func loadRuns()
+    
+    @discardableResult
+    func loadRuns() -> [Run]
     func didSelectRun(atIndexPath indexPath: IndexPath)
 }
 
@@ -33,13 +35,15 @@ struct ActivityHistoryViewModel: ActivityHistoryViewModeling {
 // MARK: - ActivityHistoryViewModeling Functions
 
 extension ActivityHistoryViewModel {
-    func loadRuns() {
+    @discardableResult
+    func loadRuns() -> [Run] {
         dataSource?.loadRuns()
+        return dataSource?.runsDict.flatMap { $0.value } ?? []
     }
 
     func didSelectRun(atIndexPath indexPath: IndexPath) {
-        guard let sectionKey = dataSource?.runs?.keys.sorted()[indexPath.section],
-              let run = dataSource?.runs?[sectionKey]?[indexPath.row] else { return }
+        guard let sectionKey = dataSource?.runsDict.keys.sorted()[indexPath.section],
+              let run = dataSource?.runsDict[sectionKey]?[indexPath.row] else { return }
 
         if let coordinator = coordinator as? ActivityHistoryCoordinator {
             coordinator.showCurrentRunVC(activity: run)

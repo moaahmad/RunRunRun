@@ -12,11 +12,11 @@
 		4E73E158266D6C0100B3A938 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */; };
 		4E73E163266E827200B3A938 /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E162266E827200B3A938 /* UIViewHelper.swift */; };
 		4E73E16D266ED1F300B3A938 /* ActivityHistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E16C266ED1F300B3A938 /* ActivityHistoryDataSource.swift */; };
+		4E73E178267297D200B3A938 /* RMHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */; };
 		4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */; };
 		74433E6A3AE36932AE505DCD /* Pods_RunRunRunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */; };
 		DFD2EF7971B78B0250ECB7A7 /* Pods_RunRunRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F969EE6003E2EF4AEFF9F67E /* Pods_RunRunRun.framework */; };
 		F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */; };
-		F007265A25080D35009E00B7 /* RMHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */; };
 		F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265B25081CAE009E00B7 /* RMTabBarController.swift */; };
 		F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01C755E24BB516100CE5A17 /* NoSessionView.xib */; };
 		F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */; };
@@ -96,12 +96,12 @@
 		4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		4E73E162266E827200B3A938 /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		4E73E16C266ED1F300B3A938 /* ActivityHistoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryDataSource.swift; sourceTree = "<group>"; };
+		4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMHistoryHeaderView.swift; sourceTree = "<group>"; };
 		4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewModel.swift; sourceTree = "<group>"; };
 		590576E684A8A2F00930D4E8 /* Pods-RunRunRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.release.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.release.xcconfig"; sourceTree = "<group>"; };
 		85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunRunRunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8AA12FACA3044AA07A7BF8F /* Pods-RunRunRunTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRunTests.debug.xcconfig"; path = "Target Support Files/Pods-RunRunRunTests/Pods-RunRunRunTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryViewController.swift; sourceTree = "<group>"; };
-		F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMHistoryHeaderView.swift; sourceTree = "<group>"; };
 		F007265B25081CAE009E00B7 /* RMTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMTabBarController.swift; sourceTree = "<group>"; };
 		F01C755E24BB516100CE5A17 /* NoSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoSessionView.xib; sourceTree = "<group>"; };
 		F01EC4A425093ABE00C3F966 /* RMLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationButton.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		F007265E25081CFC009E00B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F007265925080D35009E00B7 /* RMHistoryHeaderView.swift */,
+				4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */,
 				F0BEC2EB2530FECE0021526A /* RMSummaryView.swift */,
 				F0E6C2112594E46300F44D89 /* RMSessionDetailTileView.swift */,
 				F08232122597E19E00D58C3D /* RMSessionDetailView.swift */,
@@ -747,7 +747,6 @@
 				F0A674D924A7D3A70083FD5F /* BaseViewController.swift in Sources */,
 				F0DC58B625E1E03A003E8507 /* ActivityHistoryCoordinator.swift in Sources */,
 				F0DC58B025E1DD07003E8507 /* StartActivityCoordinator.swift in Sources */,
-				F007265A25080D35009E00B7 /* RMHistoryHeaderView.swift in Sources */,
 				F082320B259788BA00D58C3D /* RMPausedSessionViewController.swift in Sources */,
 				F08232132597E19E00D58C3D /* RMSessionDetailView.swift in Sources */,
 				F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */,
@@ -796,6 +795,7 @@
 				F05E38D725097834005B1916 /* RMPausePlayButton.swift in Sources */,
 				F0B09AEE24AE94EE00C3B5BE /* ActivityDetailViewController.swift in Sources */,
 				F007265C25081CAE009E00B7 /* RMTabBarController.swift in Sources */,
+				4E73E178267297D200B3A938 /* RMHistoryHeaderView.swift in Sources */,
 				F01EC4A525093ABE00C3F966 /* RMLocationButton.swift in Sources */,
 				F0D366FA24ABFBC8000FBFE5 /* PersistenceManager.swift in Sources */,
 				4E73E158266D6C0100B3A938 /* SessionTableViewCell.swift in Sources */,

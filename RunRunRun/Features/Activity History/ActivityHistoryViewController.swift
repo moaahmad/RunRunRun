@@ -20,7 +20,7 @@ final class ActivityHistoryViewController: UIViewController {
     // MARK: - Properties
 
     var viewModel: ActivityHistoryViewModeling
-    lazy var dataSource = ActivityHistoryDataSource()
+    lazy var dataSource: ActivityHistoryDataSourceable = ActivityHistoryDataSource()
 
     // MARK: - Subviews
 
@@ -28,6 +28,8 @@ final class ActivityHistoryViewController: UIViewController {
         UITableView(frame: .zero, style: .insetGrouped)
     }()
     
+    private lazy var headerView = RMHistoryHeaderView()
+
     private lazy var noSessionView: UIView = {
         let view = UINib(nibName: "NoSessionView", bundle: .main)
             .instantiate(withOwner: nil, options: nil).first as? UIView
@@ -43,7 +45,6 @@ final class ActivityHistoryViewController: UIViewController {
         return refreshControl
     }()
 
-    private lazy var headerVC = RMHistoryHeaderView()
 
     // MARK: - Initializers
 
@@ -70,7 +71,7 @@ final class ActivityHistoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        viewModel.loadRuns()
+        headerView.updateTotals(fromRuns: viewModel.loadRuns())
         configureHistoryView()
     }
     
@@ -84,17 +85,24 @@ final class ActivityHistoryViewController: UIViewController {
         updateHeaderViewHeight(for: tableView.tableHeaderView)
     }
 
+    // MARK: - Setup Bindings
+
     private func setupBindings() {
         dataSource.didDeleteRow = { [weak self] in
-            guard let runs = self?.viewModel.dataSource?.runs,
-                  runs.isEmpty else { return }
-            self?.showNoSessionView()
-            self?.tableView.reloadData()
+            guard let self = self else { return }
+            let runs = self.viewModel.loadRuns()
+            self.headerView.updateTotals(fromRuns: runs)
+
+            guard runs.isEmpty else { return }
+            self.showNoSessionView()
+            self.tableView.reloadData()
         }
     }
+
+    // MARK: - Handle Refresh
     
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel.loadRuns()
+    @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
+        headerView.updateTotals(fromRuns: viewModel.loadRuns())
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -107,24 +115,16 @@ private extension ActivityHistoryViewController {
         tableView.delegate = self
         tableView.dataSource = dataSource
         tableView.showsVerticalScrollIndicator = false
-        
         tableView.register(SessionTableViewCell.self,
                            forCellReuseIdentifier: SessionTableViewCell.reuseID)
-        
         tableView.addSubview(refreshControl)
-//        tableView.contentInset = UIEdgeInsets(top: Constant.topInset, left: 0, bottom: 0, right: 0)
-        
-        tableView.tableHeaderView = headerVC
+        tableView.tableHeaderView = headerView
     }
     
     func configureLayout() {
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
-//        addChild(headerVC)
-//        didMove(toParent: self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-//        headerVC.view.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                            constant: Constant.topInset),
@@ -140,8 +140,8 @@ private extension ActivityHistoryViewController {
     }
 
     func configureHistoryView() {
-        guard let runs = viewModel.dataSource?.runs,
-              !runs.isEmpty else {
+        guard let runsDict = viewModel.dataSource?.runsDict,
+              !runsDict.isEmpty else {
             return showNoSessionView()
         }
         showRunView()
