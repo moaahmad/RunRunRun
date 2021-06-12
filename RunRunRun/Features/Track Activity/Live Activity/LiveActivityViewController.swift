@@ -11,7 +11,7 @@ import UIKit
 final class LiveActivityViewController: BaseViewController {
     // MARK: - Properties
 
-    var viewModel: LiveActivityViewModeling
+    private var viewModel: LiveActivityViewModeling
 
     private lazy var sessionDetailView = RMSessionDetailView()
     private lazy var pausedSessionView = RMPausedSessionViewController()
@@ -21,7 +21,7 @@ final class LiveActivityViewController: BaseViewController {
 
     // MARK: - Initializers
 
-    init(viewModel: LiveActivityViewModeling = LiveActivityViewModel()) {
+    init(viewModel: LiveActivityViewModeling) {
         self.viewModel = viewModel
         super.init()
         setupBindings()
@@ -35,9 +35,7 @@ final class LiveActivityViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
         configureLayout()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,18 +71,19 @@ extension LiveActivityViewController {
 
 // MARK: - Pause & Play
 
-extension LiveActivityViewController {
-    private func didPauseActivity() {
+private extension LiveActivityViewController {
+    func didPauseActivity() {
         viewModel.activityDidPause()
 
         view.backgroundColor = .white
         sessionDetailView.removeFromSuperview()
         statusBarEnterDarkBackground()
         configurePauseSessionView()
+        pausedSessionView.updateValueLabels(withRun: viewModel.currentRun)
         buttonView.pausePlayButton.setImage(name: "play.fill")
     }
     
-    private func didPlayActivity() {
+    func didPlayActivity() {
         viewModel.activityDidPlay()
 
         view.backgroundColor = .systemGreen
@@ -97,19 +96,19 @@ extension LiveActivityViewController {
 
 // MARK: - Button Actions
 
-extension LiveActivityViewController {
-    @objc private func didTapPauseButton() {
+private extension LiveActivityViewController {
+    @objc func didTapPauseButton() {
         viewModel.pauseDidTap()
         animateButtonViewLayout()
         viewModel.isActivityPaused ? didPauseActivity() : didPlayActivity()
     }
     
-    @objc private func didTapFinishButton() {
+    @objc func didTapFinishButton() {
         removePausedView()
         viewModel.finishButtonDidTap()
     }
 
-    private func removePausedView() {
+    func removePausedView() {
         buttonView.finishButton.isEnabled = false
         pausedSessionView.view.removeFromSuperview()
     }
@@ -119,6 +118,7 @@ extension LiveActivityViewController {
 
 private extension LiveActivityViewController {
     func configureLayout() {
+        view.backgroundColor = .systemGreen
         configureButtonView()
         configureSessionDetailView()
     }

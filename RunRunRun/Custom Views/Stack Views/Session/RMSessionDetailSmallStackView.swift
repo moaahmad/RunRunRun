@@ -11,7 +11,7 @@ import UIKit
 final class RMSessionDetailSmallStackView: UIStackView {
     
     let valueLabel = RMTitleLabel(textAlignment: .center,
-                                  fontSize: 32,
+                                  fontSize: 30,
                                   color: .black)
     let descriptionLabel = RMSecondaryTitleLabel(fontSize: 17,
                                                  fontWeight: .semibold,
@@ -19,7 +19,7 @@ final class RMSessionDetailSmallStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureLayout()
     }
     
     required init(coder: NSCoder) {
@@ -35,7 +35,7 @@ final class RMSessionDetailSmallStackView: UIStackView {
 
 extension RMSessionDetailSmallStackView {
     
-    private func configure() {
+    private func configureLayout() {
         axis = .vertical
         distribution = .fill
         alignment = .center

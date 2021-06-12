@@ -24,8 +24,8 @@ final class MainCoordinator: Coordinator {
     }
 }
 
-extension MainCoordinator {
-    private func createStartActivityNavigationController() -> UINavigationController {
+private extension MainCoordinator {
+    func createStartActivityNavigationController() -> UINavigationController {
         let startActivityNavigationController = UINavigationController()
         startActivityNavigationController.tabBarItem = UITabBarItem(title: nil,
                                                                     image: UIImage(named: "run"), tag: 0)
@@ -33,7 +33,7 @@ extension MainCoordinator {
         return startActivityNavigationController
     }
 
-    private func createActivityHistoryNavigationController() -> UINavigationController {
+    func createActivityHistoryNavigationController() -> UINavigationController {
         let activityHistoryNavigationController = UINavigationController()
         activityHistoryNavigationController.tabBarItem = UITabBarItem(title: nil,
                                                                       image: UIImage(named: "timer"), tag: 1)
@@ -41,14 +41,14 @@ extension MainCoordinator {
         return activityHistoryNavigationController
     }
 
-    private func configureStartActivityCoordinator(with navigationController: UINavigationController) {
+    func configureStartActivityCoordinator(with navigationController: UINavigationController) {
         let startActivityCoordinator = StartActivityCoordinator(navigationController: navigationController)
         startActivityCoordinator.parentCoordinator = self
         startActivityCoordinator.start()
         childCoordinators.append(startActivityCoordinator)
     }
 
-    private func configureActivityHistoryCoordinator(with navigationController: UINavigationController) {
+    func configureActivityHistoryCoordinator(with navigationController: UINavigationController) {
         let activityHistoryCoordinator = ActivityHistoryCoordinator(navigationController: navigationController)
         activityHistoryCoordinator.parentCoordinator = self
         activityHistoryCoordinator.start()

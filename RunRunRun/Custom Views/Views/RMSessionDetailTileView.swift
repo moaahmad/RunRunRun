@@ -48,7 +48,7 @@ extension RMSessionDetailTileView {
         layer.cornerRadius = 20
         
         imageView.image = UIImage(systemName: "circle.fill")
-        imageView.tintColor = .systemOrange
+        imageView.tintColor = .label
     }
     
     private func configureLayout() {

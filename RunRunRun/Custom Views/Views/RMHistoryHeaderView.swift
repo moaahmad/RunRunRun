@@ -9,6 +9,16 @@
 import UIKit
 
 final class RMHistoryHeaderView: UIView {
+    // MARK: - Enums
+
+    private struct Constant {
+        static let cornerRadius: CGFloat = 20
+        static let leadingMargin: CGFloat = 16
+        static let trailingMargin: CGFloat = -16
+        static let titleHeight: CGFloat = 50
+        private init() {}
+    }
+
     // MARK: - Properties
 
     private lazy var summaryView = RMSummaryView()
@@ -29,7 +39,7 @@ final class RMHistoryHeaderView: UIView {
 
     func updateTotals(fromRuns runs: [Run]) {
         let view = summaryView.summaryStackView
-        view.totalWorkoutsStackView.valueLabel.text = calculateTotalWorkouts(fromRuns: runs)
+        summaryView.totalWorkoutsLabel.text = calculateTotalWorkouts(fromRuns: runs)
         view.totalDistanceStackView.valueLabel.text = calculateTotalDistance(fromRuns: runs)
         view.totalDurationStackView.valueLabel.text = calculateTotalTime(fromRuns: runs)
     }
@@ -56,10 +66,10 @@ private extension RMHistoryHeaderView {
 
 // MARK: - UI Setup
 
-extension RMHistoryHeaderView {
-    private func styleView() {
+private extension RMHistoryHeaderView {
+    func styleView() {
         summaryView.translatesAutoresizingMaskIntoConstraints = false
-        summaryView.layer.cornerRadius = 20
+        summaryView.layer.cornerRadius = Constant.cornerRadius
         summaryView.layer.masksToBounds = true
         summaryView.backgroundColor = .secondarySystemGroupedBackground
 
@@ -70,19 +80,19 @@ extension RMHistoryHeaderView {
         titleLabel.lineBreakMode = .byTruncatingTail
     }
 
-    private func configureLayout() {
+    func configureLayout() {
         addSubview(summaryView)
         addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
             summaryView.topAnchor.constraint(equalTo: topAnchor),
-            summaryView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            summaryView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            summaryView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.leadingMargin),
+            summaryView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constant.trailingMargin),
 
             titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: summaryView.bottomAnchor, multiplier: 4),
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             bottomAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 0),
-            titleLabel.heightAnchor.constraint(equalToConstant: 50)
+            titleLabel.heightAnchor.constraint(equalToConstant: Constant.titleHeight)
         ])
     }
 }

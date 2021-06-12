@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class ActivityHistoryViewController: UIViewController {
+final class ActivityHistoryViewController: BaseViewController {
     // MARK: - Enums
 
     private struct Constant {
         static let topInset: CGFloat = 20
-        static let headerHeight: CGFloat = 210
+        static let headerHeight: CGFloat = 225
         private init() {}
     }
 
@@ -23,6 +23,12 @@ final class ActivityHistoryViewController: UIViewController {
     lazy var dataSource: ActivityHistoryDataSourceable = ActivityHistoryDataSource()
 
     // MARK: - Subviews
+
+    private lazy var statusBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemOrange
+        return view
+    }()
 
     private lazy var tableView: UITableView = {
         UITableView(frame: .zero, style: .insetGrouped)
@@ -50,7 +56,7 @@ final class ActivityHistoryViewController: UIViewController {
 
     init(viewModel: ActivityHistoryViewModeling) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         setupBindings()
     }
 
@@ -66,11 +72,16 @@ final class ActivityHistoryViewController: UIViewController {
         viewModel.dataSource = dataSource
         configureLayout()
         configureTableView()
+        configureStatusBarView()
+
+        navigationItem.backButtonTitle = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        tableView.scrollToTop()
+        print(tableView.contentOffset)
         headerView.updateTotals(fromRuns: viewModel.loadRuns())
         configureHistoryView()
     }
@@ -95,7 +106,7 @@ final class ActivityHistoryViewController: UIViewController {
 
             guard runs.isEmpty else { return }
             self.showNoSessionView()
-            self.tableView.reloadData()
+            self.tableView.reloadDataOnMainThread()
         }
     }
 
@@ -103,7 +114,7 @@ final class ActivityHistoryViewController: UIViewController {
     
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
         headerView.updateTotals(fromRuns: viewModel.loadRuns())
-        tableView.reloadData()
+        tableView.reloadDataOnMainThread()
         refreshControl.endRefreshing()
     }
 }
@@ -118,19 +129,32 @@ private extension ActivityHistoryViewController {
         tableView.register(SessionTableViewCell.self,
                            forCellReuseIdentifier: SessionTableViewCell.reuseID)
         tableView.addSubview(refreshControl)
+        tableView.contentInset.top = Constant.topInset
+
         tableView.tableHeaderView = headerView
+    }
+
+    func configureStatusBarView() {
+        statusBarView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(statusBarView)
+        NSLayoutConstraint.activate([
+            statusBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            statusBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            statusBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            statusBarView.heightAnchor.constraint(equalToConstant: statusBarHeight)
+        ])
     }
     
     func configureLayout() {
+        statusBarEnterDarkBackground()
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                           constant: Constant.topInset),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -160,8 +184,25 @@ private extension ActivityHistoryViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.noSessionView.removeFromSuperview()
-            self.tableView.reloadData()
+            self.tableView.reloadDataOnMainThread()
         }
+    }
+}
+
+// MARK: - ScrollView Animation
+
+extension ActivityHistoryViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset)
+
+        let offset: CGFloat = 20
+        let alpha = min(0.5, scrollView.contentOffset.y / offset)
+        self.setStatusBarView(backgroundColorAlpha: alpha)
+    }
+
+    private func setStatusBarView(backgroundColorAlpha alpha: CGFloat) {
+        let newColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha) // your color
+        statusBarView.backgroundColor = newColor
     }
 }
 

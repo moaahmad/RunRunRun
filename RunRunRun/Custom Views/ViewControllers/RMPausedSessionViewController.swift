@@ -10,18 +10,23 @@ import UIKit
 import MapKit
 
 final class RMPausedSessionViewController: UIViewController {
-    let mapView = MKMapView()
-    let averagePaceView = RMSessionDetailSmallStackView(value: "--'--\"", subtitle: "Pace")
-    let durationView = RMSessionDetailSmallStackView(value: "00:00", subtitle: "Time")
-    let distanceView = RMSessionDetailSmallStackView(value: "0.00", subtitle: "Kilometres")
-    let caloriesView = RMSessionDetailSmallStackView(value: "0", subtitle: "Calories")
-    let elevationView = RMSessionDetailSmallStackView(value: "0m", subtitle: "Elevation")
-    let heartRateView = RMSessionDetailSmallStackView(value: "-", subtitle: "BPM")
+
+    // MARK: - Subview
+
+    private let mapView = MKMapView()
+    private let averagePaceView = RMSessionDetailSmallStackView(value: "--'--\"", subtitle: "Pace")
+    private let durationView = RMSessionDetailSmallStackView(value: "00:00", subtitle: "Time")
+    private let distanceView = RMSessionDetailSmallStackView(value: "0.00", subtitle: "Kilometres")
+    private let caloriesView = RMSessionDetailSmallStackView(value: "0", subtitle: "Calories")
+    private let elevationView = RMSessionDetailSmallStackView(value: "0m", subtitle: "Elevation")
+    private let heartRateView = RMSessionDetailSmallStackView(value: "-", subtitle: "BPM")
     
     private let topStackView = UIStackView()
     private let bottomStackView = UIStackView()
     private let mainStackView = UIStackView()
-    
+
+    // MARK: - View Lifecycle Methods
+
     override func viewDidLoad() {
         configureLayout()
         mapView.delegate = self
@@ -35,6 +40,12 @@ final class RMPausedSessionViewController: UIViewController {
             }
             mapView.addOverlay(overlay)
         }
+    }
+
+    func updateValueLabels(withRun run: CurrentRun) {
+        averagePaceView.valueLabel.text = run.pace
+        durationView.valueLabel.text = run.duration
+        distanceView.valueLabel.text = run.distance
     }
     
     private func centerMapOnUserLocation() {
@@ -51,10 +62,10 @@ final class RMPausedSessionViewController: UIViewController {
 // MARK: - Configure UI Layout
 extension RMPausedSessionViewController {
     private func configureLayout() {
-        view.translatesAutoresizingMaskIntoConstraints = false
         configureTopStackView()
         configureBottomStackView()
         configureMainStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainStackView)
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),

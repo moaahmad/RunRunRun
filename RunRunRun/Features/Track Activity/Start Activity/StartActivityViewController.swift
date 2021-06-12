@@ -18,7 +18,7 @@ final class StartActivityViewController: BaseViewController {
 
     // MARK: - Properties
 
-    var viewModel: StartActivityViewModeling
+    private var viewModel: StartActivityViewModeling
 
     private lazy var mapView = MKMapView()
     private lazy var locationButton = RMLocationButton()
@@ -26,7 +26,7 @@ final class StartActivityViewController: BaseViewController {
 
     // MARK: - Initializers
 
-    init(viewModel: StartActivityViewModeling = StartActivityViewModel()) {
+    init(viewModel: StartActivityViewModeling) {
         self.viewModel = viewModel
         super.init()
     }
@@ -66,7 +66,7 @@ final class StartActivityViewController: BaseViewController {
     }
 }
 
-// MARK: - Center Map
+// MARK: - Center Map On User
 
 private extension StartActivityViewController {
     func centerMapOnUserLocation() {
@@ -83,13 +83,13 @@ private extension StartActivityViewController {
 
 // MARK: - Button Actions
 
-extension StartActivityViewController {
-    @objc private func didTapLocateUserButton() {
+private extension StartActivityViewController {
+    @objc func didTapLocateUserButton() {
         centerMapOnUserLocation()
         UISelectionFeedbackGenerator().selectionChanged()
     }
 
-    @objc private func didTapStartRunButton() {
+    @objc func didTapStartRunButton() {
         viewModel.startRunDidTap()
     }
 }
@@ -113,7 +113,7 @@ private extension StartActivityViewController {
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -123,9 +123,9 @@ private extension StartActivityViewController {
         
         NSLayoutConstraint.activate([
             startButton.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20),
-            startButton.heightAnchor.constraint(equalToConstant: 120),
-            startButton.widthAnchor.constraint(equalToConstant: 120)
+            startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            startButton.heightAnchor.constraint(equalToConstant: Device.actionButtonSize),
+            startButton.widthAnchor.constraint(equalToConstant: Device.actionButtonSize)
         ])
     }
     

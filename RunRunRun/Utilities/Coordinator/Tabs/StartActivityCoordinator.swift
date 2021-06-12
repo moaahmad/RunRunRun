@@ -5,6 +5,7 @@
 //  Created by Mohammed Ahmad on 21/2/21.
 //  Copyright © 2021 Ahmad, Mohammed. All rights reserved.
 //
+
 import UIKit
 
 final class StartActivityCoordinator: Coordinator {
@@ -16,14 +17,14 @@ final class StartActivityCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = StartActivityViewController()
-        vc.viewModel.coordinator = self
+        let viewModel = StartActivityViewModel(coordinator: self)
+        let vc = StartActivityViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
 
     func showLiveActivityVC() {
-        let vc = LiveActivityViewController()
-        vc.viewModel.coordinator = self
+        let viewModel = LiveActivityViewModel(coordinator: self)
+        let vc = LiveActivityViewController(viewModel: viewModel)
         vc.modalPresentationStyle = .fullScreen
         navigationController?.present(vc, animated: true)
     }

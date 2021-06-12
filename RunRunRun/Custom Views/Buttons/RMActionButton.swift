@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct Device {
+    static let actionButtonSize: CGFloat = UIScreen.main.bounds.width / 3
+    private init() {}
+}
+
 final class RMActionButton: UIButton {
     
     override init(frame: CGRect) {
@@ -25,7 +30,7 @@ final class RMActionButton: UIButton {
     }
     
     private func configure() {
-        frame = CGRect(x: 0, y: 0, width: 120, height: 120)
+        frame = CGRect(x: 0, y: 0, width: Device.actionButtonSize, height: Device.actionButtonSize)
         layer.masksToBounds = true
         layer.cornerRadius = self.frame.width / 2
         backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

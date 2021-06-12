@@ -19,6 +19,14 @@ class BaseViewController: UIViewController, StatusBarDisplayable {
 
     var isDarkContentBackground = false
 
+    var statusBarHeight: CGFloat {
+        if #available(iOS 13.0, *) {
+            return view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 45
+        } else {
+            return UIApplication.shared.statusBarFrame.height
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if isDarkContentBackground {
             return .lightContent
@@ -31,6 +39,7 @@ class BaseViewController: UIViewController, StatusBarDisplayable {
 
     init() { super.init(nibName: nil, bundle: nil) }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

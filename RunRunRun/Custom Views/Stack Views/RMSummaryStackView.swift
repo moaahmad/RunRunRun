@@ -9,8 +9,6 @@
 import UIKit
 
 final class RMSummaryStackView: UIStackView {
-    lazy var totalWorkoutsStackView = RMSummaryDetailStackView(value: "0",
-                                                               title: "Workouts")
 
     lazy var totalDistanceStackView = RMSummaryDetailStackView(value: "0",
                                                                title: "Kilometres")
@@ -28,17 +26,16 @@ final class RMSummaryStackView: UIStackView {
     }
     
     private func configureLayout() {
-        totalWorkoutsStackView.translatesAutoresizingMaskIntoConstraints = false
         totalDistanceStackView.translatesAutoresizingMaskIntoConstraints = false
         totalDurationStackView.translatesAutoresizingMaskIntoConstraints = false
 
         axis = .horizontal
-        distribution = .fillEqually
+        distribution = .fill
         alignment = .center
-        spacing = 8
+        spacing = 24
         
-        addArrangedSubview(totalWorkoutsStackView)
         addArrangedSubview(totalDistanceStackView)
         addArrangedSubview(totalDurationStackView)
+        addArrangedSubview(UIView())
     }
 }

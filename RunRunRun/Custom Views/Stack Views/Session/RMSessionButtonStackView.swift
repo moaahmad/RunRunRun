@@ -51,8 +51,8 @@ extension RMSessionButtonStackView {
     
     private func configureFinishButton() {
         NSLayoutConstraint.activate([
-            finishButton.heightAnchor.constraint(equalToConstant: 120),
-            finishButton.widthAnchor.constraint(equalToConstant: 120)
+            finishButton.heightAnchor.constraint(equalToConstant: Device.actionButtonSize),
+            finishButton.widthAnchor.constraint(equalToConstant: Device.actionButtonSize)
         ])
     }
 }

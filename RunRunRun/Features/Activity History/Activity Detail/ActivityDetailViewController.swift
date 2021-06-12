@@ -13,7 +13,8 @@ final class ActivityDetailViewController: UIViewController {
 
     private lazy var mapView = RMMapViewController()
     private lazy var bottomSheet: UIViewController = {
-        let bottomSheet = RMBottomSheetViewController(run: activity as? Run ?? .init())
+        guard let run = activity as? Run else { return .init() }
+        let bottomSheet = RMBottomSheetViewController(run: run)
         bottomSheet.view.backgroundColor = .systemBackground
         return bottomSheet
     }()

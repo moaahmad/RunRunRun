@@ -14,9 +14,9 @@ protocol UpdateDurationDelegate: AnyObject {
 }
 
 protocol LiveActivityViewModeling {
-    var coordinator: Coordinator? { get set }
     var isActivityPaused: Bool { get }
     var locations: [Location] { get }
+    var currentRun: CurrentRun { get }
     var didUpdateDuration: ((String) -> Void)? { get set }
     var didUpdateDistance: ((String) -> Void)? { get set }
     var didUpdatePace: ((String) -> Void)? { get set }
@@ -30,7 +30,7 @@ protocol LiveActivityViewModeling {
 final class LiveActivityViewModel: NSObject {
     // MARK: - Properties
 
-    weak var coordinator: Coordinator?
+    private weak var coordinator: Coordinator?
     private let persistenceManager: LocalPersistence
     private var locationManager: CLLocationManager
 
@@ -58,7 +58,6 @@ final class LiveActivityViewModel: NSObject {
             .persistentContainer.viewContext ?? .init(concurrencyType: .mainQueueConcurrencyType)
     }
 
-
     // MARK: - Closures
 
     var didUpdateDuration: ((String) -> Void)?
@@ -67,8 +66,10 @@ final class LiveActivityViewModel: NSObject {
 
     // MARK: - Initializer
 
-    init(persistenceManager: LocalPersistence = PersistenceManager.store,
+    init(coordinator: Coordinator?,
+         persistenceManager: LocalPersistence = PersistenceManager.store,
          manager: CLLocationManager = CLLocationManager()) {
+        self.coordinator = coordinator
         self.persistenceManager = persistenceManager
         self.locationManager = manager
         super.init()
@@ -81,6 +82,12 @@ final class LiveActivityViewModel: NSObject {
 // MARK: - LiveActivityViewModeling
 
 extension LiveActivityViewModel: LiveActivityViewModeling {
+    var currentRun: CurrentRun {
+        .init(distance: runDistance.convertMetersIntoKilometers(),
+              duration: sessionTimer.counter.formatToTimeString(),
+              pace: getAveragePace)
+    }
+
     var isActivityPaused: Bool {
         isPaused
     }

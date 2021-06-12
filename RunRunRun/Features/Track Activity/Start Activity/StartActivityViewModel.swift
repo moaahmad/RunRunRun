@@ -10,7 +10,6 @@ import Foundation
 import MapKit
 
 protocol StartActivityViewModeling {
-    var coordinator: Coordinator? { get set }
     var didChangeAuthorization: (() -> Void)? { get set }
     func checkLocationAuthStatus()
     func startUpdatingLocation()
@@ -21,14 +20,16 @@ protocol StartActivityViewModeling {
 final class StartActivityViewModel: NSObject {
     // MARK: - Properties
 
-    weak var coordinator: Coordinator?
-    var locationManager: CLLocationManager
+    private weak var coordinator: Coordinator?
+    private var locationManager: CLLocationManager
 
     var didChangeAuthorization: (() -> Void)?
 
     // MARK: - Init
 
-    init(manager: CLLocationManager = CLLocationManager()) {
+    init(coordinator: Coordinator?,
+         manager: CLLocationManager = CLLocationManager()) {
+        self.coordinator = coordinator
         self.locationManager = manager
         super.init()
         setupLocationManager()
