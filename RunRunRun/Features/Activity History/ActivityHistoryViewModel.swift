@@ -32,7 +32,7 @@ struct ActivityHistoryViewModel: ActivityHistoryViewModeling {
     }
 }
 
-// MARK: - ActivityHistoryViewModeling Functions
+// MARK: - Functions
 
 extension ActivityHistoryViewModel {
     @discardableResult
@@ -42,7 +42,7 @@ extension ActivityHistoryViewModel {
     }
 
     func didSelectRun(atIndexPath indexPath: IndexPath) {
-        guard let sectionKey = dataSource?.runsDict.keys.sorted()[indexPath.section],
+        guard let sectionKey = dataSource?.runsDictKeys[indexPath.section],
               let run = dataSource?.runsDict[sectionKey]?[indexPath.row] else { return }
 
         if let coordinator = coordinator as? ActivityHistoryCoordinator {

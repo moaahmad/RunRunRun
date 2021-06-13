@@ -18,6 +18,8 @@ final class RMSummaryDetailStackView: UIStackView {
                                            fontWeight: .light,
                                            color: .secondaryLabel,
                                            textAlignment: .center)
+
+    private lazy var textStackView = UIStackView()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,10 +30,11 @@ final class RMSummaryDetailStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(value: String, title: String) {
+    convenience init(value: String, title: String, alignment: UIStackView.Alignment) {
         self.init(frame: .zero)
         valueLabel.text = value
         titleLabel.text = title
+        textStackView.alignment = alignment
     }
 }
 
@@ -43,10 +46,11 @@ extension RMSummaryDetailStackView {
         axis = .vertical
         distribution = .fill
         alignment = .center
-        
-        let textStackView = UIStackView(arrangedSubviews: [valueLabel, titleLabel])
+
+        textStackView.addArrangedSubview(valueLabel)
+        textStackView.addArrangedSubview(titleLabel)
+
         textStackView.axis = .vertical
-        textStackView.alignment = .leading
         textStackView.spacing = 6
         
         addArrangedSubview(textStackView)

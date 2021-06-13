@@ -9,8 +9,9 @@
 import UIKit
 
 protocol ActivityHistoryDataSourceable: UITableViewDataSource {
-    var runsDict: [String: [Run]] { get }
-    var didUpdateRuns: (([String: [Run]]) -> Void)? { get set }
+    var runsDict: [Date: [Run]] { get }
+    var runsDictKeys: [Date] { get }
+    var didUpdateRuns: (([Date: [Run]]) -> Void)? { get set }
     var didDeleteRow: (() -> Void)? { get set }
     func loadRuns()
 }
@@ -18,15 +19,20 @@ protocol ActivityHistoryDataSourceable: UITableViewDataSource {
 final class ActivityHistoryDataSource: NSObject, ActivityHistoryDataSourceable {
     // MARK: - Properties
 
-    var runsDict: [String: [Run]] = [:] {
+    var runsDict: [Date: [Run]] = [:] {
         didSet {
             didUpdateRuns?(runsDict)
         }
     }
 
+    var runsDictKeys: [Date] {
+        let keys = runsDict.compactMap { $0.key }
+        return keys.sorted { $0 > $1 }
+    }
+
     private let persistenceManager: LocalPersistence
 
-    var didUpdateRuns: (([String: [Run]]) -> Void)?
+    var didUpdateRuns: (([Date: [Run]]) -> Void)?
     var didDeleteRow: (() -> Void)?
 
     // MARK: - Init
@@ -36,18 +42,24 @@ final class ActivityHistoryDataSource: NSObject, ActivityHistoryDataSourceable {
         super.init()
         loadRuns()
     }
+}
 
-    // MARK: - Load Runs
+// MARK: - Load Runs
 
+extension ActivityHistoryDataSource {
     func loadRuns() {
         do {
             let loadedRuns = try persistenceManager.readAll()
             runsDict = .init(grouping: loadedRuns.sorted(by: { $0.startDateTime! > $1.startDateTime! }),
-                         by: configureSectionTitle(run:))
+                             by: configureSecTitle(run:))
             didUpdateRuns?(runsDict)
         } catch {
             debugPrint(error.localizedDescription)
         }
+    }
+
+    private func configureSecTitle(run: Run) -> Date {
+        run.startDateTime?.firstDayOfMonth() ?? .init()
     }
 
     private func configureSectionTitle(run: Run) -> String {
@@ -69,13 +81,16 @@ extension ActivityHistoryDataSource {
     func tableView(_ tableView: UITableView,
                    titleForHeaderInSection section: Int) -> String? {
         guard !runsDict.isEmpty else { return nil }
-        return runsDict.keys.sorted()[section]
+        let date = runsDictKeys[section]
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        return dateFormatter.string(from: date)
     }
 
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         guard !runsDict.isEmpty,
-              let section = runsDict[runsDict.keys.sorted()[section]] else { return 0 }
+              let section = runsDict[runsDictKeys[section]] else { return 0 }
         return section.count
     }
 
@@ -100,20 +115,40 @@ extension ActivityHistoryDataSource {
                    forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            let sectionKey = runsDict.keys.sorted()[indexPath.section]
-            guard let run = runsDict[sectionKey]?[indexPath.row] else { return }
+            let sectionKey = runsDictKeys[indexPath.section]
+            guard let run = runsDict[sectionKey]?[indexPath.row],
+                  let runsInSectionCount = runsDict[sectionKey]?.count else { return }
             persistenceManager.delete(run)
             loadRuns()
-            tableView.deleteRows(at: [indexPath], with: .fade)
+
+            removeTableViewRowOrSection(forTableView: tableView,
+                                        at: indexPath,
+                                        with: runsInSectionCount)
+
             didDeleteRow?()
         default:
             break
         }
     }
 
+    private func removeTableViewRowOrSection(forTableView tableView: UITableView,
+                                             at indexPath: IndexPath,
+                                             with count: Int) {
+        switch count {
+        case 1:
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            let indexSet = IndexSet(integer: indexPath.section)
+            tableView.deleteSections(indexSet, with: .fade)
+            tableView.endUpdates()
+        default:
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
     private func tableView(_ tableView: UITableView,
                            runAt indexPath: IndexPath) -> Run? {
-        let sectionKey = runsDict.keys.sorted()[indexPath.section]
+        let sectionKey = runsDictKeys[indexPath.section]
         return runsDict[sectionKey]?[indexPath.row]
     }
 }

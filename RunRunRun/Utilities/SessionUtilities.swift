@@ -10,9 +10,9 @@ import UIKit
 
 public class SessionUtilities {
     static func calculateAveragePace(time seconds: Int, meters: Double) -> String {
+        guard meters > 0 else { return "0'00\"" }
         var pace = 0.0
         let kilometers = meters / 1000
-        guard kilometers > 0 else { return "Calculating..." }
         pace = (Double(seconds) / kilometers)
         let pacePerKm = pace.formatToAvgPaceString()
         return pacePerKm

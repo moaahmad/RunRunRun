@@ -11,10 +11,12 @@ import UIKit
 final class RMSummaryStackView: UIStackView {
 
     lazy var totalDistanceStackView = RMSummaryDetailStackView(value: "0",
-                                                               title: "Kilometres")
+                                                               title: "Kilometres",
+                                                               alignment: .leading)
     
     lazy var totalDurationStackView = RMSummaryDetailStackView(value: "00:00",
-                                                               title: "Time")
+                                                               title: "Time",
+                                                               alignment: .trailing)
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,10 +34,9 @@ final class RMSummaryStackView: UIStackView {
         axis = .horizontal
         distribution = .fill
         alignment = .center
-        spacing = 24
         
         addArrangedSubview(totalDistanceStackView)
-        addArrangedSubview(totalDurationStackView)
         addArrangedSubview(UIView())
+        addArrangedSubview(totalDurationStackView)
     }
 }

@@ -19,8 +19,8 @@ final class ActivityHistoryViewController: BaseViewController {
 
     // MARK: - Properties
 
-    var viewModel: ActivityHistoryViewModeling
-    lazy var dataSource: ActivityHistoryDataSourceable = ActivityHistoryDataSource()
+    private var viewModel: ActivityHistoryViewModeling
+    private lazy var dataSource: ActivityHistoryDataSourceable = ActivityHistoryDataSource()
 
     // MARK: - Subviews
 
@@ -80,8 +80,6 @@ final class ActivityHistoryViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        tableView.scrollToTop()
-        print(tableView.contentOffset)
         headerView.updateTotals(fromRuns: viewModel.loadRuns())
         configureHistoryView()
     }
@@ -132,6 +130,7 @@ private extension ActivityHistoryViewController {
         tableView.contentInset.top = Constant.topInset
 
         tableView.tableHeaderView = headerView
+        tableView.scrollToTop()
     }
 
     func configureStatusBarView() {
@@ -184,7 +183,7 @@ private extension ActivityHistoryViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.noSessionView.removeFromSuperview()
-            self.tableView.reloadDataOnMainThread()
+            self.tableView.reloadData()
         }
     }
 }
@@ -193,15 +192,13 @@ private extension ActivityHistoryViewController {
 
 extension ActivityHistoryViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset)
-
-        let offset: CGFloat = 20
+        let offset: CGFloat = 30
         let alpha = min(0.5, scrollView.contentOffset.y / offset)
         self.setStatusBarView(backgroundColorAlpha: alpha)
     }
 
     private func setStatusBarView(backgroundColorAlpha alpha: CGFloat) {
-        let newColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha) // your color
+        let newColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha)
         statusBarView.backgroundColor = newColor
     }
 }
