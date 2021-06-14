@@ -45,6 +45,7 @@ extension RMMapViewController {
         mapView.delegate = self
         mapView.pointOfInterestFilter = .excludingAll
         mapView.mapType = .satellite
+        mapView.isRotateEnabled = false
         
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
@@ -74,9 +75,9 @@ extension RMMapViewController {
 extension RMMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else { return .init() }
-        let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor  = .systemOrange
-        renderer.lineWidth = 5
-        return renderer
+        let gradientColors = [UIColor.green, UIColor.yellow, UIColor.orange, UIColor.red]
+        let polylineRenderer = GradientPathRenderer(polyline: polyline, colors: gradientColors)
+        polylineRenderer.lineWidth = 10
+        return polylineRenderer
     }
 }

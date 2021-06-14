@@ -10,8 +10,7 @@ import UIKit
 import MapKit
 
 final class RMPausedSessionViewController: UIViewController {
-
-    // MARK: - Subview
+    // MARK: - Subviews
 
     private let mapView = MKMapView()
     private let averagePaceView = RMSessionDetailSmallStackView(value: "--'--\"", subtitle: "Pace")

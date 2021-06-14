@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E432023267688B4002B196B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E432021267688B4002B196B /* Interface.storyboard */; };
+		4E432025267688B5002B196B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E432024267688B5002B196B /* Assets.xcassets */; };
+		4E43202C267688B5002B196B /* RunTrackrWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E43202B267688B5002B196B /* RunTrackrWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4E432031267688B5002B196B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E432030267688B5002B196B /* InterfaceController.swift */; };
+		4E432033267688B5002B196B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E432032267688B5002B196B /* ExtensionDelegate.swift */; };
+		4E432035267688B5002B196B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E432034267688B5002B196B /* NotificationController.swift */; };
+		4E432037267688B5002B196B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E432036267688B5002B196B /* ComplicationController.swift */; };
+		4E432039267688B6002B196B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E432038267688B6002B196B /* Assets.xcassets */; };
+		4E43203E267688B6002B196B /* RunTrackrWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4E43201F267688B4002B196B /* RunTrackrWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E73E154266C395C00B3A938 /* LiveActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E153266C395C00B3A938 /* LiveActivityViewModel.swift */; };
 		4E73E156266C3CB600B3A938 /* LocalActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E155266C3CB600B3A938 /* LocalActivity.swift */; };
 		4E73E158266D6C0100B3A938 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */; };
@@ -15,6 +24,7 @@
 		4E73E178267297D200B3A938 /* RMHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */; };
 		4E73E17C26742BE200B3A938 /* CurrentRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E17B26742BE200B3A938 /* CurrentRun.swift */; };
 		4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */; };
+		4ED59D322676D4880026719D /* GradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED59D312676D4880026719D /* GradientPathRenderer.swift */; };
 		74433E6A3AE36932AE505DCD /* Pods_RunRunRunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */; };
 		DFD2EF7971B78B0250ECB7A7 /* Pods_RunRunRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F969EE6003E2EF4AEFF9F67E /* Pods_RunRunRun.framework */; };
 		F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007265625080C23009E00B7 /* ActivityHistoryViewController.swift */; };
@@ -77,6 +87,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4E43202D267688B5002B196B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0A674A124A7CCAF0083FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E43202A267688B5002B196B;
+			remoteInfo = "RunTrackrWatch Extension";
+		};
+		4E43203C267688B6002B196B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0A674A124A7CCAF0083FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E43201E267688B4002B196B;
+			remoteInfo = RunTrackrWatch;
+		};
 		F0A674C324A7CCB50083FD5F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F0A674A124A7CCAF0083FD5F /* Project object */;
@@ -86,9 +110,46 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4E432042267688B6002B196B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4E43202C267688B5002B196B /* RunTrackrWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E432046267688B6002B196B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4E43203E267688B6002B196B /* RunTrackrWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2614D522CEBDA03B192AA180 /* Pods-RunRunRun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.debug.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.debug.xcconfig"; sourceTree = "<group>"; };
 		420A24AE53A048C4690F2829 /* Pods-RunRunRunTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRunTests.release.xcconfig"; path = "Target Support Files/Pods-RunRunRunTests/Pods-RunRunRunTests.release.xcconfig"; sourceTree = "<group>"; };
+		4E43201F267688B4002B196B /* RunTrackrWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunTrackrWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E432022267688B4002B196B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		4E432024267688B5002B196B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E432026267688B5002B196B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E43202B267688B5002B196B /* RunTrackrWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RunTrackrWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E432030267688B5002B196B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		4E432032267688B5002B196B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		4E432034267688B5002B196B /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		4E432036267688B5002B196B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		4E432038267688B6002B196B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E43203A267688B6002B196B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E43203B267688B6002B196B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		4E73E153266C395C00B3A938 /* LiveActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityViewModel.swift; sourceTree = "<group>"; };
 		4E73E155266C3CB600B3A938 /* LocalActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalActivity.swift; sourceTree = "<group>"; };
 		4E73E157266D6C0100B3A938 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
@@ -97,6 +158,7 @@
 		4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMHistoryHeaderView.swift; sourceTree = "<group>"; };
 		4E73E17B26742BE200B3A938 /* CurrentRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRun.swift; sourceTree = "<group>"; };
 		4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewModel.swift; sourceTree = "<group>"; };
+		4ED59D312676D4880026719D /* GradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPathRenderer.swift; sourceTree = "<group>"; };
 		590576E684A8A2F00930D4E8 /* Pods-RunRunRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.release.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.release.xcconfig"; sourceTree = "<group>"; };
 		85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunRunRunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8AA12FACA3044AA07A7BF8F /* Pods-RunRunRunTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRunTests.debug.xcconfig"; path = "Target Support Files/Pods-RunRunRunTests/Pods-RunRunRunTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +227,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4E432028267688B5002B196B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0A674A624A7CCAF0083FD5F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,6 +253,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E432020267688B4002B196B /* RunTrackrWatch */ = {
+			isa = PBXGroup;
+			children = (
+				4E432021267688B4002B196B /* Interface.storyboard */,
+				4E432024267688B5002B196B /* Assets.xcassets */,
+				4E432026267688B5002B196B /* Info.plist */,
+			);
+			path = RunTrackrWatch;
+			sourceTree = "<group>";
+		};
+		4E43202F267688B5002B196B /* RunTrackrWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4E432030267688B5002B196B /* InterfaceController.swift */,
+				4E432032267688B5002B196B /* ExtensionDelegate.swift */,
+				4E432034267688B5002B196B /* NotificationController.swift */,
+				4E432036267688B5002B196B /* ComplicationController.swift */,
+				4E432038267688B6002B196B /* Assets.xcassets */,
+				4E43203A267688B6002B196B /* Info.plist */,
+				4E43203B267688B6002B196B /* PushNotificationPayload.apns */,
+			);
+			path = "RunTrackrWatch Extension";
+			sourceTree = "<group>";
+		};
 		4E73E161266E825200B3A938 /* Test Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +428,8 @@
 			children = (
 				F0A674AB24A7CCAF0083FD5F /* RunRunRun */,
 				F0A674C524A7CCB50083FD5F /* RunRunRunTests */,
+				4E432020267688B4002B196B /* RunTrackrWatch */,
+				4E43202F267688B5002B196B /* RunTrackrWatch Extension */,
 				F0A674AA24A7CCAF0083FD5F /* Products */,
 				8D9539BE762E002572AC20DD /* Pods */,
 				FC5D92BDF32F3C60BADBD089 /* Frameworks */,
@@ -346,6 +441,8 @@
 			children = (
 				F0A674A924A7CCAF0083FD5F /* RunRunRun.app */,
 				F0A674C224A7CCB50083FD5F /* RunRunRunTests.xctest */,
+				4E43201F267688B4002B196B /* RunTrackrWatch.app */,
+				4E43202B267688B5002B196B /* RunTrackrWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,6 +517,7 @@
 				F0A674DF24A7F07B0083FD5F /* Extensions */,
 				F0D366FE24ACF734000FBFE5 /* SessionUtilities.swift */,
 				F04A6ED924A8EC7E004D705F /* RepeatingTimer.swift */,
+				4ED59D312676D4880026719D /* GradientPathRenderer.swift */,
 				F085B9F424BA18FE0037589D /* RouteDrawer.swift */,
 			);
 			path = Utilities;
@@ -548,6 +646,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4E43201E267688B4002B196B /* RunTrackrWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E432043267688B6002B196B /* Build configuration list for PBXNativeTarget "RunTrackrWatch" */;
+			buildPhases = (
+				4E43201D267688B4002B196B /* Resources */,
+				4E432042267688B6002B196B /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E43202E267688B5002B196B /* PBXTargetDependency */,
+			);
+			name = RunTrackrWatch;
+			productName = RunTrackrWatch;
+			productReference = 4E43201F267688B4002B196B /* RunTrackrWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4E43202A267688B5002B196B /* RunTrackrWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E43203F267688B6002B196B /* Build configuration list for PBXNativeTarget "RunTrackrWatch Extension" */;
+			buildPhases = (
+				4E432027267688B5002B196B /* Sources */,
+				4E432028267688B5002B196B /* Frameworks */,
+				4E432029267688B5002B196B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RunTrackrWatch Extension";
+			productName = "RunTrackrWatch Extension";
+			productReference = 4E43202B267688B5002B196B /* RunTrackrWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		F0A674A824A7CCAF0083FD5F /* RunRunRun */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0A674CB24A7CCB50083FD5F /* Build configuration list for PBXNativeTarget "RunRunRun" */;
@@ -558,10 +690,12 @@
 				F0A674A724A7CCAF0083FD5F /* Resources */,
 				F0DC58F525E2BBB5003E8507 /* SwiftLint */,
 				2BE4CAF20699B5EFB4CBA3D9 /* [CP] Embed Pods Frameworks */,
+				4E432046267688B6002B196B /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4E43203D267688B6002B196B /* PBXTargetDependency */,
 			);
 			name = RunRunRun;
 			productName = RunRunRun;
@@ -593,10 +727,16 @@
 		F0A674A124A7CCAF0083FD5F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Mohammed Ahmad";
 				TargetAttributes = {
+					4E43201E267688B4002B196B = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					4E43202A267688B5002B196B = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					F0A674A824A7CCAF0083FD5F = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -621,11 +761,30 @@
 			targets = (
 				F0A674A824A7CCAF0083FD5F /* RunRunRun */,
 				F0A674C124A7CCB50083FD5F /* RunRunRunTests */,
+				4E43201E267688B4002B196B /* RunTrackrWatch */,
+				4E43202A267688B5002B196B /* RunTrackrWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4E43201D267688B4002B196B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E432025267688B5002B196B /* Assets.xcassets in Resources */,
+				4E432023267688B4002B196B /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E432029267688B5002B196B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E432039267688B6002B196B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0A674A724A7CCAF0083FD5F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -729,6 +888,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4E432027267688B5002B196B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E432035267688B5002B196B /* NotificationController.swift in Sources */,
+				4E432037267688B5002B196B /* ComplicationController.swift in Sources */,
+				4E432033267688B5002B196B /* ExtensionDelegate.swift in Sources */,
+				4E432031267688B5002B196B /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0A674A524A7CCAF0083FD5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -772,6 +942,7 @@
 				4E73E154266C395C00B3A938 /* LiveActivityViewModel.swift in Sources */,
 				F08231FB25963A1300D58C3D /* RelativeDateTimeFormatter+Extensions.swift in Sources */,
 				F0A674AF24A7CCAF0083FD5F /* SceneDelegate.swift in Sources */,
+				4ED59D322676D4880026719D /* GradientPathRenderer.swift in Sources */,
 				F05E38D9250991EB005B1916 /* RMSessionDetailLargeStackView.swift in Sources */,
 				F08232012596974F00D58C3D /* RMMapStyleButton.swift in Sources */,
 				F0E6C2122594E46300F44D89 /* RMSessionDetailTileView.swift in Sources */,
@@ -807,6 +978,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4E43202E267688B5002B196B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E43202A267688B5002B196B /* RunTrackrWatch Extension */;
+			targetProxy = 4E43202D267688B5002B196B /* PBXContainerItemProxy */;
+		};
+		4E43203D267688B6002B196B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E43201E267688B4002B196B /* RunTrackrWatch */;
+			targetProxy = 4E43203C267688B6002B196B /* PBXContainerItemProxy */;
+		};
 		F0A674C424A7CCB50083FD5F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F0A674A824A7CCAF0083FD5F /* RunRunRun */;
@@ -815,6 +996,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4E432021267688B4002B196B /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E432022267688B4002B196B /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		F0A674BA24A7CCB50083FD5F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -826,6 +1015,90 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4E432040267688B6002B196B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D8T996G46R;
+				INFOPLIST_FILE = "RunTrackrWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mo.RunRunRun.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		4E432041267688B6002B196B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D8T996G46R;
+				INFOPLIST_FILE = "RunTrackrWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mo.RunRunRun.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
+		4E432044267688B6002B196B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D8T996G46R;
+				IBSC_MODULE = RunTrackrWatch_Extension;
+				INFOPLIST_FILE = RunTrackrWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mo.RunRunRun.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		4E432045267688B6002B196B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D8T996G46R;
+				IBSC_MODULE = RunTrackrWatch_Extension;
+				INFOPLIST_FILE = RunTrackrWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.mo.RunRunRun.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
 		F0A674C924A7CCB50083FD5F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1029,6 +1302,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4E43203F267688B6002B196B /* Build configuration list for PBXNativeTarget "RunTrackrWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E432040267688B6002B196B /* Debug */,
+				4E432041267688B6002B196B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E432043267688B6002B196B /* Build configuration list for PBXNativeTarget "RunTrackrWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E432044267688B6002B196B /* Debug */,
+				4E432045267688B6002B196B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F0A674A424A7CCAF0083FD5F /* Build configuration list for PBXProject "RunRunRun" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
