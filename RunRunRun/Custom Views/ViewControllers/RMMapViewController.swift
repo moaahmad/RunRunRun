@@ -75,7 +75,7 @@ extension RMMapViewController {
 extension RMMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else { return .init() }
-        let gradientColors = [UIColor.green, UIColor.yellow, UIColor.orange, UIColor.red]
+        let gradientColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green]
         let polylineRenderer = GradientPathRenderer(polyline: polyline, colors: gradientColors)
         polylineRenderer.lineWidth = 10
         return polylineRenderer
