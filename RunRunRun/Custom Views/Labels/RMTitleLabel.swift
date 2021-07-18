@@ -14,18 +14,18 @@ final class RMTitleLabel: UILabel {
         super.init(frame: frame)
         configure()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     convenience init(textAlignment: NSTextAlignment,
-                     fontSize: CGFloat,
                      color: UIColor,
-                     weight: UIFont.Weight = .bold) {
+                     font: UIFont = .h3) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
+        self.font = font
         self.textColor = color
     }
     

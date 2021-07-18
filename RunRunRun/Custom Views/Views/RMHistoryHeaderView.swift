@@ -74,7 +74,7 @@ private extension RMHistoryHeaderView {
         summaryView.backgroundColor = .secondarySystemGroupedBackground
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle).bold()
+        titleLabel.font = UIFont.h1
         titleLabel.text = "History"
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byTruncatingTail

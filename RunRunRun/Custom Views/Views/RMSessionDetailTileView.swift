@@ -13,14 +13,12 @@ final class RMSessionDetailTileView: UIView {
     private lazy var textStackView = UIStackView()
     private lazy var imageView = UIImageView()
     
-    private lazy var subtitleLabel = RMSecondaryTitleLabel(fontSize: 12,
-                                                      fontWeight: .light,
-                                                      color: .secondaryLabel)
+    private lazy var subtitleLabel = RMSecondaryTitleLabel(font: UIFont.montserrat(.light, size: 12),
+                                                           color: .secondaryLabel)
     
     private lazy var valueLabel = RMTitleLabel(textAlignment: .natural,
-                                          fontSize: 22,
-                                          color: .systemGreen,
-                                          weight: .semibold)
+                                               color: .systemGreen,
+                                               font: .h3)
     
     private static let screenWidth = UIScreen.main.bounds.width
     
@@ -35,7 +33,8 @@ final class RMSessionDetailTileView: UIView {
         subtitleLabel.text = title
         valueLabel.text = value
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

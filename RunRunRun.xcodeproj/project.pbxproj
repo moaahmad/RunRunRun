@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,12 @@
 		4E73E178267297D200B3A938 /* RMHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */; };
 		4E73E17C26742BE200B3A938 /* CurrentRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E73E17B26742BE200B3A938 /* CurrentRun.swift */; };
 		4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */; };
+		4E7A688B2685420F009FABBA /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A68822685420F009FABBA /* Montserrat-Bold.ttf */; };
+		4E7A688D2685420F009FABBA /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A68842685420F009FABBA /* Montserrat-Medium.ttf */; };
+		4E7A688E2685420F009FABBA /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A68852685420F009FABBA /* Montserrat-Light.ttf */; };
+		4E7A68902685420F009FABBA /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A68872685420F009FABBA /* Montserrat-SemiBold.ttf */; };
+		4E7A68912685420F009FABBA /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A68882685420F009FABBA /* Montserrat-Regular.ttf */; };
+		4E7A68932685420F009FABBA /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A688A2685420F009FABBA /* Montserrat-Italic.ttf */; };
 		4ED59D322676D4880026719D /* GradientPathRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED59D312676D4880026719D /* GradientPathRenderer.swift */; };
 		74433E6A3AE36932AE505DCD /* Pods_RunRunRunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */; };
 		DFD2EF7971B78B0250ECB7A7 /* Pods_RunRunRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F969EE6003E2EF4AEFF9F67E /* Pods_RunRunRun.framework */; };
@@ -76,7 +82,6 @@
 		F0DC58B625E1E03A003E8507 /* ActivityHistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */; };
 		F0DC58BE25E1E174003E8507 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58BD25E1E174003E8507 /* Run.swift */; };
 		F0DC58CA25E2826C003E8507 /* ActivityHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC58C925E2826B003E8507 /* ActivityHistoryViewModel.swift */; };
-		F0DC594225E30A29003E8507 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC594125E30A29003E8507 /* FirestoreManager.swift */; };
 		F0E63DAD2502BC8B0024B73C /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */; };
 		F0E6C1F82593D10300F44D89 /* RMBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */; };
 		F0E6C20A2594077700F44D89 /* RMSessionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */; };
@@ -158,6 +163,17 @@
 		4E73E177267297D200B3A938 /* RMHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMHistoryHeaderView.swift; sourceTree = "<group>"; };
 		4E73E17B26742BE200B3A938 /* CurrentRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRun.swift; sourceTree = "<group>"; };
 		4E790391266B8E2A0026E88F /* StartActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewModel.swift; sourceTree = "<group>"; };
+		4E7A68822685420F009FABBA /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		4E7A68842685420F009FABBA /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		4E7A68852685420F009FABBA /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		4E7A68872685420F009FABBA /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		4E7A68882685420F009FABBA /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		4E7A688A2685420F009FABBA /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		4E7A68972686A6B1009FABBA /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		4E7A68982686A6B1009FABBA /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		4E7A68992686A6B1009FABBA /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		4E7A689A2686A6B1009FABBA /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		4E7A689B2686A6B1009FABBA /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		4ED59D312676D4880026719D /* GradientPathRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPathRenderer.swift; sourceTree = "<group>"; };
 		590576E684A8A2F00930D4E8 /* Pods-RunRunRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunRunRun.release.xcconfig"; path = "Target Support Files/Pods-RunRunRun/Pods-RunRunRun.release.xcconfig"; sourceTree = "<group>"; };
 		85E984EE9875C7755FB070C6 /* Pods_RunRunRunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunRunRunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,7 +231,6 @@
 		F0DC58B525E1E03A003E8507 /* ActivityHistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryCoordinator.swift; sourceTree = "<group>"; };
 		F0DC58BD25E1E174003E8507 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		F0DC58C925E2826B003E8507 /* ActivityHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHistoryViewModel.swift; sourceTree = "<group>"; };
-		F0DC594125E30A29003E8507 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		F0E63DAC2502BC8B0024B73C /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		F0E6C1F72593D10300F44D89 /* RMBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F0E6C2092594077700F44D89 /* RMSessionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSessionDetailViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +243,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		4E432028267688B5002B196B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D812E66AEC97C4DE352EBAA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -309,6 +331,40 @@
 				F0B09AED24AE94EE00C3B5BE /* ActivityDetailViewController.swift */,
 			);
 			path = "Activity Detail";
+			sourceTree = "<group>";
+		};
+		4E7A6881268541CC009FABBA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4E7A68952686A676009FABBA /* Poppins */,
+				4E7A68942686A61C009FABBA /* Montserrat */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4E7A68942686A61C009FABBA /* Montserrat */ = {
+			isa = PBXGroup;
+			children = (
+				4E7A68822685420F009FABBA /* Montserrat-Bold.ttf */,
+				4E7A688A2685420F009FABBA /* Montserrat-Italic.ttf */,
+				4E7A68852685420F009FABBA /* Montserrat-Light.ttf */,
+				4E7A68842685420F009FABBA /* Montserrat-Medium.ttf */,
+				4E7A68882685420F009FABBA /* Montserrat-Regular.ttf */,
+				4E7A68872685420F009FABBA /* Montserrat-SemiBold.ttf */,
+			);
+			path = Montserrat;
+			sourceTree = "<group>";
+		};
+		4E7A68952686A676009FABBA /* Poppins */ = {
+			isa = PBXGroup;
+			children = (
+				4E7A689B2686A6B1009FABBA /* Poppins-Bold.ttf */,
+				4E7A68972686A6B1009FABBA /* Poppins-Light.ttf */,
+				4E7A68992686A6B1009FABBA /* Poppins-Medium.ttf */,
+				4E7A68982686A6B1009FABBA /* Poppins-Regular.ttf */,
+				4E7A689A2686A6B1009FABBA /* Poppins-SemiBold.ttf */,
+			);
+			path = Poppins;
 			sourceTree = "<group>";
 		};
 		8D9539BE762E002572AC20DD /* Pods */ = {
@@ -503,6 +559,7 @@
 		F0A674D524A7CCFF0083FD5F /* Supporting Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E7A6881268541CC009FABBA /* Fonts */,
 				F0A674E424A7F3910083FD5F /* Storyboards */,
 				F0A674B824A7CCB40083FD5F /* Assets.xcassets */,
 				F0A674BD24A7CCB50083FD5F /* Info.plist */,
@@ -592,7 +649,6 @@
 				F0D366F724ABFBB4000FBFE5 /* LocalPersistence.swift */,
 				F0D366F924ABFBC8000FBFE5 /* PersistenceManager.swift */,
 				F0D366FB24ABFBE6000FBFE5 /* CoreDataManager.swift */,
-				F0DC594125E30A29003E8507 /* FirestoreManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -652,6 +708,7 @@
 			buildPhases = (
 				4E43201D267688B4002B196B /* Resources */,
 				4E432042267688B6002B196B /* Embed App Extensions */,
+				8D812E66AEC97C4DE352EBAA /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -689,7 +746,6 @@
 				F0A674A624A7CCAF0083FD5F /* Frameworks */,
 				F0A674A724A7CCAF0083FD5F /* Resources */,
 				F0DC58F525E2BBB5003E8507 /* SwiftLint */,
-				2BE4CAF20699B5EFB4CBA3D9 /* [CP] Embed Pods Frameworks */,
 				4E432046267688B6002B196B /* Embed Watch Content */,
 			);
 			buildRules = (
@@ -789,10 +845,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E7A688B2685420F009FABBA /* Montserrat-Bold.ttf in Resources */,
+				4E7A68912685420F009FABBA /* Montserrat-Regular.ttf in Resources */,
 				F01C755F24BB516100CE5A17 /* NoSessionView.xib in Resources */,
 				F0284AE624AE79D8007283F4 /* RunDetailTableViewCell.xib in Resources */,
+				4E7A688D2685420F009FABBA /* Montserrat-Medium.ttf in Resources */,
+				4E7A68902685420F009FABBA /* Montserrat-SemiBold.ttf in Resources */,
+				4E7A688E2685420F009FABBA /* Montserrat-Light.ttf in Resources */,
 				F0A674BC24A7CCB50083FD5F /* LaunchScreen.storyboard in Resources */,
 				F0A674B924A7CCB40083FD5F /* Assets.xcassets in Resources */,
+				4E7A68932685420F009FABBA /* Montserrat-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,23 +912,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2BE4CAF20699B5EFB4CBA3D9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RunRunRun/Pods-RunRunRun-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RunRunRun/Pods-RunRunRun-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RunRunRun/Pods-RunRunRun-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F0DC58F525E2BBB5003E8507 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -918,7 +963,6 @@
 				F0D366FC24ABFBE6000FBFE5 /* CoreDataManager.swift in Sources */,
 				4E790392266B8E2A0026E88F /* StartActivityViewModel.swift in Sources */,
 				F0DC58CA25E2826C003E8507 /* ActivityHistoryViewModel.swift in Sources */,
-				F0DC594225E30A29003E8507 /* FirestoreManager.swift in Sources */,
 				F007265725080C23009E00B7 /* ActivityHistoryViewController.swift in Sources */,
 				F064E18B25E1C68C00948CC5 /* MainCoordinator.swift in Sources */,
 				F04A6EDA24A8EC7E004D705F /* RepeatingTimer.swift in Sources */,

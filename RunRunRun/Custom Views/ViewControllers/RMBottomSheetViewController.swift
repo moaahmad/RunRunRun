@@ -19,21 +19,23 @@ final class RMBottomSheetViewController: UIViewController {
         static var partialViewYPosition: CGFloat { UIScreen.main.bounds.height * 0.55 }
     }
     
-    let notchView = UIView()
-    var run: Run!
+    lazy var notchView = UIView()
+    var run: Run
     
     init(run: Run) {
-        super.init(nibName: nil, bundle: nil)
         self.run = run
+        super.init(nibName: nil, bundle: nil)
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture))
+        let gesture = UIPanGestureRecognizer.init(target: self,
+                                                  action: #selector(panGesture))
         view.addGestureRecognizer(gesture)
         self.moveView(state: .partial)
         configureLayout()

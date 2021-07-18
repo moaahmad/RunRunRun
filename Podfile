@@ -7,7 +7,6 @@ target 'RunRunRun' do
 
   # Pods for RunRunRun
   pod 'SwiftLint'
-  pod 'FirebaseFirestoreSwift'
 
   target 'RunRunRunTests' do
     inherit! :search_paths

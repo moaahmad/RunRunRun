@@ -19,12 +19,11 @@ final class RMSecondaryTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(fontSize: CGFloat,
-                     fontWeight: UIFont.Weight,
+    convenience init(font: UIFont = UIFont.p1,
                      color: UIColor,
                      textAlignment: NSTextAlignment = .center) {
         self.init(frame: .zero)
-        font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
+        self.font = font
         textColor = color
         self.textAlignment = textAlignment
     }

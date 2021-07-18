@@ -24,11 +24,7 @@ final class ActivityHistoryViewController: BaseViewController {
 
     // MARK: - Subviews
 
-    private lazy var statusBarView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemOrange
-        return view
-    }()
+    private lazy var statusBarView = UIView()
 
     private lazy var tableView: UITableView = {
         UITableView(frame: .zero, style: .insetGrouped)

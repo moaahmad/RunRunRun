@@ -10,18 +10,17 @@ import UIKit
 
 final class RMSessionDetailLargeStackView: UIStackView {
     
-    let valueLabel = RMTitleLabel(textAlignment: .center,
-                                  fontSize: 90,
-                                  color: .black)
-    let descriptionLabel = RMSecondaryTitleLabel(fontSize: 17,
-                                                 fontWeight: .semibold,
-                                                 color: .darkGray)
+    lazy var valueLabel = RMTitleLabel(textAlignment: .center,
+                                  color: .black,
+                                  font: UIFont.montserrat(.bold, size: 90))
+    lazy var descriptionLabel = RMSecondaryTitleLabel(color: .darkGray)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureUI()
     }
-    
+
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -33,9 +32,8 @@ final class RMSessionDetailLargeStackView: UIStackView {
     }
 }
 
-extension RMSessionDetailLargeStackView {
-    
-    private func configure() {
+private extension RMSessionDetailLargeStackView {
+    func configureUI() {
         axis = .vertical
         distribution = .fill
         alignment = .center

@@ -27,6 +27,7 @@ final class LiveActivityViewController: BaseViewController {
         setupBindings()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,7 +76,6 @@ private extension LiveActivityViewController {
     func didPauseActivity() {
         viewModel.activityDidPause()
 
-        view.backgroundColor = .white
         sessionDetailView.removeFromSuperview()
         statusBarEnterDarkBackground()
         configurePauseSessionView()
@@ -86,7 +86,6 @@ private extension LiveActivityViewController {
     func didPlayActivity() {
         viewModel.activityDidPlay()
 
-        view.backgroundColor = .systemGreen
         pausedSessionView.view.removeFromSuperview()
         statusBarEnterLightBackground()
         configureSessionDetailView()
@@ -118,7 +117,7 @@ private extension LiveActivityViewController {
 
 private extension LiveActivityViewController {
     func configureLayout() {
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .white
         configureButtonView()
         configureSessionDetailView()
     }

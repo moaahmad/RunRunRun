@@ -15,12 +15,12 @@ final class RMSessionDetailViewController: UIViewController {
     
     var run: Run!
     
-    private var subtitle: String {
-        let startTime = DateFormatter.shortStyleTimeFormatter.string(from: run.startDateTime ?? Date())
-        let endTime = DateFormatter.shortStyleTimeFormatter.string(from: run.finishDateTime ?? Date())
+    private lazy var subtitle: String = {
+        let startTime = DateFormatter.shortStyleTimeFormatter.string(from: run.startDateTime ?? .init())
+        let endTime = DateFormatter.shortStyleTimeFormatter.string(from: run.finishDateTime ?? .init())
         let subtitle = "\(startTime) - \(endTime)"
         return subtitle
-    }
+    }()
     
     lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
@@ -32,7 +32,8 @@ final class RMSessionDetailViewController: UIViewController {
         self.run = run
         titleLabel.text = title
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,10 +49,10 @@ final class RMSessionDetailViewController: UIViewController {
 extension RMSessionDetailViewController {
     private func styleView() {
         titleLabel.textColor = .systemGreen
-        titleLabel.font = UIFont.systemFont(ofSize: 27, weight: .bold)
+        titleLabel.font = UIFont.h2
         
         subtitleLabel.textColor = .secondaryLabel
-        subtitleLabel.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        subtitleLabel.font = UIFont.p3
         subtitleLabel.text = subtitle
     }
     
@@ -103,14 +104,13 @@ extension RMSessionDetailViewController {
 
 // MARK: - UITableView Setup
 extension RMSessionDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RMSessionDetailTableViewCell.reuseID,
-                                                       for: indexPath)
-            as? RMSessionDetailTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: RMSessionDetailTableViewCell.reuseID,
+            for: indexPath
+        ) as? RMSessionDetailTableViewCell else { return UITableViewCell() }
         cell.configureCell(forRun: run)
         return cell
     }

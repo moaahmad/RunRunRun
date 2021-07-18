@@ -10,14 +10,12 @@ import UIKit
 
 final class RMSummaryDetailStackView: UIStackView {
     let valueLabel = RMTitleLabel(textAlignment: .center,
-                                  fontSize: 27,
                                   color: .label,
-                                  weight: .semibold)
+                                  font: .h3)
     
-    private let titleLabel = RMSecondaryTitleLabel(fontSize: 14,
-                                           fontWeight: .light,
-                                           color: .secondaryLabel,
-                                           textAlignment: .center)
+    private let titleLabel = RMSecondaryTitleLabel(font: UIFont.p3,
+                                                   color: .secondaryLabel,
+                                                   textAlignment: .center)
 
     private lazy var textStackView = UIStackView()
         
@@ -25,7 +23,8 @@ final class RMSummaryDetailStackView: UIStackView {
         super.init(frame: frame)
         configureLayout()
     }
-    
+
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

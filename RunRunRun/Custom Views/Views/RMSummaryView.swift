@@ -10,11 +10,9 @@ import UIKit
 
 final class RMSummaryView: UIView {
     lazy var titleLabel = RMTitleLabel(textAlignment: .center,
-                                       fontSize: 24,
                                        color: .systemGreen)
 
     lazy var totalWorkoutsLabel = RMTitleLabel(textAlignment: .center,
-                                               fontSize: 24,
                                                color: .label)
 
     lazy var titleStackView = UIStackView()

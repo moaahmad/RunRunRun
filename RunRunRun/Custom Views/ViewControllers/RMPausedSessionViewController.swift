@@ -33,7 +33,8 @@ final class RMPausedSessionViewController: UIViewController {
     }
     
     func addRouteToMap(coordinateLocations: [Location]) {
-        if let overlay = RouteDrawer.addLiveRouteToMap(mapView: mapView, routeLocations: coordinateLocations) {
+        if let overlay = RouteDrawer.addLiveRouteToMap(mapView: mapView,
+                                                       routeLocations: coordinateLocations) {
             if mapView.overlays.count > 0 {
                 mapView.removeOverlays(mapView.overlays)
             }
@@ -126,7 +127,7 @@ extension RMPausedSessionViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else { return .init() }
         let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor  = .systemOrange
+        renderer.strokeColor  = .systemGreen
         renderer.lineWidth = 5
         return renderer
     }

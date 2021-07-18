@@ -11,15 +11,13 @@ import UIKit
 final class SessionTableViewCell: UITableViewCell {
     static let reuseID = "SessionTableViewCell"
     
-    private(set) var sessionImage = UIImageView()
+    private(set) lazy var sessionImage = UIImageView()
     
-    private(set) var distanceLabel = RMTitleLabel(textAlignment: .center,
-                                                  fontSize: 21,
+    private(set) lazy var distanceLabel = RMTitleLabel(textAlignment: .center,
                                                   color: .systemGreen,
-                                                  weight: .semibold)
+                                                  font: .montserrat(.semiBold, size: 20))
     
-    private(set) var dateLabel = RMSecondaryTitleLabel(fontSize: 12,
-                                                       fontWeight: .light,
+    private(set) lazy var dateLabel = RMSecondaryTitleLabel(font: UIFont.montserrat(.light, size: 12),
                                                        color: .secondaryLabel)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,7 +25,8 @@ final class SessionTableViewCell: UITableViewCell {
         configureLayout()
         styleLayout()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,8 +50,8 @@ final class SessionTableViewCell: UITableViewCell {
     }
 }
 
-extension SessionTableViewCell {
-    private func configureLayout() {
+private extension SessionTableViewCell {
+    func configureLayout() {
         addSubview(sessionImage)
         addSubview(distanceLabel)
         addSubview(dateLabel)
@@ -73,7 +72,7 @@ extension SessionTableViewCell {
         ])
     }
     
-    private func styleLayout() {
+    func styleLayout() {
 //        layer.shouldRasterize = true
         
         sessionImage.translatesAutoresizingMaskIntoConstraints = false

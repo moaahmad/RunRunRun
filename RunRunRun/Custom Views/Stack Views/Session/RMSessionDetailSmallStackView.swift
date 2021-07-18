@@ -11,11 +11,8 @@ import UIKit
 final class RMSessionDetailSmallStackView: UIStackView {
     
     let valueLabel = RMTitleLabel(textAlignment: .center,
-                                  fontSize: 30,
                                   color: .black)
-    let descriptionLabel = RMSecondaryTitleLabel(fontSize: 17,
-                                                 fontWeight: .semibold,
-                                                 color: .darkGray)
+    let descriptionLabel = RMSecondaryTitleLabel(color: .darkGray)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
